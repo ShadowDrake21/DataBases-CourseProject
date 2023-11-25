@@ -1,0 +1,20 @@
+Course Project 2023:
+Drake21:
+1. Domains (all)
+
+// after the next meeting
+2. Servlets: 
+- Opening
+- Opening Usage
+- Tournament
+- Tournament Participation
+
+DTure:
+1.DAO
+2.Databeans
+
+// after the next meeting
+2. Servlets: 
+- Match
+- Player
+- Title

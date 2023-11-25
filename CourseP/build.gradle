@@ -1,0 +1,45 @@
+apply plugin: 'war'
+
+repositories {
+	mavenCentral()
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir 'src'
+		}
+		 java.destinationDirectory.set(file('webapp/WEB-INF/lib'))
+	}
+}
+
+dependencies {
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
+	implementation group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+	implementation group: 'javax.servlet.jsp', name: 'jsp-api', version: '2.1'
+	implementation group: 'jstl', name: 'jstl', version: '1.2'
+	implementation group: 'org.hibernate', name: 'hibernate-core', version: '4.3.6.Final'
+	implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '4.3.6.Final'
+	implementation group: 'org.hibernate', name: 'hibernate-osgi', version: '4.3.6.Final'
+	implementation group: 'org.hibernate', name: 'hibernate-envers', version: '4.3.6.Final'
+	implementation group: 'org.hibernate', name: 'hibernate-c3p0', version: '4.3.6.Final'
+	implementation group: 'org.hibernate', name: 'hibernate-proxool', version: '4.3.6.Final'
+	implementation group: 'org.hibernate', name: 'hibernate-infinispan', version: '4.3.6.Final'
+	implementation group: 'org.hibernate', name: 'hibernate-ehcache', version: '4.3.6.Final'
+	implementation group: 'antlr', name: 'antlr', version: '2.7.6'
+	implementation group: 'commons-collections', name: 'commons-collections', version: '3.1'
+	implementation group: 'dom4j', name: 'dom4j', version: '1.6.1'
+	implementation group: 'javassist', name: 'javassist', version: '3.4.GA'
+	implementation group: 'javax.transaction', name: 'jta', version: '1.1'
+	implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.5.6'
+	implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.5.6'
+}
+
+task copyToLib(type: Copy) {
+	from configurations.runtimeClasspath 
+	into "wepapp/WEB-INF/lib"
+}
+
+project.afterEvaluate {
+	tasks.build.dependsOn(copyToLib)
+}
