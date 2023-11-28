@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import domain.Enums.TournamentConnection;
+import domain.Enums.TournamentType;
+
 @Entity
 @Table(name = "tournament")
 public class Tournament {
@@ -23,11 +26,11 @@ public class Tournament {
 			String connection, String country, String city, int prize,
 			int numMatches, int players, int prizePlaces, String champion) {
 		this.id = id;
-		this.type = type;
+		this.type = TournamentType.getTypeByInput(connection);
 		this.name = name;
 		this.start = start;
 		this.end = end;
-		this.connection = connection;
+		this.connection = TournamentConnection.getConnectionByInput(connection);
 		this.country = country;
 		this.city = city;
 		this.prize = prize;
@@ -43,7 +46,7 @@ public class Tournament {
 	private int id;
 
 	@Column(name = "tournament_type", nullable = false)
-	private String type;
+	private TournamentType type;
 
 	@Column(name = "tournament_name", nullable = false)
 	private String name;
@@ -55,7 +58,7 @@ public class Tournament {
 	private Date end;
 
 	@Column(name = "tournament_connection", nullable = true)
-	private String connection;
+	private TournamentConnection connection;
 
 	@Column(name = "tournament_country", nullable = true)
 	private String country;
@@ -81,6 +84,9 @@ public class Tournament {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tournament")
 	private List<Match> matches = new ArrayList<>();
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tournament")
+	private List<TournamentPart> tournamentPart = new ArrayList<>();
+
 	public int getId() {
 		return id;
 	}
@@ -90,11 +96,11 @@ public class Tournament {
 	}
 
 	public String getType() {
-		return type;
+		return type.getType();
 	}
 
 	public void setType(String type) {
-		this.type = type;
+		this.type = TournamentType.getTypeByInput(type);
 	}
 
 	public String getName() {
@@ -122,11 +128,11 @@ public class Tournament {
 	}
 
 	public String getConnection() {
-		return connection;
+		return connection.getConnection();
 	}
 
 	public void setConnection(String connection) {
-		this.connection = connection;
+		this.connection = TournamentConnection.getConnectionByInput(connection);
 	}
 
 	public String getCountry() {

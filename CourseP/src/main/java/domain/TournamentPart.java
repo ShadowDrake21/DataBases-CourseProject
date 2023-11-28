@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +25,14 @@ public class TournamentPart {
 		this.registration = registration;
 		this.place = place;
 	}
+
+	@ManyToOne
+	@JoinColumn(name = "id_player")
+	private Player player;
+
+	@ManyToOne
+	@JoinColumn(name = "id_tournament")
+	private Tournament tournament;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

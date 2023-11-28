@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import domain.Enums.MatchScore;
+
 @Entity
 @Table(name = "match")
 public class Match {
@@ -25,8 +27,8 @@ public class Match {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.date = date;
-		this.score1 = score1;
-		this.score2 = score2;
+		this.score1 = MatchScore.getScoreByInput(score1);
+		this.score2 = MatchScore.getScoreByInput(score2);
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -51,10 +53,10 @@ public class Match {
 	private Date date;
 
 	@Column(name = "match_score_1", nullable = true)
-	private String score1;
+	private MatchScore score1;
 
 	@Column(name = "match_score_2", nullable = true)
-	private String score2;
+	private MatchScore score2;
 
 	public int getId() {
 		return id;
@@ -97,18 +99,18 @@ public class Match {
 	}
 
 	public String getScore1() {
-		return score1;
+		return score1.getScore();
 	}
 
 	public void setScore1(String score1) {
-		this.score1 = score1;
+		this.score1 = MatchScore.getScoreByInput(score1);
 	}
 
 	public String getScore2() {
-		return score2;
+		return score2.getScore();
 	}
 
 	public void setScore2(String score2) {
-		this.score2 = score2;
+		this.score2 = MatchScore.getScoreByInput(score2);
 	}
 }

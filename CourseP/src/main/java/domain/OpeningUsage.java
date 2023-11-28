@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +21,14 @@ public class OpeningUsage {
 		this.idPlayer = idPlayer;
 		this.points = points;
 	}
+
+	@ManyToOne
+	@JoinColumn(name = "id_player")
+	private Player player;
+
+	@ManyToOne
+	@JoinColumn(name = "id_opening")
+	private Opening opening;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

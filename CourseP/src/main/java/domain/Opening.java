@@ -1,7 +1,18 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import domain.Enums.OpeningCategory;
 
 @Entity
 @Table(name = "opening")
@@ -13,16 +24,30 @@ public class Opening {
 			String player) {
 		this.id = id;
 		this.name = name;
-		this.category = category;
+		this.category = OpeningCategory.getCategoryByInput(category);
 		this.year = year;
 		this.player = player;
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_opening", unique = true, nullable = false)
 	private int id;
+
+	@Column(name = "opening_name", nullable = false)
 	private String name;
-	private String category;
+
+	@Column(name = "opening_category", nullable = false)
+	private OpeningCategory category;
+
+	@Column(name = "opening_year", nullable = true)
 	private short year;
+
+	@Column(name = "opening_famous_player", nullable = true)
 	private String player;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "opening")
+	private List<Opening> openingUsage = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -41,11 +66,11 @@ public class Opening {
 	}
 
 	public String getCategory() {
-		return category;
+		return category.getCategory();
 	}
 
 	public void setCategory(String category) {
-		this.category = category;
+		this.category = OpeningCategory.getCategoryByInput(category);
 	}
 
 	public short getYear() {

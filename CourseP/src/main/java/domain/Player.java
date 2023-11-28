@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import domain.Enums.PlayerGender;
+
 @Entity
 @Table(name = "player")
 public class Player {
@@ -22,7 +24,7 @@ public class Player {
 	public Player(String name, String gender, Date birthday, String country,
 			String nationality, int rate, int matches, int wins) {
 		this.name = name;
-		this.gender = gender;
+		this.gender = PlayerGender.getGenderByInput(gender);
 		this.birthday = birthday;
 		this.country = country;
 		this.nationality = nationality;
@@ -40,7 +42,7 @@ public class Player {
 	private String name;
 
 	@Column(name = "player_gender", nullable = false)
-	private String gender;
+	private PlayerGender gender;
 
 	@Column(name = "player_birthday", nullable = false)
 	private Date birthday;
@@ -63,6 +65,12 @@ public class Player {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
 	private List<Title> titles = new ArrayList<>();
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
+	private List<OpeningUsage> openingUsage = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
+	private List<TournamentPart> tournamentPart = new ArrayList<>();
+
 	public int getId() {
 		return id;
 	}
@@ -80,11 +88,11 @@ public class Player {
 	}
 
 	public String getGender() {
-		return gender;
+		return gender.getGender();
 	}
 
 	public void setGender(String gender) {
-		this.gender = gender;
+		this.gender = PlayerGender.getGenderByInput(gender);
 	}
 
 	public Date getBirthday() {
