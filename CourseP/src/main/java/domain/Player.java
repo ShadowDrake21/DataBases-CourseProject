@@ -6,14 +6,20 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 import domain.Enums.PlayerGender;
+import settings.StringToPlayerGenderConverter;
 
 @Entity
 @Table(name = "player")
@@ -42,6 +48,7 @@ public class Player {
 	private String name;
 
 	@Column(name = "player_gender", nullable = false)
+	@Convert(converter = StringToPlayerGenderConverter.class)
 	private PlayerGender gender;
 
 	@Column(name = "player_birthday", nullable = false)
@@ -141,6 +148,14 @@ public class Player {
 
 	public void setWins(int wins) {
 		this.wins = wins;
+	}
+
+	@Override
+	public String toString() {
+		return "Player [id=" + id + ", name=" + name + ", gender=" + gender
+				+ ", birthday=" + birthday + ", country=" + country
+				+ ", nationality=" + nationality + ", rate=" + rate
+				+ ", matches=" + matches + ", wins=" + wins + "]";
 	}
 
 }

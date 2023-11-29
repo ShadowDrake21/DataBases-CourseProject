@@ -24,6 +24,17 @@ public class Enums {
 		public String getGender() {
 			return gender;
 		}
+
+		public static PlayerGender fromDatabaseValue(String dbValue) {
+			for (PlayerGender gender : values()) {
+				if (gender.getGender().equals(dbValue)) {
+					return gender;
+				}
+			}
+
+			throw new IllegalArgumentException(
+					"No gender found for database value: [" + dbValue + "]");
+		}
 	}
 
 	public enum OpeningCategory {

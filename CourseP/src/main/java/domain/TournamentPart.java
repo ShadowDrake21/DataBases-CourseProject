@@ -27,11 +27,11 @@ public class TournamentPart {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "id_player")
+	@JoinColumn(name = "id_player", insertable = false, updatable = false)
 	private Player player;
 
 	@ManyToOne
-	@JoinColumn(name = "id_tournament")
+	@JoinColumn(name = "id_tournament", insertable = false, updatable = false)
 	private Tournament tournament;
 
 	@Id
@@ -39,10 +39,8 @@ public class TournamentPart {
 	@Column(name = "id_tournament_participation", unique = true, nullable = false)
 	private int id;
 
-	@Column(name = "id_player", nullable = false)
 	private int idPlayer;
 
-	@Column(name = "id_tournament", nullable = false)
 	private int idTournament;
 
 	@Column(name = "tournament_participation_registration", nullable = true)

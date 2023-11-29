@@ -23,11 +23,11 @@ public class OpeningUsage {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "id_player")
+	@JoinColumn(name = "id_player", insertable = false, updatable = false)
 	private Player player;
 
 	@ManyToOne
-	@JoinColumn(name = "id_opening")
+	@JoinColumn(name = "id_opening", insertable = false, updatable = false)
 	private Opening opening;
 
 	@Id
@@ -35,10 +35,8 @@ public class OpeningUsage {
 	@Column(name = "id_opening_usage", unique = true, nullable = false)
 	private int id;
 
-	@Column(name = "id_opening", nullable = false) // false !!!!
 	private int idOpening;
 
-	@Column(name = "id_player", nullable = false)
 	private int idPlayer;
 
 	@Column(name = "opening_usage_points", nullable = true)

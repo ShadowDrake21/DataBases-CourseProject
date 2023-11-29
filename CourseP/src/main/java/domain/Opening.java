@@ -47,7 +47,7 @@ public class Opening {
 	private String player;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "opening")
-	private List<Opening> openingUsage = new ArrayList<>();
+	private List<OpeningUsage> openingUsage = new ArrayList<>();
 
 	public int getId() {
 		return id;
