@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import domain.Enums.OpeningCategory;
+import settings.StringToOpeningCategoryConverter;
+import settings.StringToPlayerGenderConverter;
 
 @Entity
 @Table(name = "opening")
@@ -38,6 +41,7 @@ public class Opening {
 	private String name;
 
 	@Column(name = "opening_category", nullable = false)
+	@Convert(converter = StringToOpeningCategoryConverter.class)
 	private OpeningCategory category;
 
 	@Column(name = "opening_year", nullable = true)
@@ -87,5 +91,20 @@ public class Opening {
 
 	public void setPlayer(String player) {
 		this.player = player;
+	}
+
+	public List<OpeningUsage> getOpeningUsage() {
+		return openingUsage;
+	}
+
+	public void setOpeningUsage(List<OpeningUsage> openingUsage) {
+		this.openingUsage = openingUsage;
+	}
+
+	@Override
+	public String toString() {
+		return "Opening [id=" + id + ", name=" + name + ", category="
+				+ category.getCategory() + ", year=" + year + ", player="
+				+ player + ", openingUsage.size()=" + openingUsage.size() + "]";
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,9 @@ import javax.persistence.Table;
 
 import domain.Enums.TournamentConnection;
 import domain.Enums.TournamentType;
+import settings.StringToPlayerGenderConverter;
+import settings.StringToTournamentConnection;
+import settings.StringToTournamentType;
 
 @Entity
 @Table(name = "tournament")
@@ -46,6 +50,7 @@ public class Tournament {
 	private int id;
 
 	@Column(name = "tournament_type", nullable = false)
+	@Convert(converter = StringToTournamentType.class)
 	private TournamentType type;
 
 	@Column(name = "tournament_name", nullable = false)
@@ -58,6 +63,7 @@ public class Tournament {
 	private Date end;
 
 	@Column(name = "tournament_connection", nullable = true)
+	@Convert(converter = StringToTournamentConnection.class)
 	private TournamentConnection connection;
 
 	@Column(name = "tournament_country", nullable = true)
@@ -189,6 +195,34 @@ public class Tournament {
 
 	public void setChampion(String champion) {
 		this.champion = champion;
+	}
+
+	public List<Match> getMatches() {
+		return matches;
+	}
+
+	public void setMatches(List<Match> matches) {
+		this.matches = matches;
+	}
+
+	public List<TournamentPart> getTournamentPart() {
+		return tournamentPart;
+	}
+
+	public void setTournamentPart(List<TournamentPart> tournamentPart) {
+		this.tournamentPart = tournamentPart;
+	}
+
+	@Override
+	public String toString() {
+		return "Tournament [id=" + id + ", type=" + type.getType() + ", name="
+				+ name + ", start=" + start + ", end=" + end + ", connection="
+				+ connection.getConnection() + ", country=" + country
+				+ ", city=" + city + ", prize=" + prize + ", numMatches="
+				+ numMatches + ", players=" + players + ", prizePlaces="
+				+ prizePlaces + ", champion=" + champion + ",\n matches.size()="
+				+ matches.size() + ", tournamentPart.size()="
+				+ tournamentPart.size() + "]";
 	}
 
 }

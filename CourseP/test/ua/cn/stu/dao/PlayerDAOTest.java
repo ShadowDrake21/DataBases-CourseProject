@@ -12,7 +12,7 @@ import domain.Player;
 class PlayerDAOTest {
 
 	@Test
-	public void whenGetAllThenAllShouldBePresent() {
+	public void whenGetAllPlayersThenAllPlayersShouldBePresent() {
 		// given
 		// when
 		List<Player> playerList = HibernateDAOChess.getInstance().getPlayerDAO()
@@ -24,7 +24,46 @@ class PlayerDAOTest {
 			assertNotNull(player);
 			assertNotNull(player.getId());
 			assertNotNull(player.getName());
-			System.out.println("player " + player.toString());
+			System.out.println(player);
+		}
+	}
+
+	@Test
+	public void outputAllTitles() {
+		// given
+		// when
+		List<Player> playerList = HibernateDAOChess.getInstance().getPlayerDAO()
+				.getAllPlayers();
+
+		for (Player player : playerList) {
+			assertNotNull(player);
+			System.out.println(player.getTitles());
+		}
+	}
+
+	@Test
+	public void outputAllTournaments() {
+		// given
+		// when
+		List<Player> playerList = HibernateDAOChess.getInstance().getPlayerDAO()
+				.getAllPlayers();
+
+		for (Player player : playerList) {
+			assertNotNull(player);
+			System.out.println(player.getTournamentPart());
+		}
+	}
+
+	@Test
+	public void outputAllOpenings() {
+		// given
+		// when
+		List<Player> playerList = HibernateDAOChess.getInstance().getPlayerDAO()
+				.getAllPlayers();
+
+		for (Player player : playerList) {
+			assertNotNull(player);
+			System.out.println(player.getOpeningUsage());
 		}
 	}
 

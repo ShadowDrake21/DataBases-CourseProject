@@ -73,4 +73,10 @@ public class Title {
 		this.idPlayer = idPlayer;
 	}
 
+	@Override
+	public String toString() {
+		return "Title [player=" + player + ", id=" + id + ", name=" + name
+				+ ", year=" + year + ", idPlayer=" + idPlayer + "]";
+	}
+
 }

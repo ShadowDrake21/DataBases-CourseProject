@@ -150,12 +150,39 @@ public class Player {
 		this.wins = wins;
 	}
 
+	public List<Title> getTitles() {
+		return titles;
+	}
+
+	public void setTitles(List<Title> titles) {
+		this.titles = titles;
+	}
+
+	public List<OpeningUsage> getOpeningUsage() {
+		return openingUsage;
+	}
+
+	public void setOpeningUsage(List<OpeningUsage> openingUsage) {
+		this.openingUsage = openingUsage;
+	}
+
+	public List<TournamentPart> getTournamentPart() {
+		return tournamentPart;
+	}
+
+	public void setTournamentPart(List<TournamentPart> tournamentPart) {
+		this.tournamentPart = tournamentPart;
+	}
+
 	@Override
 	public String toString() {
-		return "Player [id=" + id + ", name=" + name + ", gender=" + gender
+		return "Player [id=" + id + ", name=" + name + ", gender=" + getGender()
 				+ ", birthday=" + birthday + ", country=" + country
-				+ ", nationality=" + nationality + ", rate=" + rate
-				+ ", matches=" + matches + ", wins=" + wins + "]";
+				+ ",nationality=" + nationality + ", rate=" + rate
+				+ ", matches=" + matches + ", wins=" + wins + ", titles.size()="
+				+ titles.size() + ", openingUsage.size()=" + openingUsage.size()
+				+ ", tournamentParticipation.size()=" + tournamentPart.size()
+				+ "]\n\n";
 	}
 
 }

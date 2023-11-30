@@ -35,8 +35,10 @@ public class OpeningUsage {
 	@Column(name = "id_opening_usage", unique = true, nullable = false)
 	private int id;
 
+	@Column(name = "id_opening", nullable = false) // false !!!!
 	private int idOpening;
 
+	@Column(name = "id_player", nullable = false) // false !!!!
 	private int idPlayer;
 
 	@Column(name = "opening_usage_points", nullable = true)
@@ -72,5 +74,12 @@ public class OpeningUsage {
 
 	public void setPoints(int points) {
 		this.points = points;
+	}
+
+	@Override
+	public String toString() {
+		return "OpeningUsage [player=" + player + ", opening=" + opening
+				+ ", id=" + id + ", idOpening=" + idOpening + ", idPlayer="
+				+ idPlayer + ", points=" + points + "]";
 	}
 }

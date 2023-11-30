@@ -39,8 +39,10 @@ public class TournamentPart {
 	@Column(name = "id_tournament_participation", unique = true, nullable = false)
 	private int id;
 
+	@Column(name = "id_player", nullable = false)
 	private int idPlayer;
 
+	@Column(name = "id_tournament", nullable = false)
 	private int idTournament;
 
 	@Column(name = "tournament_participation_registration", nullable = true)
@@ -87,5 +89,13 @@ public class TournamentPart {
 
 	public void setPlace(int place) {
 		this.place = place;
+	}
+
+	@Override
+	public String toString() {
+		return "TournamentPart [player=" + player + ", tournament=" + tournament
+				+ ", id=" + id + ", idPlayer=" + idPlayer + ", idTournament="
+				+ idTournament + ", registration=" + registration + ", place="
+				+ place + "]";
 	}
 }

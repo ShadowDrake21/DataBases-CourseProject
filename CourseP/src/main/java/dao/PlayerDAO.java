@@ -71,7 +71,7 @@ public class PlayerDAO {
 	 * other methods can be moved to generic class and
 	 * can be used for other domain objects.
 	 */
-	public List<Player> getPlayersByTitle(String name) {
+	public List<Player> getPlayersByName(String name) {
 		Criteria criteria = session.createCriteria(Player.class)
 				.add(Restrictions.eq("player_name", name));
 		return criteria.list();

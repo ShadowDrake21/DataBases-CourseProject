@@ -124,7 +124,7 @@ public class Enums {
 
 		public static MatchScore getScoreByInput(String input) {
 			for (MatchScore score : values()) {
-				if (score.getScore().equalsIgnoreCase(input)) {
+				if (score.getScore().equals(input)) {
 					return score;
 				}
 			}
