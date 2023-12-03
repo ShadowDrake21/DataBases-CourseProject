@@ -42,7 +42,7 @@ public class Player {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_player", unique = true, nullable = false)
-	private int id;
+	private Long id;
 
 	@Column(name = "player_name", nullable = false)
 	private String name;
@@ -78,11 +78,11 @@ public class Player {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
 	private List<TournamentPart> tournamentPart = new ArrayList<>();
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -1,4 +1,5 @@
-/ua/
-/dao/
+/service/
 /domain/
-/settings/
+/tests/
+/dao/
+/servlet/

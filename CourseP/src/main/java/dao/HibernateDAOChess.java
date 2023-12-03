@@ -30,7 +30,7 @@ public class HibernateDAOChess {
 		return instance;
 	}
 
-	private Session getSession() {
+	public Session getSession() {
 		if (null == session) {
 			Configuration configuration = new Configuration();
 			configuration.setProperty(Environment.DRIVER,
@@ -68,7 +68,7 @@ public class HibernateDAOChess {
 		return playerDAO;
 	}
 
-	public TitleDAO getTitleDAOO() {
+	public TitleDAO getTitleDAO() {
 		if (null == titleDAO) {
 			titleDAO = new TitleDAO(getSession());
 		}
@@ -115,6 +115,10 @@ public class HibernateDAOChess {
 			tournamentLogDAO = new TournamentLogDAO(getSession());
 		}
 		return tournamentLogDAO;
+	}
+
+	public void closeSession() {
+		getSession().close();
 	}
 
 }

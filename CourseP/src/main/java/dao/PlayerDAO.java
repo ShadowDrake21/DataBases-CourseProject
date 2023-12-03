@@ -76,4 +76,9 @@ public class PlayerDAO {
 				.add(Restrictions.eq("player_name", name));
 		return criteria.list();
 	}
+
+	public Player getPlayerById(Long idPlayer) {
+		Player player = (Player) session.get(Player.class, idPlayer);
+		return player;
+	}
 }
