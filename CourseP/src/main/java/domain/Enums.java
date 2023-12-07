@@ -2,7 +2,7 @@ package domain;
 
 public class Enums {
 	public enum PlayerGender {
-		MALE("Чоловіча"), FEMALE("Жіноча");
+		MALE("Male"), FEMALE("Female");
 
 		private final String gender;
 

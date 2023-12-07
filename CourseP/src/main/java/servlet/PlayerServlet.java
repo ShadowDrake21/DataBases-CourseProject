@@ -23,10 +23,11 @@ public class PlayerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String actionType = req.getParameter("actiontype");
-
 		if ("addplayer".equalsIgnoreCase(actionType)) {
 			String player_name = req.getParameter("player_name");
+			System.out.println("Player Gender Input: " + player_name);
 			String player_gender = req.getParameter("player_gender");
+			System.out.println("Player Gender Input: " + player_gender);
 			String player_birthday = req.getParameter("player_birthday");
 			String player_country = req.getParameter("player_country");
 			String player_nationality = req.getParameter("player_nationality");

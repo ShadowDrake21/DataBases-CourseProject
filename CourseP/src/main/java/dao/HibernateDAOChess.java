@@ -36,7 +36,7 @@ public class HibernateDAOChess {
 			configuration.setProperty(Environment.DRIVER,
 					"com.mysql.cj.jdbc.Driver");
 			configuration.setProperty(Environment.URL,
-					"jdbc:mysql://localhost:3306/chess");
+					"jdbc:mysql://localhost:3306/chessback");
 			configuration.setProperty(Environment.USER, "root");
 			configuration.setProperty(Environment.PASS, "PolishDream_04");
 			configuration.setProperty(Environment.DIALECT,
