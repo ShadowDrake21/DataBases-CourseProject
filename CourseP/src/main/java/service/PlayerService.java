@@ -85,7 +85,7 @@ public class PlayerService {
 		}
 		player.setCountry(player_country);
 		player.setNationality(player_nationality);
-		player.setRate(Integer.parseInt(player_wins));
+		player.setRate(Integer.parseInt(player_rate));
 		player.setMatches(Integer.parseInt(player_matches));
 		player.setWins(Integer.parseInt(player_wins));
 		HibernateDAOChess.getInstance().getPlayerDAO().updatePlayer(player);
