@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "title")
@@ -16,8 +17,7 @@ public class Title {
 	public Title() {
 	}
 
-	public Title(int id, String name, int year, int idPlayer) {
-		this.id = id;
+	public Title(String name, int year, Long idPlayer) {
 		this.name = name;
 		this.year = year;
 		this.idPlayer = idPlayer;
@@ -30,7 +30,7 @@ public class Title {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_title", unique = true, nullable = false)
-	private int id;
+	private Long id;
 
 	@Column(name = "title_name", nullable = false)
 	private String name;
@@ -39,13 +39,16 @@ public class Title {
 	private int year;
 
 	@Column(name = "id_player", nullable = true)
-	private int idPlayer;
+	private Long idPlayer;
 
-	public int getId() {
+	@Transient
+	private String playerName;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -65,12 +68,20 @@ public class Title {
 		this.year = year;
 	}
 
-	public int getIdPlayer() {
+	public Long getIdPlayer() {
 		return idPlayer;
 	}
 
-	public void setIdPlayer(int idPlayer) {
+	public void setIdPlayer(Long idPlayer) {
 		this.idPlayer = idPlayer;
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
 	}
 
 	@Override

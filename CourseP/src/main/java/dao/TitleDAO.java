@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -8,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import domain.Player;
 import domain.Title;
 
 public class TitleDAO {
@@ -71,9 +73,31 @@ public class TitleDAO {
 	 * other methods can be moved to generic class and
 	 * can be used for other domain objects.
 	 */
+
+	public Title getTitleById(Long idTitle) {
+		Title title = (Title) session.get(Title.class, idTitle);
+		return title;
+	}
+
 	public List<Title> getTitlesByName(String name) {
 		Criteria criteria = session.createCriteria(Title.class)
 				.add(Restrictions.eq("title_name", name));
 		return criteria.list();
+	}
+
+	public List<Title> getAllTitlesWithPlayerName() {
+		SQLQuery query = session.createSQLQuery("SELECT t.*, p.player_name "
+				+ "FROM title t INNER JOIN player p ON t.id_player = p.id_player")
+				.addEntity(Title.class).addScalar("player_name");
+		List<Object[]> results = query.list();
+
+		List<Title> titleList = new ArrayList<>();
+		for (Object[] result : results) {
+			Title title = (Title) result[0];
+			title.setPlayerName((String) result[1]);
+			titleList.add(title);
+		}
+
+		return titleList;
 	}
 }

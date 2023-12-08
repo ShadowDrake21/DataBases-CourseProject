@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="windows-1251">
+<meta charset="UTF-8">
 <title>Update player</title>
 </head>
 <body>

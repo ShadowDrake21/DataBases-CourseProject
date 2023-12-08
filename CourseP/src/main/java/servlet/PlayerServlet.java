@@ -39,11 +39,11 @@ public class PlayerServlet extends HttpServlet {
 					player_country, player_nationality, player_rate,
 					player_matches, player_wins);
 		} else if ("deleteplayer".equalsIgnoreCase(actionType)) {
-			String playerid = req.getParameter("player_id");
+			String player_id = req.getParameter("player_id");
 
-			playerService.deletePlayer(playerid);
+			playerService.deletePlayer(player_id);
 		} else if ("updateplayer".equalsIgnoreCase(actionType)) {
-			String id_player = req.getParameter("player_id");
+			String player_id = req.getParameter("player_id");
 			String player_name = req.getParameter("player_name");
 			String player_gender = req.getParameter("player_gender");
 			String player_birthday = req.getParameter("player_birthday");
@@ -53,7 +53,7 @@ public class PlayerServlet extends HttpServlet {
 			String player_matches = req.getParameter("player_matches");
 			String player_wins = req.getParameter("player_wins");
 
-			playerService.updatePlayer(id_player, player_name, player_gender,
+			playerService.updatePlayer(player_id, player_name, player_gender,
 					player_birthday, player_country, player_nationality,
 					player_rate, player_matches, player_wins);
 		}

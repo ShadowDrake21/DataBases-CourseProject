@@ -17,6 +17,20 @@
   	<servlet-name>playerservlet</servlet-name>
   	<url-pattern>/player</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>titleservlet</servlet-name>
+  	<servlet-class>servlet.TitleServlet</servlet-class>
+  	<init-param>
+  		<param-name>jersey.config.server.provider.packages</param-name>
+  		<param-value>ua.cn.stu.service</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>titleservlet</servlet-name>
+  	<url-pattern>/title</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

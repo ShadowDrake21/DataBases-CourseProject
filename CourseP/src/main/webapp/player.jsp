@@ -13,7 +13,7 @@
 <body>
 	<jsp:useBean id="PlayerListBean" class="databean.PlayerListDatabean" />
 	<h1>Player page</h1>
-	<form method="post" action="player" accept-charset="windows-1251">
+	<form method="post" action="player">
 		<table style="width: 100%" border="1">
 			<tr>
 				<td>Id</td>
