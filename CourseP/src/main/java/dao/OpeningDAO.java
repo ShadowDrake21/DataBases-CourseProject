@@ -6,43 +6,43 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import domain.Open; 
+import domain.Opening; 
 
-public class OpenDAO { 
+public class OpeningDAO { 
     private Session session;
-    public OpenDAO(Session session) {
+    public OpeningDAO(Session session) {
         this.session = session;
     }
 
-    public Open createOpen(Open open) { 
+    public Opening createOpening(Opening open) { 
         Transaction transaction = session.beginTransaction();
         session.saveOrUpdate(open);
         transaction.commit();
         return open;
     }
 
-    public Open updateOpen(Open open) { 
+    public Opening updateOpening(Opening open) { 
         Transaction transaction = session.beginTransaction();
         session.merge(open);
         transaction.commit();
         return open;
     }
 
-    public void deleteOpen(Open open) { 
+    public void deleteOpening(Opening open) { 
         Transaction transaction = session.beginTransaction();
         session.delete(open);
         transaction.commit();
     }
 
-    public void deleteOpenById(Long openId) { 
-        Open open = (Open) session.get(Open.class, openId);
-        deleteOpen(open);
+    public void deleteOpeningById(Long openId) { 
+        Opening open = (Opening) session.get(Opening.class, openId);
+        deleteOpening(open);
     }
 
-    public List<Open> getAllOpens() { 
+    public List<Opening> getAllOpenings() { 
         SQLQuery query = session.createSQLQuery(
-                "select * from opening").addEntity(Open.class); 
-        List<Open> openList = query.list();
+                "select * from opening").addEntity(Opening.class); 
+        List<Opening> openList = query.list();
         return openList;
     }
 
@@ -52,8 +52,8 @@ public class OpenDAO {
         return criteria.list();
     }*/
     
-    public Open getOpenById(Long openId) { 
-        Open open = (Open) session.get(Open.class, openId);
+    public Opening getOpeningById(Long openId) { 
+        Opening open = (Opening) session.get(Opening.class, openId);
         return open;
     }
 }

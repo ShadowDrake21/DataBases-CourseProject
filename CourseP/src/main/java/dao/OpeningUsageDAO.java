@@ -6,43 +6,43 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import domain.OpenUse; 
+import domain.OpeningUsage; 
 
-public class OpenUseDAO { 
+public class OpeningUsageDAO { 
     private Session session;
-    public OpenUseDAO(Session session) {
+    public OpeningUsageDAO(Session session) {
         this.session = session;
     }
 
-    public OpenUse createOpenUse(OpenUse openUse) { 
+    public OpeningUsage createOpeningUsage(OpeningUsage openUse) { 
         Transaction transaction = session.beginTransaction();
         session.saveOrUpdate(openUse);
         transaction.commit();
         return openUse;
     }
 
-    public OpenUse updateOpenUse(OpenUse openUse) { 
+    public OpeningUsage updateOpeningUsage(OpeningUsage openUse) { 
         Transaction transaction = session.beginTransaction();
         session.merge(openUse);
         transaction.commit();
         return openUse;
     }
 
-    public void deleteOpenUse(OpenUse openUse) { 
+    public void deleteOpeningUsage(OpeningUsage openUse) { 
         Transaction transaction = session.beginTransaction();
         session.delete(openUse);
         transaction.commit();
     }
 
-    public void deleteOpenUseById(Long openUseId) { 
-        OpenUse openUse = (OpenUse) session.get(OpenUse.class, openUseId);
-        deleteOpenUse(openUse);
+    public void deleteOpeningUsageById(Long openUseId) { 
+        OpeningUsage openUse = (OpeningUsage) session.get(OpeningUsage.class, openUseId);
+        deleteOpeningUsage(openUse);
     }
 
-    public List<OpenUse> getAllOpenUses() { 
+    public List<OpeningUsage> getAllOpeningUsage() { 
         SQLQuery query = session.createSQLQuery(
-                "select * from opening_usage").addEntity(OpenUse.class); 
-        List<OpenUse> openUseList = query.list();
+                "select * from opening_usage").addEntity(OpeningUsage.class); 
+        List<OpeningUsage> openUseList = query.list();
         return openUseList;
     }
 
@@ -52,8 +52,8 @@ public class OpenUseDAO {
         return criteria.list();
     }*/
     
-    public OpenUse getOpenUseById(Long openUseId) { 
-        OpenUse openUse = (OpenUse) session.get(OpenUse.class, openUseId);
+    public OpeningUsage getOpeningUsageById(Long openUseId) { 
+        OpeningUsage openUse = (OpeningUsage) session.get(OpeningUsage.class, openUseId);
         return openUse;
     }
 }

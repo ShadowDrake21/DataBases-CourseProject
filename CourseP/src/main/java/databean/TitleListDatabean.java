@@ -10,7 +10,7 @@ public class TitleListDatabean {
     
     public TitleListDatabean() {
         titleList = HibernateDAOChess.getInstance().getTitleDAO()
-                .getAllTitles();
+                .getAllTitlesWithPlayerName();
     }
     
     public List<Title> getTitleList() {

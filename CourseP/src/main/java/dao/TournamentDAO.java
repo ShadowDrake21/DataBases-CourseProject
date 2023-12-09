@@ -6,43 +6,43 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import domain.Tourn; 
+import domain.Tournament; 
 
-public class TournDAO { 
+public class TournamentDAO { 
     private Session session;
-    public TournDAO(Session session) {
+    public TournamentDAO(Session session) {
         this.session = session;
     }
 
-    public Tourn createTourn(Tourn tourn) { 
+    public Tournament createTournament(Tournament tourn) { 
         Transaction transaction = session.beginTransaction();
         session.saveOrUpdate(tourn);
         transaction.commit();
         return tourn;
     }
 
-    public Tourn updateTourn(Tourn tourn) { 
+    public Tournament updateTournament(Tournament tourn) { 
         Transaction transaction = session.beginTransaction();
         session.merge(tourn);
         transaction.commit();
         return tourn;
     }
 
-    public void deleteTourn(Tourn tourn) { 
+    public void deleteTournament(Tournament tourn) { 
         Transaction transaction = session.beginTransaction();
         session.delete(tourn);
         transaction.commit();
     }
 
-    public void deleteTournById(Long tournId) { 
-        Tourn tourn = (Tourn) session.get(Tourn.class, tournId);
-        deleteTourn(tourn);
+    public void deleteTournamentById(Long tournId) { 
+        Tournament tourn = (Tournament) session.get(Tournament.class, tournId);
+        deleteTournament(tourn);
     }
 
-    public List<Tourn> getAllTourns() {
+    public List<Tournament> getAllTournaments() {
         SQLQuery query = session.createSQLQuery(
-                "select * from tournament").addEntity(Tourn.class); 
-        List<Tourn> tournList = query.list();
+                "select * from tournament").addEntity(Tournament.class); 
+        List<Tournament> tournList = query.list();
         return tournList;
     }
 
@@ -52,8 +52,8 @@ public class TournDAO {
         return criteria.list();
     }*/
     
-    public Tourn getTournById(Long tournId) { 
-        Tourn tourn = (Tourn) session.get(Tourn.class, tournId);
+    public Tournament getTournamentById(Long tournId) { 
+        Tournament tourn = (Tournament) session.get(Tournament.class, tournId);
         return tourn;
     }
 }

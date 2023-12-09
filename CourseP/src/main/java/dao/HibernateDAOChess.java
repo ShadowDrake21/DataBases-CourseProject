@@ -6,107 +6,119 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
+
 import domain.*;
 
 public class HibernateDAOChess {
+	private static HibernateDAOChess instance;
 
-    private static HibernateDAOChess instance;
-    private MatchDAO matchDAO;
-    private OpenDAO openDAO;
-    private OpenUseDAO openUseDAO;
-    private PlayerDAO playerDAO;
-    private TitleDAO titleDAO;
-    private TournDAO tournDAO;
-    private TournPartDAO tournPartDAO;
-    private Session session;
+	private PlayerDAO playerDAO;
+	private TournamentDAO tournamentDAO;
+	private OpeningDAO openingDAO;
+	private TitleDAO titleDAO;
+	private MatchDAO matchDAO;
+	private OpeningUsageDAO openingUsageDAO;
+	private TournamentPartDAO tournamentPartDAO;
+	private TournamentLogDAO tournamentLogDAO;
 
-    public static HibernateDAOChess getInstance() {
-        if (null == instance) {
-            instance = new HibernateDAOChess();
-        }
-        return instance;
-    }
+	private Session session;
 
-    public Session getSession() {
-        if (null == session) {
-            Configuration configuration = new Configuration();
-            configuration.setProperty(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-            configuration.setProperty(Environment.URL, "jdbc:mysql://localhost:3306/library_hibernate");
-            configuration.setProperty(Environment.USER, "root");
-            configuration.setProperty(Environment.PASS, "111111");
-            configuration.setProperty(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-            configuration.setProperty(Environment.HBM2DDL_AUTO, "none");
-            configuration.setProperty(Environment.SHOW_SQL, "true");
-                       
-            configuration.addAnnotatedClass(Match.class); 
-            configuration.addAnnotatedClass(Open.class);
-            configuration.addAnnotatedClass(OpenUse.class); 
-            configuration.addAnnotatedClass(Player.class);
-            configuration.addAnnotatedClass(Title.class); 
-            configuration.addAnnotatedClass(Tourn.class);
-            configuration.addAnnotatedClass(TournPart.class); 
-            StandardServiceRegistryBuilder serviceRegistryBuilder = 
-            		new StandardServiceRegistryBuilder();
-            serviceRegistryBuilder.applySettings(configuration.getProperties());
-            ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
-            SessionFactory sessionFactory = 
-            		configuration.buildSessionFactory(serviceRegistry);
-            session = sessionFactory.openSession();
-        }
-        return session;
-    }
-
-    public MatchDAO getMatchDAO() {
-        if (null == matchDAO) {
-            matchDAO = new MatchDAO(getSession());
-        }
-        return matchDAO;
-    }
-    
-    public OpenDAO getOpenDAO() {
-        if (null == openDAO) {
-            openDAO = new OpenDAO(getSession());
-        }
-        return openDAO;
-    }
-  
-    public OpenUseDAO getOpenUseDAO() {
-        if (null == openUseDAO) {
-            openUseDAO = new OpenUseDAO(getSession());
-        }
-        return openUseDAO;
-    }
-    
-    public PlayerDAO getPlayerDAO() {
-        if (null == playerDAO) {
-            playerDAO = new PlayerDAO(getSession());
-        }
-        return playerDAO;
-    }
-    
-    public TitleDAO getTitleDAO() {
-        if (null == titleDAO) {
-            titleDAO = new TitleDAO(getSession());
-        }
-        return titleDAO;
-    }
-    
-    public TournDAO getTournDAO() {
-        if (null == tournDAO) {
-            tournDAO = new TournDAO(getSession());
-        }
-        return tournDAO;
-    }
-    
-    public TournPartDAO getTournPartDAO() {
-        if (null == tournPartDAO) {
-            tournPartDAO = new TournPartDAO(getSession());
-        }
-        return tournPartDAO;
-    }
-
-    public void closeSession() {
-		getSession().close();
+	public static HibernateDAOChess getInstance() {
+		if (null == instance) {
+			instance = new HibernateDAOChess();
+		}
+		return instance;
 	}
-    
+
+	public Session getSession() {
+		if (null == session) {
+			Configuration configuration = new Configuration();
+			configuration.setProperty(Environment.DRIVER,
+					"com.mysql.cj.jdbc.Driver");
+			configuration.setProperty(Environment.URL,
+					"jdbc:mysql://localhost:3306/chess");
+			configuration.setProperty(Environment.USER, "root");
+			configuration.setProperty(Environment.PASS, "111111");
+			configuration.setProperty(Environment.DIALECT,
+					"org.hibernate.dialect.MySQL5Dialect");
+			configuration.setProperty(Environment.HBM2DDL_AUTO, "none");
+			configuration.setProperty(Environment.SHOW_SQL, "true");
+			configuration.addAnnotatedClass(Player.class)
+					.addAnnotatedClass(Title.class)
+					.addAnnotatedClass(Match.class)
+					.addAnnotatedClass(Opening.class)
+					.addAnnotatedClass(Tournament.class)
+					.addAnnotatedClass(OpeningUsage.class)
+					.addAnnotatedClass(TournamentPart.class)
+					.addAnnotatedClass(TournamentLog.class);
+			StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
+			serviceRegistryBuilder.applySettings(configuration.getProperties());
+			ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
+			SessionFactory sessionFactory = configuration
+					.buildSessionFactory(serviceRegistry);
+			session = sessionFactory.openSession();
+		}
+		return session;
+	}
+
+	public PlayerDAO getPlayerDAO() {
+		if (null == playerDAO) {
+			playerDAO = new PlayerDAO(getSession());
+		}
+		return playerDAO;
+	}
+
+	public TitleDAO getTitleDAO() {
+		if (null == titleDAO) {
+			titleDAO = new TitleDAO(getSession());
+		}
+		return titleDAO;
+	}
+
+	public MatchDAO getMatchDAO() {
+		if (null == matchDAO) {
+			matchDAO = new MatchDAO(getSession());
+		}
+		return matchDAO;
+	}
+
+	public OpeningUsageDAO getOpeningUsageDAO() {
+		if (null == openingUsageDAO) {
+			openingUsageDAO = new OpeningUsageDAO(getSession());
+		}
+		return openingUsageDAO;
+	}
+
+	public OpeningDAO getOpeningDAO() {
+		if (null == openingDAO) {
+			openingDAO = new OpeningDAO(getSession());
+		}
+		return openingDAO;
+	}
+
+	public TournamentPartDAO getTournamentPartDAO() {
+		if (null == tournamentPartDAO) {
+			tournamentPartDAO = new TournamentPartDAO(getSession());
+		}
+		return tournamentPartDAO;
+	}
+
+	public TournamentDAO getTournamentDAO() {
+		if (null == tournamentDAO) {
+			tournamentDAO = new TournamentDAO(getSession());
+		}
+		return tournamentDAO;
+	}
+
+	public TournamentLogDAO getTournamentLogDAO() {
+		if (null == tournamentLogDAO) {
+			tournamentLogDAO = new TournamentLogDAO(getSession());
+		}
+		return tournamentLogDAO;
+	}
+	
+	  public void closeSession() {
+			getSession().close();
+		}
+
 }

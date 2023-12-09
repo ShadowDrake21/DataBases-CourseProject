@@ -6,43 +6,43 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import domain.TournPart; 
+import domain.TournamentPart; 
 
-public class TournPartDAO { 
+public class TournamentPartDAO { 
     private Session session;
-    public TournPartDAO(Session session) {
+    public TournamentPartDAO(Session session) {
         this.session = session;
     }
 
-    public TournPart createTournPart(TournPart tournPart) { 
+    public TournamentPart createTournamentPart(TournamentPart tournPart) { 
         Transaction transaction = session.beginTransaction();
         session.saveOrUpdate(tournPart);
         transaction.commit();
         return tournPart;
     }
 
-    public TournPart updateTournPart(TournPart tournPart) { 
+    public TournamentPart updateTournamentPart(TournamentPart tournPart) { 
         Transaction transaction = session.beginTransaction();
         session.merge(tournPart);
         transaction.commit();
         return tournPart;
     }
 
-    public void deleteTournPart(TournPart tournPart) { 
+    public void deleteTournamentPart(TournamentPart tournPart) { 
         Transaction transaction = session.beginTransaction();
         session.delete(tournPart);
         transaction.commit();
     }
 
-    public void deleteTournPartById(Long tournPartId) { 
-        TournPart tournPart = (TournPart) session.get(TournPart.class, tournPartId);
-        deleteTournPart(tournPart);
+    public void deleteTournamentPartById(Long tournPartId) { 
+        TournamentPart tournPart = (TournamentPart) session.get(TournamentPart.class, tournPartId);
+        deleteTournamentPart(tournPart);
     }
 
-    public List<TournPart> getAllTournParts() { 
+    public List<TournamentPart> getAllTournamentParts() { 
         SQLQuery query = session.createSQLQuery(
-                "select * from tournament_participation").addEntity(TournPart.class); 
-        List<TournPart> tournPartList = query.list();
+                "select * from tournament_participation").addEntity(TournamentPart.class); 
+        List<TournamentPart> tournPartList = query.list();
         return tournPartList;
     }
 
@@ -52,8 +52,8 @@ public class TournPartDAO {
         return criteria.list();
     }*/
     
-    public TournPart getTournPartById(Long tournPartId) { 
-        TournPart tournPart = (TournPart) session.get(TournPart.class, tournPartId);
+    public TournamentPart getTournamentPartById(Long tournPartId) { 
+        TournamentPart tournPart = (TournamentPart) session.get(TournamentPart.class, tournPartId);
         return tournPart;
     }
 }
