@@ -1,10 +1,12 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import domain.Title;
 import domain.TournamentPart;
 
 public class TournamentPartDAO {
@@ -52,5 +54,27 @@ public class TournamentPartDAO {
 		TournamentPart tournamentPart = (TournamentPart) session
 				.get(TournamentPart.class, tournamentPartId);
 		return tournamentPart;
+	}
+
+	public List<TournamentPart> getAllTournamentPartsWithPlayerAndTournamentName() {
+		SQLQuery query = session
+				.createSQLQuery("SELECT tp.*, p.player_name, t.tournament_name "
+						+ "FROM tournament_participation tp "
+						+ "INNER JOIN player p ON tp.id_player = p.id_player "
+						+ "INNER JOIN tournament t ON tp.id_tournament = t.id_tournament ORDER BY tp.id_tournament_participation ASC")
+				.addEntity(TournamentPart.class).addScalar("player_name")
+				.addScalar("tournament_name");
+
+		List<Object[]> results = query.list();
+
+		List<TournamentPart> tournamentPartList = new ArrayList<>();
+		for (Object[] result : results) {
+			TournamentPart tournamentPart = (TournamentPart) result[0];
+			tournamentPart.setPlayerName((String) result[1]);
+			tournamentPart.setTournamentName((String) result[2]);
+			tournamentPartList.add(tournamentPart);
+		}
+
+		return tournamentPartList;
 	}
 }

@@ -87,7 +87,7 @@ public class TitleDAO {
 
 	public List<Title> getAllTitlesWithPlayerName() {
 		SQLQuery query = session.createSQLQuery("SELECT t.*, p.player_name "
-				+ "FROM title t INNER JOIN player p ON t.id_player = p.id_player")
+				+ "FROM title t INNER JOIN player p ON t.id_player = p.id_player ORDER BY t.id_title ASC")
 				.addEntity(Title.class).addScalar("player_name");
 		List<Object[]> results = query.list();
 

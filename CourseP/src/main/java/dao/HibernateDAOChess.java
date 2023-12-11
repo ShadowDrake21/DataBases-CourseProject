@@ -23,6 +23,10 @@ public class HibernateDAOChess {
 
 	private Session session;
 
+	// public String userRole = ''
+
+	// getUserRole() and setUserRole()
+
 	public static HibernateDAOChess getInstance() {
 		if (null == instance) {
 			instance = new HibernateDAOChess();
@@ -36,7 +40,7 @@ public class HibernateDAOChess {
 			configuration.setProperty(Environment.DRIVER,
 					"com.mysql.cj.jdbc.Driver");
 			configuration.setProperty(Environment.URL,
-					"jdbc:mysql://localhost:3306/chessback");
+					"jdbc:mysql://localhost:3306/chess");
 			configuration.setProperty(Environment.USER, "root");
 			configuration.setProperty(Environment.PASS, "PolishDream_04");
 			configuration.setProperty(Environment.DIALECT,

@@ -23,8 +23,10 @@ public class TitleServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+		req.setCharacterEncoding("UTF-8");
 		String actionType = req.getParameter("actiontype");
 		if ("addtitle".equalsIgnoreCase(actionType)) {
+			req.setCharacterEncoding("UTF-8");
 			String title_name = req.getParameter("title_name");
 			System.out.println("Title Name Input: " + title_name);
 			String title_year = req.getParameter("title_year");

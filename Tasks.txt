@@ -4,10 +4,12 @@ Drake21:
 
 // after the next meeting
 2. Servlets: 
-- Opening
-- Opening Usage
+
 - Tournament
 - Tournament Participation
+
+- Player
+- Title
 
 DTure:
 1.DAO
@@ -16,5 +18,5 @@ DTure:
 // after the next meeting
 2. Servlets: 
 - Match
-- Player
-- Title
+- Opening
+- Opening Usage

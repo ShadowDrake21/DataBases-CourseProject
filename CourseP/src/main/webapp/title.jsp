@@ -19,6 +19,7 @@
 				<td>Title name</td>
 				<td>Title year</td>
 				<td>Player id</td>
+				<td>Player name</td>
 				<td>Action</td>
 			</tr>
 			<c:forEach var="title" items="${TitleListBean.titleList}">
@@ -26,6 +27,7 @@
 					<td><c:out value="${title.id}" /></td>
 					<td><c:out value="${title.name}" /></td>
 					<td><c:out value="${title.year}" /></td>
+					<td><c:out value="${title.idPlayer}" /></td>
 					<td><c:out value="${title.playerName}" /></td>
 					<td><c:url var="deleteUrl" value="/deletetitle.jsp">
 							<c:param name="title_id" value="${title.id}" />
@@ -51,6 +53,7 @@
 				<td><input type="text" name="title_name" /></td>
 				<td><input type="text" name="title_year" /></td>
 				<td><input type="text" name="id_player" /></td>
+				<td></td>
 				<td><input type="hidden" name="actiontype" value="addtitle" />
 					<input type="submit" name="addtitle" value="Add title" /></td>
 			</tr>

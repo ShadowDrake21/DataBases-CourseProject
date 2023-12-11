@@ -22,8 +22,10 @@ public class PlayerServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		String actionType = req.getParameter("actiontype");
 		if ("addplayer".equalsIgnoreCase(actionType)) {
+			req.setCharacterEncoding("UTF-8");
 			String player_name = req.getParameter("player_name");
 			System.out.println("Player Gender Input: " + player_name);
 			String player_gender = req.getParameter("player_gender");
