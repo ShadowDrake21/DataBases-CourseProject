@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import domain.Player;
 import domain.Tournament;
 
 public class TournamentDAO {
@@ -72,6 +73,13 @@ public class TournamentDAO {
 	 * other methods can be moved to generic class and
 	 * can be used for other domain objects.
 	 */
+
+	public Tournament getTournamentById(Long idTournament) {
+		Tournament tournament = (Tournament) session.get(Tournament.class,
+				idTournament);
+		return tournament;
+	}
+
 	public List<Tournament> getTournamentsByName(String name) {
 		Criteria criteria = session.createCriteria(Tournament.class)
 				.add(Restrictions.eq("tournament_name", name));

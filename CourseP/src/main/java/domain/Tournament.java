@@ -26,15 +26,14 @@ public class Tournament {
 	public Tournament() {
 	}
 
-	public Tournament(int id, String type, String name, Date start, Date end,
+	public Tournament(String type, String name, Date start, Date end,
 			String connection, String country, String city, int prize,
 			int numMatches, int players, int prizePlaces, String champion) {
-		this.id = id;
 		this.type = TournamentType.getTypeByInput(connection);
 		this.name = name;
 		this.start = start;
 		this.end = end;
-		this.connection = TournamentConnection.getConnectionByInput(connection);
+		this.connection = connection;
 		this.country = country;
 		this.city = city;
 		this.prize = prize;
@@ -47,7 +46,7 @@ public class Tournament {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_tournament", unique = true, nullable = false)
-	private int id;
+	private Long id;
 
 	@Column(name = "tournament_type", nullable = false)
 	@Convert(converter = StringToTournamentType.class)
@@ -63,8 +62,7 @@ public class Tournament {
 	private Date end;
 
 	@Column(name = "tournament_connection", nullable = true)
-	@Convert(converter = StringToTournamentConnection.class)
-	private TournamentConnection connection;
+	private String connection;
 
 	@Column(name = "tournament_country", nullable = true)
 	private String country;
@@ -93,11 +91,11 @@ public class Tournament {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tournament")
 	private List<TournamentPart> tournamentPart = new ArrayList<>();
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -134,11 +132,11 @@ public class Tournament {
 	}
 
 	public String getConnection() {
-		return connection.getConnection();
+		return connection;
 	}
 
 	public void setConnection(String connection) {
-		this.connection = TournamentConnection.getConnectionByInput(connection);
+		this.connection = connection;
 	}
 
 	public String getCountry() {
@@ -217,10 +215,10 @@ public class Tournament {
 	public String toString() {
 		return "Tournament [id=" + id + ", type=" + type.getType() + ", name="
 				+ name + ", start=" + start + ", end=" + end + ", connection="
-				+ connection.getConnection() + ", country=" + country
-				+ ", city=" + city + ", prize=" + prize + ", numMatches="
-				+ numMatches + ", players=" + players + ", prizePlaces="
-				+ prizePlaces + ", champion=" + champion + ",\n matches.size()="
+				+ connection + ", country=" + country + ", city=" + city
+				+ ", prize=" + prize + ", numMatches=" + numMatches
+				+ ", players=" + players + ", prizePlaces=" + prizePlaces
+				+ ", champion=" + champion + ",\n matches.size()="
 				+ matches.size() + ", tournamentPart.size()="
 				+ tournamentPart.size() + "]";
 	}
