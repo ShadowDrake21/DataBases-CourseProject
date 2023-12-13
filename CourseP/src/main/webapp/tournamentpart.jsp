@@ -29,7 +29,7 @@
 					<td><c:out value="${tournamentpart.id}" /></td>
 					<td><c:out value="${tournamentpart.playerName}" /></td>
 					<td><c:out value="${tournamentpart.tournamentName}" /></td>
-					<td><fmt:formatDate value="${tournamentpart.registration}" pattern="yyyy-MM-dd" /></td>
+					<td><c:out value="${tournamentpart.registration}" /></td>
 					<td><c:out value="${tournamentpart.place}" /></td>
 					<td><c:url var="deleteUrl" value="/deletetournamentpart.jsp">
 							<c:param name="tournament_part_id" value="${tournamentpart.id}" />

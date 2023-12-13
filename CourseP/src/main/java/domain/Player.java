@@ -27,7 +27,7 @@ public class Player {
 	public Player() {
 	}
 
-	public Player(String name, String gender, Date birthday, String country,
+	public Player(String name, String gender, String birthday, String country,
 			String nationality, int rate, int matches, int wins) {
 		this.name = name;
 		this.gender = PlayerGender.getGenderByInput(gender);
@@ -52,7 +52,7 @@ public class Player {
 	private PlayerGender gender;
 
 	@Column(name = "player_birthday", nullable = false)
-	private Date birthday;
+	private String birthday;
 
 	@Column(name = "player_country", nullable = false)
 	private String country;
@@ -102,11 +102,11 @@ public class Player {
 		this.gender = PlayerGender.getGenderByInput(gender);
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 

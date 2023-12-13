@@ -47,12 +47,14 @@ public class TournamentService {
 		Tournament tournament = new Tournament();
 		tournament.setType(tournament_type);
 		tournament.setName(tournament_name);
-		try {
-			tournament.setStart(formateInputDate(tournament_start));
-			tournament.setEnd(formateInputDate(tournament_end));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		tournament.setStart(tournament_start);
+		tournament.setEnd(tournament_end);
+//		try {
+//			tournament.setStart(formateInputDate(tournament_start));
+//			tournament.setEnd(formateInputDate(tournament_end));
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 //		tournament.setConnection(tournament_connection);
 		tournament.setCountry(tournament_country);
 //		tournament.setCity(tournament_city);
@@ -95,12 +97,14 @@ public class TournamentService {
 				.getTournamentDAO().getTournamentById(idTournament);
 		tournament.setType(tournament_type);
 		tournament.setName(tournament_name);
-		try {
-			tournament.setStart(formateInputDate(tournament_start));
-			tournament.setEnd(formateInputDate(tournament_end));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		tournament.setStart(tournament_start);
+		tournament.setEnd(tournament_end);
+//		try {
+//			tournament.setStart(formateInputDate(tournament_start));
+//			tournament.setEnd(formateInputDate(tournament_end));
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 //		tournament.setConnection(tournament_connection);
 		tournament.setCountry(tournament_country);
 //		tournament.setCity(tournament_city);

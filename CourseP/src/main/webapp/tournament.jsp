@@ -33,8 +33,8 @@
 					<td><c:out value="${tournament.id}" /></td>
 					<td><c:out value="${tournament.type}" /></td>
 					<td><c:out value="${tournament.name}" /></td>
-					<td><fmt:formatDate value="${tournament.start}" pattern="yyyy-MM-dd" /></td>
-					<td><fmt:formatDate value="${tournament.end}" pattern="yyyy-MM-dd" /></td>
+					<td><c:out value="${tournament.start}" /></td>
+					<td><c:out value="${tournament.end}" /></td>
 					<td><c:out value="${tournament.country}" /></td>
 					<td><c:out value="${tournament.prize}" /></td>
 					<td><c:out value="${tournament.numMatches}" /></td>

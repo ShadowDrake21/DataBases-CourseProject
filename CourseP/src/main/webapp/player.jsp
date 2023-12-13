@@ -32,7 +32,7 @@
 					<td><c:out value="${player.id}" /></td>
 					<td><c:out value="${player.name}" /></td>
 					<td><c:out value="${player.gender}" /></td>
-					<td><fmt:formatDate value="${player.birthday}" pattern="yyyy-MM-dd" /></td>
+					<td><c:out value="${player.birthday}" /></td>
 					<td><c:out value="${player.country}" /></td>
 					<td><c:out value="${player.nationality}" /></td>
 					<td><c:out value="${player.rate}" /></td>

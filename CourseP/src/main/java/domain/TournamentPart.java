@@ -18,7 +18,7 @@ public class TournamentPart {
 	public TournamentPart() {
 	}
 
-	public TournamentPart(Long idPlayer, Long idTournament, Date registration,
+	public TournamentPart(Long idPlayer, Long idTournament, String registration,
 			int place) {
 		this.idPlayer = idPlayer;
 		this.idTournament = idTournament;
@@ -46,7 +46,7 @@ public class TournamentPart {
 	private Long idTournament;
 
 	@Column(name = "tournament_participation_registration", nullable = true)
-	private Date registration;
+	private String registration;
 
 	@Column(name = "tournament_participation_place", nullable = false)
 	private int place;
@@ -81,11 +81,11 @@ public class TournamentPart {
 		this.idTournament = idTournament;
 	}
 
-	public Date getRegistration() {
+	public String getRegistration() {
 		return registration;
 	}
 
-	public void setRegistration(Date registration) {
+	public void setRegistration(String registration) {
 		this.registration = registration;
 	}
 

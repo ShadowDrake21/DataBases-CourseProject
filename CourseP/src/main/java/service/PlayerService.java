@@ -40,12 +40,13 @@ public class PlayerService {
 		Player player = new Player();
 		player.setName(player_name);
 		player.setGender(player_gender);
-		try {
-			player.setBirthday(formateInputDate(player_birthday));
-			System.out.println("date: " + formateInputDate(player_birthday));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		player.setBirthday(player_birthday);
+//		try {
+//			player.setBirthday(formateInputDate(player_birthday));
+//			System.out.println("date: " + formateInputDate(player_birthday));
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		player.setCountry(player_country);
 		player.setNationality(player_nationality);
 		player.setRate(Integer.parseInt(player_rate));
@@ -78,11 +79,12 @@ public class PlayerService {
 				.getPlayerById(idPlayer);
 		player.setName(player_name);
 		player.setGender(player_gender);
-		try {
-			player.setBirthday(formateInputDate(player_birthday));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		player.setBirthday(player_birthday);
+//		try {
+//			player.setBirthday(formateInputDate(player_birthday));
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		player.setCountry(player_country);
 		player.setNationality(player_nationality);
 		player.setRate(Integer.parseInt(player_rate));

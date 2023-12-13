@@ -38,12 +38,13 @@ public class TournamentPartService {
 		TournamentPart tournamentPart = new TournamentPart();
 		tournamentPart.setIdPlayer(Long.parseLong(id_player));
 		tournamentPart.setIdTournament(Long.parseLong(id_tournament));
-		try {
-			tournamentPart.setRegistration(formateInputDate(registration));
-			System.out.println("date: " + formateInputDate(registration));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		tournamentPart.setRegistration(registration);
+//		try {
+//			tournamentPart.setRegistration(formateInputDate(registration));
+//			System.out.println("date: " + formateInputDate(registration));
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		tournamentPart.setPlace(Integer.parseInt(place));
 		HibernateDAOChess.getInstance().getTournamentPartDAO()
 				.createTournamentPart(tournamentPart);
@@ -71,12 +72,13 @@ public class TournamentPartService {
 				.getTournamentPartDAO().getTournamentPartById(idTournamentPart);
 		tournamentPart.setIdPlayer(Long.parseLong(id_player));
 		tournamentPart.setIdTournament(Long.parseLong(id_tournament));
-		try {
-			tournamentPart.setRegistration(formateInputDate(registration));
-			System.out.println("date: " + formateInputDate(registration));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		tournamentPart.setRegistration(registration);
+//		try {
+//			tournamentPart.setRegistration(formateInputDate(registration));
+//			System.out.println("date: " + formateInputDate(registration));
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		tournamentPart.setPlace(Integer.parseInt(place));
 		HibernateDAOChess.getInstance().getTournamentPartDAO()
 				.updateTournamentPart(tournamentPart);

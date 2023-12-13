@@ -26,7 +26,7 @@ public class Tournament {
 	public Tournament() {
 	}
 
-	public Tournament(String type, String name, Date start, Date end,
+	public Tournament(String type, String name, String start, String end,
 			String connection, String country, String city, int prize,
 			int numMatches, int players, int prizePlaces, String champion) {
 		this.type = TournamentType.getTypeByInput(connection);
@@ -56,10 +56,10 @@ public class Tournament {
 	private String name;
 
 	@Column(name = "tournament_start", nullable = false)
-	private Date start;
+	private String start;
 
 	@Column(name = "tournament_end", nullable = false)
-	private Date end;
+	private String end;
 
 	@Column(name = "tournament_connection", nullable = true)
 	private String connection;
@@ -115,19 +115,19 @@ public class Tournament {
 		this.name = name;
 	}
 
-	public Date getStart() {
+	public String getStart() {
 		return start;
 	}
 
-	public void setStart(Date start) {
+	public void setStart(String start) {
 		this.start = start;
 	}
 
-	public Date getEnd() {
+	public String getEnd() {
 		return end;
 	}
 
-	public void setEnd(Date end) {
+	public void setEnd(String end) {
 		this.end = end;
 	}
 
