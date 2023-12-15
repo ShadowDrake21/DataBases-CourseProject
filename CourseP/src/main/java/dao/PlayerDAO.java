@@ -1,5 +1,7 @@
 package dao;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -81,4 +83,33 @@ public class PlayerDAO {
 		Player player = (Player) session.get(Player.class, idPlayer);
 		return player;
 	}
+
+	public List<Player> getAllPlayersWithAllAdditionalInfo() {
+		SQLQuery query = session.createSQLQuery("SELECT p.*, "
+				+ "(SELECT COUNT(*) FROM title t WHERE t.id_player = p.id_player) as title_count, "
+				+ "(SELECT COUNT(*) FROM opening_usage ou WHERE ou.id_player = p.id_player) as opening_count, "
+				+ "(SELECT COUNT(DISTINCT tp.id_tournament) FROM tournament_participation tp WHERE tp.id_player = p.id_player) as tournament_count "
+				+ "FROM player p").addEntity(Player.class)
+				.addScalar("title_count").addScalar("opening_count")
+				.addScalar("tournament_count");
+
+		List<Object[]> results = query.list();
+
+		List<Player> playerList = new ArrayList<>();
+		for (Object[] result : results) {
+			Player player = (Player) result[0];
+			BigInteger titleNumber = (BigInteger) result[1];
+			BigInteger openingNumber = (BigInteger) result[2];
+			BigInteger tournamentNumber = (BigInteger) result[3];
+
+			player.setTitleNumber(titleNumber.intValue());
+			player.setOpeningNumber(openingNumber.intValue());
+			player.setTournamentNumber(tournamentNumber.intValue());
+
+			playerList.add(player);
+		}
+
+		return playerList;
+	}
+
 }

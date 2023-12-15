@@ -10,7 +10,7 @@ public class TournamentListDatabean {
 
 	public TournamentListDatabean() {
 		tournamentList = HibernateDAOChess.getInstance().getTournamentDAO()
-				.getAllTournaments();
+				.getAllTournamentsWithMatchNumber();
 	}
 
 	public List<Tournament> getTournamentList() {

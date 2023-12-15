@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import domain.Enums.TournamentConnection;
 import domain.Enums.TournamentType;
@@ -90,6 +91,9 @@ public class Tournament {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tournament")
 	private List<TournamentPart> tournamentPart = new ArrayList<>();
+
+	@Transient
+	private int matchNumber;
 
 	public Long getId() {
 		return id;
@@ -209,6 +213,14 @@ public class Tournament {
 
 	public void setTournamentPart(List<TournamentPart> tournamentPart) {
 		this.tournamentPart = tournamentPart;
+	}
+
+	public int getMatchNumber() {
+		return matchNumber;
+	}
+
+	public void setMatchNumber(int matchNumber) {
+		this.matchNumber = matchNumber;
 	}
 
 	@Override

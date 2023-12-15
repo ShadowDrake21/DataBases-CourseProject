@@ -26,6 +26,7 @@
 				<td>Matches</td>
 				<td>Players</td>
 				<td>Champion</td>
+				<td>Matches</td>
 				<td>Action</td>
 			</tr>
 			<c:forEach var="tournament" items="${TournamentListBean.tournamentList}">
@@ -40,6 +41,7 @@
 					<td><c:out value="${tournament.numMatches}" /></td>
 					<td><c:out value="${tournament.players}" /></td>
 					<td><c:out value="${tournament.champion}" /></td>
+					<td><c:out value="${tournament.matchNumber}" /></td>
 					<td><c:url var="deleteUrl" value="/deletetournament.jsp">
 							<c:param name="tournament_id" value="${tournament.id}" />
 							<c:param name="tournament_type" value="${tournament.type}" />
@@ -73,7 +75,11 @@
 			</c:forEach>
 			<tr>
 				<td></td>
-				<td><input type="text" name="tournament_type" /></td>
+				<td><select name="tournament_type">
+						<option value="Турнір">Турнір</option>
+						<option value="Чемпіонат">Чемпіонат</option>
+						<option value="Олімпіада">Олімпіада</option>
+				</select></td>
 				<td><input type="text" name="tournament_name" /></td>
 				<td><input type="text" name="tournament_start" /></td>
 				<td><input type="text" name="tournament_end" /></td>
@@ -82,6 +88,7 @@
 				<td><input type="text" name="tournament_matches" /></td>
 				<td><input type="text" name="tournament_players" /></td>
 				<td><input type="text" name="tournament_current_champ" /></td>
+				<td></td>
 				<td><input type="hidden" name="actiontype" value="addtournament" />
 					<input type="submit" name="addtournament" value="Add tournament" /></td>
 			</tr>

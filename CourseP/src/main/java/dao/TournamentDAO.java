@@ -1,5 +1,7 @@
 package dao;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -9,6 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import domain.Player;
+import domain.Title;
 import domain.Tournament;
 
 public class TournamentDAO {
@@ -84,5 +87,27 @@ public class TournamentDAO {
 		Criteria criteria = session.createCriteria(Tournament.class)
 				.add(Restrictions.eq("tournament_name", name));
 		return criteria.list();
+	}
+
+	public List<Tournament> getAllTournamentsWithMatchNumber() {
+		SQLQuery query = session
+				.createSQLQuery("SELECT t.*, COUNT(m.id_match) as total "
+						+ "FROM tournament t "
+						+ "LEFT JOIN `match` m ON t.id_tournament = m.id_tournament "
+						+ "GROUP BY t.id_tournament "
+						+ "ORDER BY t.id_tournament ASC")
+				.addEntity(Tournament.class).addScalar("total");
+
+		List<Object[]> results = query.list();
+
+		List<Tournament> tournamentList = new ArrayList<>();
+		for (Object[] result : results) {
+			Tournament tournament = (Tournament) result[0];
+			BigInteger totalMatches = (BigInteger) result[1];
+			tournament.setMatchNumber(totalMatches.intValue());
+			tournamentList.add(tournament);
+		}
+
+		return tournamentList;
 	}
 }
