@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -15,7 +13,6 @@ import javax.persistence.Table;
 
 import domain.Enums.MatchScore;
 import settings.StringToMatchScore;
-import settings.StringToTournamentConnection;
 
 @Entity
 @Table(name = "`match`")
@@ -23,9 +20,8 @@ public class Match {
 	public Match() {
 	}
 
-	public Match(int id, int idTournament, String player1, String player2,
-			Date date, String score1, String score2) {
-		this.id = id;
+	public Match(Long idTournament, String player1, String player2, String date,
+			String score1, String score2) {
 		this.idTournament = idTournament;
 		this.player1 = player1;
 		this.player2 = player2;
@@ -41,10 +37,10 @@ public class Match {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_match", unique = true, nullable = false)
-	private int id;
+	private Long id;
 
 	@Column(name = "id_tournament", nullable = false)
-	private int idTournament;
+	private Long idTournament;
 
 	@Column(name = "match_player", nullable = false)
 	private String player1;
@@ -53,7 +49,7 @@ public class Match {
 	private String player2;
 
 	@Column(name = "match_date", nullable = true)
-	private Date date;
+	private String date;
 
 	@Column(name = "match_score_1", nullable = true)
 	@Convert(converter = StringToMatchScore.class)
@@ -63,19 +59,19 @@ public class Match {
 	@Convert(converter = StringToMatchScore.class)
 	private MatchScore score2;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public int getIdTournament() {
+	public Long getIdTournament() {
 		return idTournament;
 	}
 
-	public void setIdTournament(int idTournament) {
+	public void setIdTournament(Long idTournament) {
 		this.idTournament = idTournament;
 	}
 
@@ -95,11 +91,11 @@ public class Match {
 		this.player2 = player2;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

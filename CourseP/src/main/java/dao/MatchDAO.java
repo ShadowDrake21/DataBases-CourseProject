@@ -63,4 +63,9 @@ public class MatchDAO {
 		List<Match> matchList = query.list();
 		return matchList;
 	}
+
+	public Match getMatchById(Long matchId) {
+		Match match = (Match) session.get(Match.class, matchId);
+		return match;
+	}
 }

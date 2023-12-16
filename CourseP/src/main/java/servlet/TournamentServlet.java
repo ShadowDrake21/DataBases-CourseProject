@@ -30,13 +30,10 @@ public class TournamentServlet extends HttpServlet {
 			String tournament_name = req.getParameter("tournament_name");
 			String tournament_start = req.getParameter("tournament_start");
 			String tournament_end = req.getParameter("tournament_end");
-//			String tournament_connection = req.getParameter("tournament_connection");
 			String tournament_country = req.getParameter("tournament_country");
-//			String tournament_city = req.getParameter("tournament_city");
 			String tournament_prize = req.getParameter("tournament_prize");
 			String tournament_matches = req.getParameter("tournament_matches");
 			String tournament_players = req.getParameter("tournament_players");
-//			String tournament_prize_places = req.getParameter("tournament_prize_places");
 			String tournament_current_champ = req
 					.getParameter("tournament_current_champ");
 
@@ -54,13 +51,10 @@ public class TournamentServlet extends HttpServlet {
 			String tournament_name = req.getParameter("tournament_name");
 			String tournament_start = req.getParameter("tournament_start");
 			String tournament_end = req.getParameter("tournament_end");
-//			String tournament_connection = req.getParameter("tournament_connection");
 			String tournament_country = req.getParameter("tournament_country");
-//			String tournament_city = req.getParameter("tournament_city");
 			String tournament_prize = req.getParameter("tournament_prize");
 			String tournament_matches = req.getParameter("tournament_matches");
 			String tournament_players = req.getParameter("tournament_players");
-//			String tournament_prize_places = req.getParameter("tournament_prize_places");
 			String tournament_current_champ = req
 					.getParameter("tournament_current_champ");
 

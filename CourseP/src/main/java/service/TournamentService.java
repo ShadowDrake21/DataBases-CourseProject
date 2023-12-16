@@ -36,32 +36,20 @@ public class TournamentService {
 			@PathParam("tournament_name") String tournament_name,
 			@PathParam("tournament_start") String tournament_start,
 			@PathParam("tournament_end") String tournament_end,
-//			@PathParam("tournament_connection") String tournament_connection,
 			@PathParam("tournament_country") String tournament_country,
-//			@PathParam("tournament_city") String tournament_city,
 			@PathParam("tournament_prize") String tournament_prize,
 			@PathParam("tournament_matches") String tournament_matches,
 			@PathParam("tournament_players") String tournament_players,
-//			@PathParam("tournament_prize_places") String tournament_prize_places,
 			@PathParam("tournament_current_champ") String tournament_current_champ) {
 		Tournament tournament = new Tournament();
 		tournament.setType(tournament_type);
 		tournament.setName(tournament_name);
 		tournament.setStart(tournament_start);
 		tournament.setEnd(tournament_end);
-//		try {
-//			tournament.setStart(formateInputDate(tournament_start));
-//			tournament.setEnd(formateInputDate(tournament_end));
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//		tournament.setConnection(tournament_connection);
 		tournament.setCountry(tournament_country);
-//		tournament.setCity(tournament_city);
 		tournament.setPrize(Integer.parseInt(tournament_prize));
 		tournament.setNumMatches(Integer.parseInt(tournament_matches));
 		tournament.setPlayers(Integer.parseInt(tournament_players));
-//		tournament.setPrizePlaces(Integer.parseInt(tournament_prize_places));
 		tournament.setChampion(tournament_current_champ);
 		HibernateDAOChess.getInstance().getTournamentDAO()
 				.createTournament(tournament);
@@ -84,13 +72,10 @@ public class TournamentService {
 			@PathParam("tournament_name") String tournament_name,
 			@PathParam("tournament_start") String tournament_start,
 			@PathParam("tournament_end") String tournament_end,
-//			@PathParam("tournament_connection") String tournament_connection,
 			@PathParam("tournament_country") String tournament_country,
-//			@PathParam("tournament_city") String tournament_city,
 			@PathParam("tournament_prize") String tournament_prize,
 			@PathParam("tournament_matches") String tournament_matches,
 			@PathParam("tournament_players") String tournament_players,
-//			@PathParam("tournament_prize_places") String tournament_prize_places,
 			@PathParam("tournament_current_champ") String tournament_current_champ) {
 		Long idTournament = Long.parseLong(id_tournament);
 		Tournament tournament = HibernateDAOChess.getInstance()
@@ -99,19 +84,10 @@ public class TournamentService {
 		tournament.setName(tournament_name);
 		tournament.setStart(tournament_start);
 		tournament.setEnd(tournament_end);
-//		try {
-//			tournament.setStart(formateInputDate(tournament_start));
-//			tournament.setEnd(formateInputDate(tournament_end));
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//		tournament.setConnection(tournament_connection);
 		tournament.setCountry(tournament_country);
-//		tournament.setCity(tournament_city);
 		tournament.setPrize(Integer.parseInt(tournament_prize));
 		tournament.setNumMatches(Integer.parseInt(tournament_matches));
 		tournament.setPlayers(Integer.parseInt(tournament_players));
-//		tournament.setPrizePlaces(Integer.parseInt(tournament_prize_places));
 		tournament.setChampion(tournament_current_champ);
 		HibernateDAOChess.getInstance().getTournamentDAO()
 				.updateTournament(tournament);

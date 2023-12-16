@@ -23,9 +23,7 @@ public class Opening {
 	public Opening() {
 	}
 
-	public Opening(int id, String name, String category, short year,
-			String player) {
-		this.id = id;
+	public Opening(String name, String category, int year, String player) {
 		this.name = name;
 		this.category = OpeningCategory.getCategoryByInput(category);
 		this.year = year;
@@ -35,7 +33,7 @@ public class Opening {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_opening", unique = true, nullable = false)
-	private int id;
+	private Long id;
 
 	@Column(name = "opening_name", nullable = false)
 	private String name;
@@ -45,7 +43,7 @@ public class Opening {
 	private OpeningCategory category;
 
 	@Column(name = "opening_year", nullable = true)
-	private short year;
+	private int year;
 
 	@Column(name = "opening_famous_player", nullable = true)
 	private String player;
@@ -53,11 +51,11 @@ public class Opening {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "opening")
 	private List<OpeningUsage> openingUsage = new ArrayList<>();
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -77,11 +75,11 @@ public class Opening {
 		this.category = OpeningCategory.getCategoryByInput(category);
 	}
 
-	public short getYear() {
+	public int getYear() {
 		return year;
 	}
 
-	public void setYear(short year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 

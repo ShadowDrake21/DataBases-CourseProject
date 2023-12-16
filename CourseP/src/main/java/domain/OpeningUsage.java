@@ -15,8 +15,7 @@ public class OpeningUsage {
 	public OpeningUsage() {
 	}
 
-	public OpeningUsage(int id, int idOpening, int idPlayer, int points) {
-		this.id = id;
+	public OpeningUsage(Long idOpening, Long idPlayer, int points) {
 		this.idOpening = idOpening;
 		this.idPlayer = idPlayer;
 		this.points = points;
@@ -35,11 +34,11 @@ public class OpeningUsage {
 	@Column(name = "id_opening_usage", unique = true, nullable = false)
 	private int id;
 
-	@Column(name = "id_opening", nullable = false) // false !!!!
-	private int idOpening;
+	@Column(name = "id_opening", nullable = false)
+	private Long idOpening;
 
-	@Column(name = "id_player", nullable = false) // false !!!!
-	private int idPlayer;
+	@Column(name = "id_player", nullable = false)
+	private Long idPlayer;
 
 	@Column(name = "opening_usage_points", nullable = true)
 	private int points;
@@ -52,19 +51,19 @@ public class OpeningUsage {
 		this.id = id;
 	}
 
-	public int getIdOpening() {
+	public Long getIdOpening() {
 		return idOpening;
 	}
 
-	public void setIdOpening(int idOpening) {
+	public void setIdOpening(Long idOpening) {
 		this.idOpening = idOpening;
 	}
 
-	public int getIdPlayer() {
+	public Long getIdPlayer() {
 		return idPlayer;
 	}
 
-	public void setIdPlayer(int idPlayer) {
+	public void setIdPlayer(Long idPlayer) {
 		this.idPlayer = idPlayer;
 	}
 

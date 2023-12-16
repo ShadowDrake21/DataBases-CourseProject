@@ -64,16 +64,14 @@ public class OpeningDAO {
 		return openingList;
 	}
 
-	/**
-	 * This method return all products by name This
-	 * method is specific for Product domain object
-	 * instead of other methods from this class All
-	 * other methods can be moved to generic class and
-	 * can be used for other domain objects.
-	 */
 	public List<Opening> getOpeningsByName(String name) {
 		Criteria criteria = session.createCriteria(Opening.class)
 				.add(Restrictions.eq("opening_name", name));
 		return criteria.list();
+	}
+
+	public Opening getOpeningById(Long openId) {
+		Opening open = (Opening) session.get(Opening.class, openId);
+		return open;
 	}
 }

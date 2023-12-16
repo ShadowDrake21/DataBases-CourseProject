@@ -13,7 +13,7 @@
 </head>
 <body>
 	<jsp:useBean id="TournamentPartBean" class="databean.TournamentPartListDatabean" />
-	<h1>Title page</h1>
+	<h1>Tournament participation page</h1>
 	<form method="post" action="tournamentpart">
 		<table style="width: 100%" border="1">
 			<tr>
@@ -58,7 +58,6 @@
 				<td><input type="text" name="id_tournament" /></td>
 				<td><input type="text" name="registration" /></td>
 				<td><input type="text" name="place" /></td>
-				<td></td>
 				<td><input type="hidden" name="actiontype" value="addtournamentpart" />
 					<input type="submit" name="addtournamentpart" value="Add tournament participation" /></td>
 			</tr>
