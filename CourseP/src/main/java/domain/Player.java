@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 
@@ -27,7 +28,7 @@ public class Player {
 	public Player() {
 	}
 
-	public Player(String name, String gender, Date birthday, String country,
+	public Player(String name, String gender, String birthday, String country,
 			String nationality, int rate, int matches, int wins) {
 		this.name = name;
 		this.gender = PlayerGender.getGenderByInput(gender);
@@ -42,7 +43,7 @@ public class Player {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_player", unique = true, nullable = false)
-	private int id;
+	private Long id;
 
 	@Column(name = "player_name", nullable = false)
 	private String name;
@@ -52,7 +53,7 @@ public class Player {
 	private PlayerGender gender;
 
 	@Column(name = "player_birthday", nullable = false)
-	private Date birthday;
+	private String birthday;
 
 	@Column(name = "player_country", nullable = false)
 	private String country;
@@ -78,11 +79,20 @@ public class Player {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
 	private List<TournamentPart> tournamentPart = new ArrayList<>();
 
-	public int getId() {
+	@Transient
+	private int titleNumber;
+
+	@Transient
+	private int openingNumber;
+
+	@Transient
+	private int tournamentNumber;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -102,11 +112,11 @@ public class Player {
 		this.gender = PlayerGender.getGenderByInput(gender);
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -172,6 +182,30 @@ public class Player {
 
 	public void setTournamentPart(List<TournamentPart> tournamentPart) {
 		this.tournamentPart = tournamentPart;
+	}
+
+	public int getTitleNumber() {
+		return titleNumber;
+	}
+
+	public void setTitleNumber(int titleNumber) {
+		this.titleNumber = titleNumber;
+	}
+
+	public int getOpeningNumber() {
+		return openingNumber;
+	}
+
+	public void setOpeningNumber(int openingNumber) {
+		this.openingNumber = openingNumber;
+	}
+
+	public int getTournamentNumber() {
+		return tournamentNumber;
+	}
+
+	public void setTournamentNumber(int tournamentNumber) {
+		this.tournamentNumber = tournamentNumber;
 	}
 
 	@Override

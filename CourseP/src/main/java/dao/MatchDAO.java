@@ -41,7 +41,7 @@ public class MatchDAO {
 
     public List<Match> getAllMatches() { 
         SQLQuery query = session.createSQLQuery(
-                "select * from match").addEntity(Match.class); 
+                "select * from `match`").addEntity(Match.class); 
         List<Match> matchList = query.list();
         return matchList;
     }

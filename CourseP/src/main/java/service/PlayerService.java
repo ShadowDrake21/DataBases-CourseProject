@@ -14,15 +14,15 @@ import domain.Player;
 
 @Path("player")
 public class PlayerService {
-	@GET
-	@Path("getAllPlayers")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Date formateInputDate(String strDate) throws ParseException {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy",
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd",
 				Locale.ENGLISH);
 		return formatter.parse(strDate);
 	}
 
+	@GET
+	@Path("getAllPlayers")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Player> getAllPlayers() {
 		return HibernateDAOChess.getInstance().getPlayerDAO().getAllPlayers();
 	}
@@ -40,11 +40,13 @@ public class PlayerService {
 		Player player = new Player();
 		player.setName(player_name);
 		player.setGender(player_gender);
-		try {
-			player.setBirthday(formateInputDate(player_birthday));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		player.setBirthday(player_birthday);
+//		try {
+//			player.setBirthday(formateInputDate(player_birthday));
+//			System.out.println("date: " + formateInputDate(player_birthday));
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		player.setCountry(player_country);
 		player.setNationality(player_nationality);
 		player.setRate(Integer.parseInt(player_rate));
@@ -77,14 +79,15 @@ public class PlayerService {
 				.getPlayerById(idPlayer);
 		player.setName(player_name);
 		player.setGender(player_gender);
-		try {
-			player.setBirthday(formateInputDate(player_birthday));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		player.setBirthday(player_birthday);
+//		try {
+//			player.setBirthday(formateInputDate(player_birthday));
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		player.setCountry(player_country);
 		player.setNationality(player_nationality);
-		player.setRate(Integer.parseInt(player_wins));
+		player.setRate(Integer.parseInt(player_rate));
 		player.setMatches(Integer.parseInt(player_matches));
 		player.setWins(Integer.parseInt(player_wins));
 		HibernateDAOChess.getInstance().getPlayerDAO().updatePlayer(player);

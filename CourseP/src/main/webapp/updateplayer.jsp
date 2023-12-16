@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -23,8 +23,18 @@
 				value="${param.player_name }" />
 		</p>
 		<p>
-			Player gender: <input type="text" name="player_gender"
-				value="${param.player_gender }" />
+			Player gender: <select name="player_gender">
+				<c:choose>
+					<c:when test="${param.player_gender eq 'Чоловіча'}">
+						<option value="Чоловіча" selected>Чоловіча</option>
+						<option value="Жіноча">Жіноча</option>
+					</c:when>
+					<c:otherwise>
+						<option value="Чоловіча">Чоловіча</option>
+						<option value="Жіноча" selected>Жіноча</option>
+					</c:otherwise>
+				</c:choose>
+			</select>
 		</p>
 		<p>
 			Player birthday: <input type="text" name="player_birthday"

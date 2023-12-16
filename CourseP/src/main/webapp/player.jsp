@@ -3,7 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,10 @@
 				<td>Player nationality</td>
 				<td>Player rate</td>
 				<td>Player matches</td>
-				<td>Book wins</td>
+				<td>Player wins</td>
+				<td>Titles</td>
+				<td>Openings</td>
+				<td>Tournaments</td>
 				<td>Action</td>
 			</tr>
 			<c:forEach var="player" items="${PlayerListBean.playerList}">
@@ -32,12 +35,15 @@
 					<td><c:out value="${player.id}" /></td>
 					<td><c:out value="${player.name}" /></td>
 					<td><c:out value="${player.gender}" /></td>
-					<td><fmt:formatDate value="${player.birthday}" pattern="yyyy-MM-dd" /></td>
+					<td><c:out value="${player.birthday}" /></td>
 					<td><c:out value="${player.country}" /></td>
 					<td><c:out value="${player.nationality}" /></td>
 					<td><c:out value="${player.rate}" /></td>
 					<td><c:out value="${player.matches}" /></td>
 					<td><c:out value="${player.wins}" /></td>
+					<td><c:out value="${player.titleNumber}" /></td>
+					<td><c:out value="${player.openingNumber}" /></td>
+					<td><c:out value="${player.tournamentNumber}" /></td>
 					<td><c:url var="deleteUrl" value="/deleteplayer.jsp">
 							<c:param name="player_id" value="${player.id}" />
 							<c:param name="player_name" value="${player.name}" />
@@ -70,13 +76,19 @@
 			<tr>
 				<td></td>
 				<td><input type="text" name="player_name" /></td>
-				<td><input type="text" name="player_gender" /></td>
+				<td><select name="player_gender">
+						<option value="Чоловіча">Чоловіча</option>
+						<option value="Жіноча">Жіноча</option>
+				</select></td>
 				<td><input type="text" name="player_birthday" /></td>
 				<td><input type="text" name="player_country" /></td>
 				<td><input type="text" name="player_nationality" /></td>
 				<td><input type="text" name="player_rate" /></td>
 				<td><input type="text" name="player_matches" /></td>
 				<td><input type="text" name="player_wins" /></td>
+				<td></td>
+				<td></td>
+				<td></td>
 				<td><input type="hidden" name="actiontype" value="addplayer" />
 					<input type="submit" name="addplayer" value="Add player" /></td>
 			</tr>

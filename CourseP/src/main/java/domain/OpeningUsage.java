@@ -15,7 +15,7 @@ public class OpeningUsage {
 	public OpeningUsage() {
 	}
 
-	public OpeningUsage(int id, int idOpening, int idPlayer, int points) {
+	public OpeningUsage(Long id, Long idOpening, Long idPlayer, int points) {
 		this.id = id;
 		this.idOpening = idOpening;
 		this.idPlayer = idPlayer;
@@ -33,38 +33,38 @@ public class OpeningUsage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_opening_usage", unique = true, nullable = false)
-	private int id;
+	private Long id;
 
 	@Column(name = "id_opening", nullable = false) // false !!!!
-	private int idOpening;
+	private Long idOpening;
 
 	@Column(name = "id_player", nullable = false) // false !!!!
-	private int idPlayer;
+	private Long idPlayer;
 
 	@Column(name = "opening_usage_points", nullable = true)
 	private int points;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public int getIdOpening() {
+	public Long getIdOpening() {
 		return idOpening;
 	}
 
-	public void setIdOpening(int idOpening) {
+	public void setIdOpening(Long idOpening) {
 		this.idOpening = idOpening;
 	}
 
-	public int getIdPlayer() {
+	public Long getIdPlayer() {
 		return idPlayer;
 	}
 
-	public void setIdPlayer(int idPlayer) {
+	public void setIdPlayer(Long idPlayer) {
 		this.idPlayer = idPlayer;
 	}
 

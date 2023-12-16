@@ -39,7 +39,7 @@ public class OpeningUsageDAO {
         deleteOpeningUsage(openUse);
     }
 
-    public List<OpeningUsage> getAllOpeningUsage() { 
+    public List<OpeningUsage> getAllOpeningUsages() { 
         SQLQuery query = session.createSQLQuery(
                 "select * from opening_usage").addEntity(OpeningUsage.class); 
         List<OpeningUsage> openUseList = query.list();

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tournament_participation")
@@ -17,9 +18,8 @@ public class TournamentPart {
 	public TournamentPart() {
 	}
 
-	public TournamentPart(int id, int idPlayer, int idTournament,
-			Date registration, int place) {
-		this.id = id;
+	public TournamentPart(Long idPlayer, Long idTournament, String registration,
+			int place) {
 		this.idPlayer = idPlayer;
 		this.idTournament = idTournament;
 		this.registration = registration;
@@ -37,49 +37,55 @@ public class TournamentPart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_tournament_participation", unique = true, nullable = false)
-	private int id;
+	private Long id;
 
 	@Column(name = "id_player", nullable = false)
-	private int idPlayer;
+	private Long idPlayer;
 
 	@Column(name = "id_tournament", nullable = false)
-	private int idTournament;
+	private Long idTournament;
 
 	@Column(name = "tournament_participation_registration", nullable = true)
-	private Date registration;
+	private String registration;
 
 	@Column(name = "tournament_participation_place", nullable = false)
 	private int place;
 
-	public int getId() {
+	@Transient
+	private String playerName;
+
+	@Transient
+	private String tournamentName;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public int getIdPlayer() {
+	public Long getIdPlayer() {
 		return idPlayer;
 	}
 
-	public void setIdPlayer(int idPlayer) {
+	public void setIdPlayer(Long idPlayer) {
 		this.idPlayer = idPlayer;
 	}
 
-	public int getIdTournament() {
+	public Long getIdTournament() {
 		return idTournament;
 	}
 
-	public void setIdTournament(int idTournament) {
+	public void setIdTournament(Long idTournament) {
 		this.idTournament = idTournament;
 	}
 
-	public Date getRegistration() {
+	public String getRegistration() {
 		return registration;
 	}
 
-	public void setRegistration(Date registration) {
+	public void setRegistration(String registration) {
 		this.registration = registration;
 	}
 
@@ -89,6 +95,23 @@ public class TournamentPart {
 
 	public void setPlace(int place) {
 		this.place = place;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	public void setTournamentName(String tournamentName) {
+		this.tournamentName = tournamentName;
+
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public String getTournamentName() {
+		return tournamentName;
 	}
 
 	@Override

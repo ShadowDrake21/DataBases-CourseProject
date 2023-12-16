@@ -5,19 +5,20 @@ import dao.HibernateDAOChess;
 import domain.TournamentPart;
 
 public class TournamentPartListDatabean {
-    
-    private List<TournamentPart> tournPartList;
-    
+
+    private List<TournamentPart> tournamentPartList;
+
     public TournamentPartListDatabean() {
-        tournPartList = HibernateDAOChess.getInstance().getTournamentPartDAO()
-                .getAllTournamentParts();
+        tournamentPartList = HibernateDAOChess.getInstance()
+                .getTournamentPartDAO()
+                .getAllTournamentPartsWithPlayerAndTournamentName();
     }
-    
+
     public List<TournamentPart> getTournamentPartList() {
-        return tournPartList;
+        return tournamentPartList;
     }
-    
-    public void setTournamentPartList(List<TournamentPart> tournPartList) {
-        this.tournPartList = tournPartList;
+
+    public void setTournamentPartList(List<TournamentPart> tournamentPartList) {
+        this.tournamentPartList = tournamentPartList;
     }
 }

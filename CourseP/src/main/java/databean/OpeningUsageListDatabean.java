@@ -10,7 +10,7 @@ public class OpeningUsageListDatabean {
     
     public OpeningUsageListDatabean() {
         openUseList = HibernateDAOChess.getInstance().getOpeningUsageDAO()
-                .getAllOpeningUsage();
+                .getAllOpeningUsages();
     }
     
     public List<OpeningUsage> getOpeningUsageList() {
