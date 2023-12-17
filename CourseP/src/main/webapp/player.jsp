@@ -64,13 +64,22 @@
 							<c:param name="player_rate" value="${player.rate}" />
 							<c:param name="player_matches" value="${player.matches}" />
 							<c:param name="player_wins" value="${player.wins}" />
+						</c:url> <c:url var="titlesUrl" value="/playertitles.jsp">
+							<c:param name="player_id" value="${player.id}" />
 						</c:url>
 						<p>
 							<a href="${deleteUrl }">Delete player</a>
 						</p>
 						<p>
 							<a href="${updateUrl }">Update player</a>
-						</p></td>
+						</p>
+						<p>
+							<a href="${titlesUrl}">View titles</a>
+						</p>
+						<%-- <p>
+							<a href="${openingsUrl}">View openings</a>
+						</p> --%>
+						</td>
 				</tr>
 			</c:forEach>
 			<tr>
