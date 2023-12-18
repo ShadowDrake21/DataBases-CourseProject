@@ -95,6 +95,9 @@ public class Tournament {
 	@Transient
 	private int matchNumber;
 
+	@Transient
+	private String registration;
+
 	public Long getId() {
 		return id;
 	}
@@ -221,6 +224,14 @@ public class Tournament {
 
 	public void setMatchNumber(int matchNumber) {
 		this.matchNumber = matchNumber;
+	}
+
+	public void setRegistration(String registration) {
+		this.registration = registration;
+	}
+
+	public String getRegistration() {
+		return registration;
 	}
 
 	@Override

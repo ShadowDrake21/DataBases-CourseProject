@@ -4,6 +4,7 @@
 
 <%@ page import="java.util.List"%>
 <%@ page import="domain.Title"%>
+<%@ page import="domain.Player"%>
 <%@ page import="dao.HibernateDAOChess"%>
 
 <%
@@ -12,8 +13,11 @@ Long playerId = Long.parseLong(playerIdParam);
 
 List<Title> titleList = HibernateDAOChess.getInstance().getTitleDAO()
 		.getTitlesByPlayerId(playerId);
-System.out.println(titleList);
+Player player = HibernateDAOChess.getInstance().getPlayerDAO().getPlayerById(playerId);
+String playerName = player.getName();
+
 request.setAttribute("titleList", titleList);
+request.setAttribute("playerName", playerName);
 %>
 
 <!DOCTYPE html>
@@ -29,7 +33,14 @@ request.setAttribute("titleList", titleList);
 		<c:out value="${titleList.size()}" />
 	</p>
 	<p>
-		<c:out value="${titleList[0].playerName}" />
+		<c:choose>
+			<c:when test="${empty titleList}">
+				<c:out value="${playerName}" />
+			</c:when>
+			<c:otherwise>
+				<c:out value="${titleList[0].playerName}" />
+			</c:otherwise>
+		</c:choose>
 	</p>
 
 	<table style="width: 100%" border="1">

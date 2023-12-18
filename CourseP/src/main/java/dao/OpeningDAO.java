@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -73,5 +74,28 @@ public class OpeningDAO {
 	public Opening getOpeningById(Long openId) {
 		Opening open = (Opening) session.get(Opening.class, openId);
 		return open;
+	}
+
+	public List<Opening> getOpeningsByPlayerId(Long playerId) {
+		SQLQuery query = (SQLQuery) session
+				.createSQLQuery("SELECT o.*, ou.opening_usage_points  "
+						+ "FROM opening o "
+						+ "INNER JOIN opening_usage ou ON o.id_opening = ou.id_opening "
+						+ "WHERE ou.id_player = :playerId "
+						+ "ORDER BY o.id_opening ASC")
+				.addEntity(Opening.class).addScalar("opening_usage_points")
+				.setParameter("playerId", playerId);
+
+		List<Object[]> results = query.list();
+
+		List<Opening> openingList = new ArrayList<>();
+		for (Object[] result : results) {
+			Opening opening = (Opening) result[0];
+			int openingUsagePoints = (Integer) result[1];
+			opening.setOpeningUsagePoints(openingUsagePoints);
+			openingList.add(opening);
+		}
+
+		return openingList;
 	}
 }

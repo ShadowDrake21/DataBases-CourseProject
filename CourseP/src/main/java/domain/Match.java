@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import domain.Enums.MatchScore;
 import settings.StringToMatchScore;
@@ -58,6 +59,9 @@ public class Match {
 	@Column(name = "match_score_2", nullable = true)
 	@Convert(converter = StringToMatchScore.class)
 	private MatchScore score2;
+
+	@Transient
+	private String tournamentName;
 
 	public Long getId() {
 		return id;
@@ -113,6 +117,14 @@ public class Match {
 
 	public void setScore2(String score2) {
 		this.score2 = MatchScore.getScoreByInput(score2);
+	}
+
+	public String getTournamentName() {
+		return tournamentName;
+	}
+
+	public void setTournamentName(String tournamentName) {
+		this.tournamentName = tournamentName;
 	}
 
 	@Override

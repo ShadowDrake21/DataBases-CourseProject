@@ -42,12 +42,19 @@
 							<c:param name="opening_year" value="${opening.year}" />
 							<c:param name="famous_player" value="${opening.player}" />
 						</c:url>
+						<c:url var="playersUrl" value="/openingplayers.jsp">
+							<c:param name="opening_id" value="${opening.id}" />
+						</c:url>
 						<p>
 							<a href="${deleteUrl }">Delete opening</a>
 						</p>
 						<p>
 							<a href="${updateUrl }">Update opening</a>
-						</p></td>
+						</p>
+						<p>
+							<a href="${playersUrl }">View players</a>
+						</p>
+						</td>
 				</tr>
 			</c:forEach>
 			<tr>

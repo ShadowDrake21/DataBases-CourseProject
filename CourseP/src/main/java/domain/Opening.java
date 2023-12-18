@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import domain.Enums.OpeningCategory;
 import settings.StringToOpeningCategoryConverter;
@@ -50,6 +51,9 @@ public class Opening {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "opening")
 	private List<OpeningUsage> openingUsage = new ArrayList<>();
+
+	@Transient
+	private int openingUsagePoints;
 
 	public Long getId() {
 		return id;
@@ -97,6 +101,14 @@ public class Opening {
 
 	public void setOpeningUsage(List<OpeningUsage> openingUsage) {
 		this.openingUsage = openingUsage;
+	}
+
+	public void setOpeningUsagePoints(int openingUsagePoints) {
+		this.openingUsagePoints = openingUsagePoints;
+	}
+
+	public int getOpeningUsagePoints() {
+		return openingUsagePoints;
 	}
 
 	@Override

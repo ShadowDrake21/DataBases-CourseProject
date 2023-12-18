@@ -26,7 +26,7 @@
 				<td>Matches</td>
 				<td>Players</td>
 				<td>Champion</td>
-				<td>Matches</td>
+				<td>DB matches</td>
 				<td>Action</td>
 			</tr>
 			<c:forEach var="tournament" items="${TournamentListBean.tournamentList}">
@@ -65,12 +65,25 @@
 							<c:param name="tournament_players" value="${tournament.players}" />
 							<c:param name="tournament_current_champ" value="${tournament.champion}" />
 						</c:url>
+						<c:url var="playersUrl" value="/tournamentplayers.jsp">
+							<c:param name="tournament_id" value="${tournament.id}" />
+						</c:url>
+						<c:url var="matchesUrl" value="/tournamentmatches.jsp">
+							<c:param name="tournament_id" value="${tournament.id}" />
+						</c:url>
 						<p>
 							<a href="${deleteUrl }">Delete tournament</a>
 						</p>
 						<p>
 							<a href="${updateUrl }">Update tournament</a>
-						</p></td>
+						</p>
+						<p>
+							<a href="${playersUrl}">View players</a>
+						</p>
+						<p>
+							<a href="${matchesUrl}">View matches</a>
+						</p>
+						</td>
 				</tr>
 			</c:forEach>
 			<tr>

@@ -1,7 +1,9 @@
 package dao;
 
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -105,6 +107,33 @@ public class TournamentDAO {
 			Tournament tournament = (Tournament) result[0];
 			BigInteger totalMatches = (BigInteger) result[1];
 			tournament.setMatchNumber(totalMatches.intValue());
+			tournamentList.add(tournament);
+		}
+
+		return tournamentList;
+	}
+
+	public List<Tournament> getTournamentsByPlayerId(Long playerId) {
+		SQLQuery query = (SQLQuery) session.createSQLQuery(
+				"SELECT t.*, tp.tournament_participation_registration "
+						+ "FROM tournament t "
+						+ "INNER JOIN tournament_participation tp ON t.id_tournament = tp.id_tournament "
+						+ "WHERE tp.id_player = :playerId "
+						+ "ORDER BY t.id_tournament ASC")
+				.addEntity(Tournament.class)
+				.addScalar("tournament_participation_registration")
+				.setParameter("playerId", playerId);
+
+		List<Object[]> results = query.list();
+
+		List<Tournament> tournamentList = new ArrayList<>();
+		for (Object[] result : results) {
+			Tournament tournament = (Tournament) result[0];
+			Date registration = (Date) result[1];
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String strRegistration = dateFormat.format(registration);
+
+			tournament.setRegistration(strRegistration);
 			tournamentList.add(tournament);
 		}
 
