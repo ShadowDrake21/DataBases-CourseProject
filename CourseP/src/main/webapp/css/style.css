@@ -1,0 +1,15 @@
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+ul {
+	list-style: none;
+
+}
+.navbar {
+	position: absolute;
+	width: 100px;
+	background-color: #eee;
+}
