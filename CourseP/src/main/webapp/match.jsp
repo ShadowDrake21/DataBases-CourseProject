@@ -17,6 +17,7 @@
 			<tr>
 				<td>Match id</td>
 				<td>Tournament id</td>
+				<td>Tournament name</td>
 				<td>Player 1</td>
 				<td>Player 2</td>
 				<td>Match date</td>
@@ -28,6 +29,7 @@
 				<tr>
 					<td><c:out value="${match.id}" /></td>
 					<td><c:out value="${match.idTournament}" /></td>
+					<td><c:out value="${match.tournamentName}" /></td>
 					<td><c:out value="${match.player1}" /></td>
 					<td><c:out value="${match.player2}" /></td>		
 					<td><c:out value="${match.date}" /></td>
@@ -61,6 +63,7 @@
 			<tr>
 				<td></td>
 				<td><input type="text" name="id_tournament" /></td>
+				<td></td>
 				<td><input type="text" name="match_player" /></td>
 				<td><input type="text" name="match_opponent" /></td>
 				<td><input type="text" name="match_date" /></td>

@@ -17,7 +17,9 @@
 			<tr>
 				<td>Opening Usage id</td>
 				<td>Opening id</td>
+				<td>Opening name</td>
 				<td>Player id</td>
+				<td>Player name</td>
 				<td>Points</td>
 				<td>Action</td>
 			</tr>
@@ -25,18 +27,20 @@
 				<tr>
 					<td><c:out value="${openingUsage.id}" /></td>
 					<td><c:out value="${openingUsage.idOpening}" /></td>
+					<td><c:out value="${openingUsage.openingName}" /></td>
 					<td><c:out value="${openingUsage.idPlayer}" /></td>
+					<td><c:out value="${openingUsage.playerName}" /></td>
 					<td><c:out value="${openingUsage.points}" /></td>		
 					<td><c:url var="deleteUrl" value="/deleteopenusage.jsp">
 							<c:param name="id_opening_usage" value="${openingUsage.id}" />
 							<c:param name="id_opening" value="${openingUsage.idOpening}" />
 							<c:param name="id_player" value="${openingUsage.idPlayer}" />
-							<c:param name="usage_points" value="${openingUsage.idPlayer}" />
+							<c:param name="usage_points" value="${openingUsage.points}" />
 						</c:url> <c:url var="updateUrl" value="/updateopenusage.jsp">
 							<c:param name="id_opening_usage" value="${openingUsage.id}" />
 							<c:param name="id_opening" value="${openingUsage.idOpening}" />
 							<c:param name="id_player" value="${openingUsage.idPlayer}" />
-							<c:param name="usage_points" value="${openingUsage.idPlayer}" />			
+							<c:param name="usage_points" value="${openingUsage.points}" />			
 						</c:url>
 						<p>
 							<a href="${deleteUrl }">Delete Opening Usage</a>
@@ -49,7 +53,9 @@
 			<tr>
 				<td></td>
 				<td><input type="text" name="id_opening" /></td>
+				<td></td>
 				<td><input type="text" name="id_player" /></td>
+				<td></td>
 				<td><input type="text" name="usage_points" /></td>
 				<td><input type="hidden" name="actiontype" value="addopeningusage" />
 					<input type="submit" name="addopeningusage" value="Add Opening Usage" /></td>

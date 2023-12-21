@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "opening_usage")
@@ -32,7 +33,7 @@ public class OpeningUsage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_opening_usage", unique = true, nullable = false)
-	private int id;
+	private Long id;
 
 	@Column(name = "id_opening", nullable = false)
 	private Long idOpening;
@@ -43,11 +44,17 @@ public class OpeningUsage {
 	@Column(name = "opening_usage_points", nullable = true)
 	private int points;
 
-	public int getId() {
+	@Transient
+	private String openingName;
+
+	@Transient
+	private String playerName;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -73,6 +80,22 @@ public class OpeningUsage {
 
 	public void setPoints(int points) {
 		this.points = points;
+	}
+
+	public void setOpeningName(String openingName) {
+		this.openingName = openingName;
+	}
+
+	public String getOpeningName() {
+		return openingName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	public String getPlayerName() {
+		return playerName;
 	}
 
 	@Override

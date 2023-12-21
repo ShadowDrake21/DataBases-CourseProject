@@ -19,7 +19,9 @@
 			<tr>
 				<td>Id</td>
 				<td>Player id</td>
+				<td>Player name</td>
 				<td>Tournament id</td>
+				<td>Tournament name</td>
 				<td>TournamentPart registration</td>
 				<td>TournamentPart place</td>
 				<td>Action</td>
@@ -27,7 +29,9 @@
 			<c:forEach var="tournamentpart" items="${TournamentPartBean.tournamentPartList}">
 				<tr>
 					<td><c:out value="${tournamentpart.id}" /></td>
+					<td><c:out value="${tournamentpart.idPlayer}" /></td>
 					<td><c:out value="${tournamentpart.playerName}" /></td>
+					<td><c:out value="${tournamentpart.idTournament}" /></td>
 					<td><c:out value="${tournamentpart.tournamentName}" /></td>
 					<td><c:out value="${tournamentpart.registration}" /></td>
 					<td><c:out value="${tournamentpart.place}" /></td>
@@ -55,7 +59,9 @@
 			<tr>
 				<td></td>
 				<td><input type="text" name="id_player" /></td>
+				<td></td>
 				<td><input type="text" name="id_tournament" /></td>
+				<td></td>
 				<td><input type="text" name="registration" /></td>
 				<td><input type="text" name="place" /></td>
 				<td><input type="hidden" name="actiontype" value="addtournamentpart" />
