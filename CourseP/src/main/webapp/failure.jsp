@@ -7,5 +7,6 @@
 </head>
 <body>
     <h2>Login Failed. Please check your credentials.</h2>
+    <a href="login.jsp">Back to login page</a>
 </body>
 </html>

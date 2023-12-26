@@ -12,6 +12,16 @@
 <link href="css/style.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script>
+    // Function to handle logout and clear localStorage
+    function logout() {
+        // Clear localStorage
+        localStorage.clear();
+
+        // Redirect to the LogoutServlet
+        window.location.href = "logout";
+    }
+</script>
 </head>
 <body class="body">
 	<header class="header">
@@ -49,7 +59,7 @@
 					</li>
 					<li class="nav-item">
 						<button type="button" class="btn btn-danger ml-2"
-							onclick="location.href='logoutServlet'">Logout</button>
+							onclick="logout()">Logout</button>
 					</li>
 				</ul>
 			</div>

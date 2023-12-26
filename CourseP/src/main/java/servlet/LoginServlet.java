@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UserDAO;
 import domain.User;
@@ -28,6 +29,10 @@ public class LoginServlet extends HttpServlet {
 		// Perform user authentication
 		if (authenticateUser(userDAO, username, password)) {
 			// Redirect to a success page
+			HttpSession session = request.getSession();
+			session.setAttribute("username", username);
+			session.setAttribute("password", password);
+
 			response.sendRedirect("success.jsp");
 		} else {
 			// Redirect to a login failure page
