@@ -7,6 +7,7 @@
 	<listener>
 		<listener-class>listener.StartStopListener</listener-class>
 	</listener>
+	
 	<servlet>
 		<servlet-name>playerservlet</servlet-name>
 		<servlet-class>servlet.PlayerServlet</servlet-class>
@@ -103,6 +104,20 @@
 	<servlet-mapping>
 		<servlet-name>openingusageservlet</servlet-name>
 		<url-pattern>/openingusage</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>loginservlet</servlet-name>
+		<servlet-class>servlet.LoginServlet</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>ua.cn.stu.service</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loginservlet</servlet-name>
+		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

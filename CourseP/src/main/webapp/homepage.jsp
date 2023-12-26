@@ -10,14 +10,54 @@
 <meta charset="ISO-8859-1">
 <title>Home Page</title>
 <link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body class="body">
 	<header class="header">
-		<nav class="navbar"></nav>
+		<nav class="navbar navbar-expand-lg navbar-light" >
+			<a class="navbar-brand nav__item" href="homepage.jsp">Project</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link nav__item" href="title.jsp">Посилання
+							1</a></li>
+					<li class="nav-item"><a class="nav-link nav__item" href="#">Посилання
+							2</a></li>
+					<li class="nav-item"><a class="nav-link nav__item" href="#">Посилання
+							3</a></li>
+					<li class="nav-item"><a class="nav-link nav__item" href="#">Посилання
+							4</a></li>
+					<li class="nav-item"><a class="nav-link nav__item" href="#">Посилання
+							5</a></li>
+				</ul>
+				<ul class="navbar-nav ml-md-auto">
+					<li class="nav-item">
+						<form action="searchServlet" method="get" class="form-inline ml-2">
+							<input type="text" class="form-control mr-2" name="query"
+								placeholder="Введіть запит">
+							<button type="submit" class="btn btn-outline-light">Search</button>
+						</form>
+					</li>
+					<li class="nav-item">
+						<button type="button" class="btn btn-primary ml-2"
+							onclick="location.href='login.jsp'">Login</button>
+					</li>
+					<li class="nav-item">
+						<button type="button" class="btn btn-danger ml-2"
+							onclick="location.href='logoutServlet'">Logout</button>
+					</li>
+				</ul>
+			</div>
+		</nav>
 	</header>
 	<main class="main">
 		<section class="home">
-			<div class="container home__container">
+			<div class="home__container">
 				<div class="home__top">
 					<h1 class="home__title">Курсовий проект з дисципліни "Бази
 						даних": "Шахи"</h1>
@@ -78,8 +118,13 @@
 		</section>
 	</main>
 	<footer class="footer">
-		<p class="footer__descr">©2023-2024 Krapyvianskyi "Drake21"
-			Dmytro & Turevskyi "DTure" Dmytro</p>
+		<p class="footer__descr">©2023-2024 Krapyvianskyi "Drake21" Dmytro
+			& Turevskyi "DTure" Dmytro</p>
 	</footer>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

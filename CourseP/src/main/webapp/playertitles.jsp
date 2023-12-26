@@ -59,21 +59,4 @@ request.setAttribute("playerName", playerName);
 		<a href="player.jsp">Back to Player Page</a>
 	</p>
 </body>
-<%-- <body>
-    <h1>Player Titles</h1>
-    <p>Titles Found: <c:out value="${yourTitleList.size()}" /></p>
-
-    <c:forEach var="title" items="${yourTitleList}">
-        <p>
-            Title Name: <c:out value="${title.name}" />
-        </p>
-        <p>
-            Year: <c:out value="${title.year}" />
-        </p>
-    </c:forEach>
-
-    <p>
-        <a href="/player.jsp">Back to Player Page</a>
-    </p>
-</body> --%>
 </html>

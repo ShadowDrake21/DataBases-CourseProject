@@ -13,6 +13,7 @@ public class HibernateDAOChess {
 	private static HibernateDAOChess instance;
 
 	private PlayerDAO playerDAO;
+	private UserDAO userDAO;
 	private TournamentDAO tournamentDAO;
 	private OpeningDAO openingDAO;
 	private TitleDAO titleDAO;
@@ -22,10 +23,6 @@ public class HibernateDAOChess {
 	private TournamentLogDAO tournamentLogDAO;
 
 	private Session session;
-
-	// public String userRole = ''
-
-	// getUserRole() and setUserRole()
 
 	public static HibernateDAOChess getInstance() {
 		if (null == instance) {
@@ -47,7 +44,8 @@ public class HibernateDAOChess {
 					"org.hibernate.dialect.MySQL5Dialect");
 			configuration.setProperty(Environment.HBM2DDL_AUTO, "none");
 			configuration.setProperty(Environment.SHOW_SQL, "true");
-			configuration.addAnnotatedClass(Player.class)
+			configuration.addAnnotatedClass(User.class)
+					.addAnnotatedClass(Player.class)
 					.addAnnotatedClass(Title.class)
 					.addAnnotatedClass(Match.class)
 					.addAnnotatedClass(Opening.class)
@@ -63,6 +61,13 @@ public class HibernateDAOChess {
 			session = sessionFactory.openSession();
 		}
 		return session;
+	}
+
+	public UserDAO getUserDAO() {
+		if (null == userDAO) {
+			userDAO = new UserDAO(getSession());
+		}
+		return userDAO;
 	}
 
 	public PlayerDAO getPlayerDAO() {
