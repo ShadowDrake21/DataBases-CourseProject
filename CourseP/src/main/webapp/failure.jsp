@@ -4,9 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Failure</title>
+    <style>
+        /* Style for the progress bar container */
+        #progress-bar-container {
+            width: 100%;
+            height: 30px;
+            position: relative;
+        }
+
+        /* Style for the progress bar */
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #4CAF50;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: width 1s linear;
+        }
+
+        /* Style for the percentage label */
+        #percentage-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+    </style>
+    <script>
+        // Function to update the progress bar and redirect to homepage after 5 seconds
+        function redirectToLoginpage() {
+            var progressBar = document.getElementById("progress-bar");
+            var percentageLabel = document.getElementById("percentage-label");
+            var startTime = new Date().getTime();
+            var duration = 5000; // 5000 milliseconds = 5 seconds
+
+            // Update the progress bar and percentage label every 50 milliseconds
+            var intervalId = setInterval(function () {
+                var currentTime = new Date().getTime();
+                var elapsedTime = currentTime - startTime;
+                var progress = (elapsedTime / duration) * 100;
+
+                progressBar.style.width = progress + "%";
+                percentageLabel.textContent = Math.round(progress) + "%";
+
+                if (elapsedTime >= duration) {
+                    clearInterval(intervalId);
+                    window.location.href = "login.jsp";
+                }
+            }, 50);
+        }
+
+        // Call the function when the page loads
+        window.onload = function() {
+            redirectToLoginpage();
+        };
+    </script>
 </head>
 <body>
     <h2>Login Failed. Please check your credentials.</h2>
-    <a href="login.jsp">Back to login page</a>
+    <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+        <div id="percentage-label" style="color: black;">0%</div>
+    </div>
 </body>
 </html>
