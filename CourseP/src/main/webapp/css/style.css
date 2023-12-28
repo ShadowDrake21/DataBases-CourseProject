@@ -1,0 +1,131 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap')
+	;
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 16px !important;
+	line-height: 22px !important;
+	height: 100% !important;
+}
+
+.h1, h1 {
+    font-size: 2rem !important;
+}
+
+.navbar, .footer {
+	width: 100%;
+	background-color: #004080;
+}
+
+.navbar {
+	position: absolute !important;
+	height: 100px;
+	top: 0;
+}
+
+.nav__item {
+	color: #fff !important;
+}
+
+.main {
+	padding: 100px 0 140px;
+	min-height: 100vh;
+}
+
+.home {
+	padding-top: 50px;
+}
+
+.home__container {
+	max-width: 1670px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+.home__top {
+	margin-bottom: 35px;
+}
+
+.home__title {
+	text-align: center;
+}
+
+.home__content {
+	display: flex;
+	justify-content: space-between;
+	gap: 50px;
+}
+
+.home__content-left {
+	width: 35%;
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.home__navbar {
+	list-style: none;
+	color: #000;
+	text-align: center;
+}
+
+.home__navbar-item {
+	margin-bottom: 10px;
+}
+
+.home__navbar-link {
+	color: #000;
+	text-decoration: none;
+	padding: 10px 20px;
+	display: inline-block;
+	background-color: #eee;
+	width: 100%;
+	transition: all .3s ease-in-out;
+}
+
+.home__navbar-link:hover {
+	background-color: #000;
+	color: #fff;
+}
+
+.home__content-left__bottom {
+	text-align: center;
+}
+
+.home__content-right {
+	width: 65%;
+	max-width: 100%;
+}
+
+.home__content-image__wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.home__content-image {
+	max-width: 75%;
+}
+
+.home__content-right__bottom {
+	margin-top: 50px;
+	text-align: center;
+}
+
+.footer {
+	height: 100px;
+	margin-top: -100px;
+	padding: 40px;
+}
+
+.footer__descr {
+	text-align: center;
+	color: #fff;
+	font-size: 16px;
+}
