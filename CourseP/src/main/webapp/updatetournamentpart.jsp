@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page import="java.io.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
+
+<%
+   String errorMessage = (String) request.getAttribute("error");
+   if (errorMessage == null) {
+       errorMessage = "";
+   }
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +21,10 @@
 <title>Update tournament participation</title>
 </head>
 <body>
+<p style="color: red;"><%= errorMessage %></p>
 	<p>Please update tournament participation fields and press Update tournament participation button or
 		press Cancel button.</p>
-	<c:url var="tournamentpartUrl" value="/tournamentpart.jsp/" />
+	<c:url var="tournamentpartUrl" value="/tournamentpart.jsp" />
 	<form method="post" action="tournamentpart">
 		<input type="hidden" name="actiontype" value="updatetournamentpart" /> <input
 			type="hidden" name="tournament_part_id" value="${param.tournament_part_id }" />

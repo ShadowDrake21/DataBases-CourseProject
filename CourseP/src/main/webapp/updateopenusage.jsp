@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page import="java.io.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
+
+<%
+   String errorMessage = (String) request.getAttribute("error");
+   if (errorMessage == null) {
+       errorMessage = "";
+   }
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +21,10 @@
 <title>Update opening usage</title>
 </head>
 <body>
+<p style="color: red;"><%= errorMessage %></p>
 	<p>Please update opening usage fields and press Update opening usage button or
 		press Cancel button.</p>
-	<c:url var="openingusageUrl" value="/openingusage.jsp/" />
+	<c:url var="openingusageUrl" value="/openingusage.jsp" />
 	<form method="post" action="openingusage">
 		<input type="hidden" name="actiontype" value="updateopeningusage" />
 		<input type="hidden" name="id_opening_usage" value="${param.id_opening_usage }" />

@@ -3,6 +3,17 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ page import="java.io.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
+
+<%
+   String errorMessage = (String) request.getAttribute("error");
+   if (errorMessage == null) {
+       errorMessage = "";
+   }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,6 +68,7 @@
 		</nav>
 	</header>
 	<main class="main">
+	<p style="color: red;"><%= errorMessage %></p>
 	<form method="post" action="match">
 		<table style="width: 100%" border="1">
 			<tr>
@@ -98,10 +110,10 @@
 							<c:param name="match_score_2" value="${match.score2}" />
 						</c:url>
 						<p>
-							<a href="${deleteUrl }">Delete match</a>
+							<a href="${deleteUrl }"  data-type="userlink">Delete match</a>
 						</p>
 						<p>
-							<a href="${updateUrl }">Update match</a>
+							<a href="${updateUrl }"  data-type="userlink">Update match</a>
 						</p></td>
 				</tr>
 			</c:forEach>

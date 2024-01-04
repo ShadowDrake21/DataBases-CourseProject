@@ -12,39 +12,6 @@
 <link href="css/style.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- <script>
-    // Function to handle logout and clear localStorage
-    function logout() {
-        // Clear localStorage
-        localStorage.clear();
-
-        // Redirect to the LogoutServlet
-        window.location.href = "logout";
-    }
-
-    // Function to populate user data from localStorage
-    function populateUserData() {
-        var userDataString = localStorage.getItem("userData");
-        var logoutButton = document.getElementById("logoutButton");
-        var loginButton = document.getElementById("loginButton");
-
-        if (userDataString) {
-            var userData = JSON.parse(userDataString);
-            document.getElementById("username").innerText = userData.username;
-            logoutButton.style.display = 'block';
-            loginButton.style.display = 'none'; // Enable the logout button
-        } else {
-            document.getElementById("username").innerText = "unauthorized";
-            logoutButton.style.display = 'none'; // Disable the logout button
-            loginButton.style.display = 'block';
-        }
-    }
-
-    // Call the function when the page loads
-    window.onload = function() {
-        populateUserData();
-    };
-</script> -->
 </head>
 <body class="body">
 	<header class="header">
@@ -59,14 +26,20 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="player.jsp">Player</a></li>
-					<li class="nav-item"><a class="nav-link nav__item" href="title.jsp">Title</a></li>
-					<li class="nav-item"><a class="nav-link nav__item" href="openingusage.jsp">Opening Usage</a></li>
-					<li class="nav-item"><a class="nav-link nav__item" href="opening.jsp">Opening</a></li>
-					<li class="nav-item"><a class="nav-link nav__item" href="tournamentpart.jsp">Tournament Participation</a></li>
-					<li class="nav-item"><a class="nav-link nav__item" href="tournament.jsp">Tournament</a></li>
-					<li class="nav-item"><a class="nav-link nav__item" href="match.jsp">Match</a></li>
-					<li class="nav-item"><span class="navbar-text nav__item"> <strong>User:</strong>
-							<span id="username"></span>
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="title.jsp">Title</a></li>
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="openingusage.jsp">Opening Usage</a></li>
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="opening.jsp">Opening</a></li>
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="tournamentpart.jsp">Tournament Participation</a></li>
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="tournament.jsp">Tournament</a></li>
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="match.jsp">Match</a></li>
+					<li class="nav-item"><span class="navbar-text nav__item">
+							<strong>User:</strong> <span id="username"></span>
 					</span></li>
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
@@ -78,12 +51,12 @@
 						</form>
 					</li>
 					<li class="nav-item">
-						<button type="button" id="loginButton" class="btn btn-primary ml-2"
-							onclick="location.href='login.jsp'">Login</button>
+						<button type="button" id="loginButton"
+							class="btn btn-primary ml-2" onclick="location.href='login.jsp'">Login</button>
 					</li>
 					<li class="nav-item">
-						<button type="button" id="logoutButton" class="btn btn-danger ml-2"
-							onclick="logout()">Logout</button>
+						<button type="button" id="logoutButton"
+							class="btn btn-danger ml-2" onclick="logout()">Logout</button>
 					</li>
 				</ul>
 			</div>
@@ -115,19 +88,25 @@
 								href="match.jsp">Match</a></li>
 						</ul>
 						<div class="home__content-left__bottom">
-							<p class="home__content-text">Lorem ipsum dolor sit amet,
-								consectetur adipiscing elit. Aenean eu tortor a odio mattis
-								pulvinar. Phasellus consectetur commodo nisl ut vulputate. Nulla
-								non sem enim. Etiam euismod lectus a luctus tempus. Cras magna
-								dolor, tempor nec convallis a, consequat quis enim.</p>
-							<p class="home__content-text">Quisque a mollis lorem, in
-								dignissim lectus. Fusce quis urna ornare, ultrices tortor vel,
-								consequat risus. In hac habitasse platea dictumst. Vestibulum
-								ante ipsum primis in faucibus orci luctus et ultrices posuere
-								cubilia curae; Nunc ultricies odio vitae mi porttitor, nec
-								viverra orci accumsan. Aliquam nec nisl non odio consectetur
-								pretium.</p>
+							<p class="home__content-text">Шахмати – це витончена гра, що
+								вимагає стратегічного мислення та тактичної кмітливості. Кожен
+								шаховий постріл розкриває величезний світ логіки та інтелекту.
+								Гра складається з 64 клітинок, які створюють неповторний
+								ландшафт для поєдинку розуміння та винахідливості. Кожна фігура
+								має свої унікальні можливості, що робить шахи надзвичайно
+								цікавими та різноманітними. Закладена в правила гри принципова
+								справедливість робить шахи спрощеним дзеркалом реального життя.</p>
+							<p class="home__content-text">Запам'ятовуючи кожен хід,
+								гравець розвиває свою уважність та здатність передбачати
+								варіанти. Шахи – це не лише спорт, але й мистецтво, де кожен
+								гравець творить своє унікальне стратегічне полотно. Гра в шахи
+								сприяє розвитку пам'яті, логічного мислення та самовладання,
+								роблячи кожен похід глибоким внутрішнім вирішенням. Шахова дошка
+								– це арена, на якій відбувається боротьба за перемогу, і вона
+								завжди відкриває нові можливості для вивчення та
+								самовдосконалення.</p>
 						</div>
+
 					</div>
 					<div class="home__content-right">
 						<div class="home__content-image__wrapper">
@@ -135,17 +114,19 @@
 								src="https://images.chesscomfiles.com/uploads/v1/blog/390608.aaaf8196.668x375o.a6fff302ce71@2x.jpeg">
 						</div>
 						<div class="home__content-right__bottom">
-							<p class="home__content-text">Lorem ipsum dolor sit amet,
-								consectetur adipiscing elit. Aenean eu tortor a odio mattis
-								pulvinar. Phasellus consectetur commodo nisl ut vulputate. Nulla
-								non sem enim. Etiam euismod lectus a luctus tempus. Cras magna
-								dolor, tempor nec convallis a, consequat quis enim.</p>
-							<p class="home__content-text">Lorem ipsum dolor sit amet,
-								consectetur adipiscing elit. Aenean eu tortor a odio mattis
-								pulvinar. Phasellus consectetur commodo nisl ut vulputate. Nulla
-								non sem enim. Etiam euismod lectus a luctus tempus. Cras magna
-								dolor, tempor nec convallis a, consequat quis enim.</p>
+							<p class="home__content-text">У світі шахів блищать імена
+								величезних гравців, серед яких виділяється Гаррі Каспаров,
+								визнаний майстром атак та генієм стратегії. Великий Анатолій
+								Карпов залишає свій слід в історії гри, виграваючи світові
+								чемпіонати та відзначаючись винятковим терпінням.</p>
+							<p class="home__content-text">Магнус Карлсен, чемпіон світу,
+								вражає своєю точністю та винахідливістю в кожній грі. Великий
+								Михайло Ботвіннік відомий своєю стратегічною обдуманістю та
+								величезним внеском у розвиток шахів. Василій Іванчук –
+								український шаховий віртуоз, який здивовує своєю оригінальністю
+								та нестандартними рішеннями.</p>
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -160,6 +141,6 @@
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="./js/script.js"></script>
+	<script type="text/javascript" src="./js/script.js"></script>
 </body>
 </html>

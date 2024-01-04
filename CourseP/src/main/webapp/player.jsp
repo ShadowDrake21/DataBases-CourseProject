@@ -4,6 +4,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%@ page import="java.io.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
+
+<%
+   String errorMessage = (String) request.getAttribute("error");
+   if (errorMessage == null) {
+       errorMessage = "";
+   }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +69,7 @@
 			</div>
 		</nav>
 	</header>
-	<main class="main">
+	<main class="main"><p style="color: red;"><%= errorMessage %></p>
 	<form method="post" action="player">
 		<table style="width: 100%" border="1">
 			<tr>
@@ -120,10 +132,10 @@
 							<c:param name="player_id" value="${player.id}" />
 						</c:url>
 						<p>
-							<a href="${deleteUrl }">Delete player</a>
+							<a href="${deleteUrl }" data-type="userlink">Delete player</a>
 						</p>
 						<p>
-							<a href="${updateUrl }">Update player</a>
+							<a href="${updateUrl }" data-type="userlink">Update player</a>
 						</p>
 						<p>
 							<a href="${titlesUrl}">View titles</a>
