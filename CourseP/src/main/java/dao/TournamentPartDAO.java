@@ -77,4 +77,29 @@ public class TournamentPartDAO {
 
 		return tournamentPartList;
 	}
+
+	public List<TournamentPart> searchTournament(String field, String value) {
+		String queryString = "SELECT tp.*, p.player_name, t.tournament_name "
+				+ "FROM tournament_participation tp "
+				+ "INNER JOIN player p ON tp.id_player = p.id_player "
+				+ "INNER JOIN tournament t ON tp.id_tournament = t.id_tournament "
+				+ "WHERE tp." + field + "= :value "
+				+ "ORDER BY tp.id_tournament_participation ASC";
+
+		SQLQuery query = (SQLQuery) session.createSQLQuery(queryString)
+				.addEntity(TournamentPart.class).addScalar("player_name")
+				.addScalar("tournament_name").setParameter("value", value);
+
+		List<Object[]> results = query.list();
+
+		List<TournamentPart> tournamentPartList = new ArrayList<>();
+		for (Object[] result : results) {
+			TournamentPart tournamentPart = (TournamentPart) result[0];
+			tournamentPart.setPlayerName((String) result[1]);
+			tournamentPart.setTournamentName((String) result[2]);
+			tournamentPartList.add(tournamentPart);
+		}
+
+		return tournamentPartList;
+	}
 }

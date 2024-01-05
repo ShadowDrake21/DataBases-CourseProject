@@ -157,4 +157,35 @@ public class PlayerDAO {
 		return playerList;
 	}
 
+	public List<Player> searchPlayers(String field, String value) {
+		String queryString = "SELECT p.*, "
+				+ "(SELECT COUNT(*) FROM title t WHERE t.id_player = p.id_player) as title_count, "
+				+ "(SELECT COUNT(*) FROM opening_usage ou WHERE ou.id_player = p.id_player) as opening_count, "
+				+ "(SELECT COUNT(DISTINCT tp.id_tournament) FROM tournament_participation tp WHERE tp.id_player = p.id_player) as tournament_count "
+				+ "FROM player p " + "WHERE p." + field + " = :value";
+
+		SQLQuery query = (SQLQuery) session.createSQLQuery(queryString)
+				.addEntity(Player.class).addScalar("title_count")
+				.addScalar("opening_count").addScalar("tournament_count")
+				.setParameter("value", value);
+
+		List<Object[]> results = query.list();
+
+		List<Player> playerList = new ArrayList<>();
+		for (Object[] result : results) {
+			Player player = (Player) result[0];
+			BigInteger titleNumber = (BigInteger) result[1];
+			BigInteger openingNumber = (BigInteger) result[2];
+			BigInteger tournamentNumber = (BigInteger) result[3];
+
+			player.setTitleNumber(titleNumber.intValue());
+			player.setOpeningNumber(openingNumber.intValue());
+			player.setTournamentNumber(tournamentNumber.intValue());
+
+			playerList.add(player);
+		}
+
+		return playerList;
+	}
+
 }

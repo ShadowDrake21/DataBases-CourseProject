@@ -44,13 +44,6 @@
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item">
-						<form action="searchServlet" method="get" class="form-inline ml-2">
-							<input type="text" class="form-control mr-2" name="query"
-								placeholder="Введіть запит">
-							<button type="submit" class="btn btn-outline-light">Search</button>
-						</form>
-					</li>
-					<li class="nav-item">
 						<button type="button" id="loginButton"
 							class="btn btn-primary ml-2" onclick="location.href='login.jsp'">Login</button>
 					</li>

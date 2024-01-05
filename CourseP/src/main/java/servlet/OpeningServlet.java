@@ -1,12 +1,15 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.HibernateDAOChess;
+import domain.Opening;
 import service.OpeningService;
 
 public class OpeningServlet extends HttpServlet {
@@ -34,7 +37,7 @@ public class OpeningServlet extends HttpServlet {
 				String famous_player = req.getParameter("famous_player");
 				openingService.addOpening(opening_name, opening_category,
 						opening_year, famous_player);
-				resp.sendRedirect("opening.jsp");
+				req.getRequestDispatcher("opening.jsp").forward(req, resp);
 			} catch (Exception e) {
 				req.setAttribute("error", e.getMessage());
 				req.getRequestDispatcher("opening.jsp").forward(req, resp);
@@ -42,7 +45,7 @@ public class OpeningServlet extends HttpServlet {
 		} else if ("deleteopening".equalsIgnoreCase(actionType)) {
 			String id_opening = req.getParameter("id_opening");
 			openingService.deleteOpening(id_opening);
-			resp.sendRedirect("opening.jsp");
+			req.getRequestDispatcher("opening.jsp").forward(req, resp);
 		} else if ("updateopening".equalsIgnoreCase(actionType)) {
 			try {
 				String id_opening = req.getParameter("id_opening");
@@ -52,12 +55,19 @@ public class OpeningServlet extends HttpServlet {
 				String famous_player = req.getParameter("famous_player");
 				openingService.updateOpening(id_opening, opening_name,
 						opening_category, opening_year, famous_player);
-				resp.sendRedirect("opening.jsp");
+				req.getRequestDispatcher("opening.jsp").forward(req, resp);
 			} catch (Exception e) {
 				req.setAttribute("error", e.getMessage());
 				req.getRequestDispatcher("updateopening.jsp").forward(req,
 						resp);
 			}
+		} else if ("searchopening".equalsIgnoreCase(actionType)) {
+			String field = req.getParameter("field");
+			String value = req.getParameter("value");
+			List<Opening> searchO = HibernateDAOChess.getInstance()
+					.getOpeningDAO().searchOpenings(field, value);
+			req.setAttribute("searchResults", searchO);
+			req.getRequestDispatcher("opening.jsp").forward(req, resp);
 		}
 	}
 }

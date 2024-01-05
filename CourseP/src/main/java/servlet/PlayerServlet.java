@@ -1,12 +1,15 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.HibernateDAOChess;
+import domain.Player;
 import service.PlayerService;
 
 public class PlayerServlet extends HttpServlet {
@@ -42,7 +45,7 @@ public class PlayerServlet extends HttpServlet {
 				playerService.addPlayer(player_name, player_gender,
 						player_birthday, player_country, player_nationality,
 						player_rate, player_matches, player_wins);
-				resp.sendRedirect("player.jsp");
+				req.getRequestDispatcher("player.jsp").forward(req, resp);
 			} catch (Exception e) {
 				req.setAttribute("error", e.getMessage());
 				req.getRequestDispatcher("player.jsp").forward(req, resp);
@@ -51,7 +54,7 @@ public class PlayerServlet extends HttpServlet {
 			String player_id = req.getParameter("player_id");
 
 			playerService.deletePlayer(player_id);
-			resp.sendRedirect("player.jsp");
+			req.getRequestDispatcher("player.jsp").forward(req, resp);
 		} else if ("updateplayer".equalsIgnoreCase(actionType)) {
 			try {
 				String player_id = req.getParameter("player_id");
@@ -69,12 +72,19 @@ public class PlayerServlet extends HttpServlet {
 						player_gender, player_birthday, player_country,
 						player_nationality, player_rate, player_matches,
 						player_wins);
-				resp.sendRedirect("player.jsp");
+				req.getRequestDispatcher("player.jsp").forward(req, resp);
 			} catch (Exception e) {
 				req.setAttribute("error", e.getMessage());
 				req.getRequestDispatcher("updateplayer.jsp").forward(req, resp);
 			}
 
+		} else if ("searchplayer".equalsIgnoreCase(actionType)) {
+			String field = req.getParameter("field");
+			String value = req.getParameter("value");
+			List<Player> searchP = HibernateDAOChess.getInstance()
+					.getPlayerDAO().searchPlayers(field, value);
+			req.setAttribute("searchResults", searchP);
+			req.getRequestDispatcher("player.jsp").forward(req, resp);
 		}
 
 	}

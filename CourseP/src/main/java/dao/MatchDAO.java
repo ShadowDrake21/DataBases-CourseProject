@@ -108,4 +108,26 @@ public class MatchDAO {
 
 		return matchList;
 	}
+
+	public List<Match> searchMatch(String field, String value) {
+		String queryString = "SELECT m.*, t.tournament_name "
+				+ "FROM `match` m "
+				+ "INNER JOIN tournament t ON m.id_tournament = t.id_tournament "
+				+ "WHERE m." + field + " = :value " + "ORDER BY m.id_match ASC";
+
+		SQLQuery query = (SQLQuery) session.createSQLQuery(queryString)
+				.addEntity(Match.class).addScalar("tournament_name")
+				.setParameter("value", value);
+
+		List<Object[]> results = query.list();
+
+		List<Match> matchList = new ArrayList<>();
+		for (Object[] result : results) {
+			Match match = (Match) result[0];
+			match.setTournamentName((String) result[1]);
+			matchList.add(match);
+		}
+
+		return matchList;
+	}
 }

@@ -139,4 +139,28 @@ public class TournamentDAO {
 
 		return tournamentList;
 	}
+
+	public List<Tournament> searchTournament(String field, String value) {
+		String queryString = "SELECT t.*, COUNT(m.id_match) as total "
+				+ "FROM tournament t "
+				+ "LEFT JOIN `match` m ON t.id_tournament = m.id_tournament "
+				+ "WHERE t." + field + " = :value "
+				+ "GROUP BY t.id_tournament " + "ORDER BY t.id_tournament ASC";
+
+		SQLQuery query = (SQLQuery) session.createSQLQuery(queryString)
+				.addEntity(Tournament.class).addScalar("total")
+				.setParameter("value", value);
+
+		List<Object[]> results = query.list();
+
+		List<Tournament> tournamentList = new ArrayList<>();
+		for (Object[] result : results) {
+			Tournament tournament = (Tournament) result[0];
+			BigInteger totalMatches = (BigInteger) result[1];
+			tournament.setMatchNumber(totalMatches.intValue());
+			tournamentList.add(tournament);
+		}
+
+		return tournamentList;
+	}
 }

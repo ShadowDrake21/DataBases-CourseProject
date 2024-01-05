@@ -1,12 +1,15 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.HibernateDAOChess;
+import domain.Match;
 import service.MatchService;
 
 public class MatchServlet extends HttpServlet {
@@ -39,15 +42,16 @@ public class MatchServlet extends HttpServlet {
 				matchService.addMatch(id_tournament, match_player,
 						match_opponent, match_date, match_score_1,
 						match_score_2);
-				resp.sendRedirect("match.jsp");
+				req.getRequestDispatcher("match.jsp").forward(req, resp);
 			} catch (Exception e) {
 				req.setAttribute("error", e.getMessage());
 				req.getRequestDispatcher("match.jsp").forward(req, resp);
+
 			}
 		} else if ("deletematch".equalsIgnoreCase(actionType)) {
 			String id_match = req.getParameter("id_match");
 			matchService.deleteMatch(id_match);
-			resp.sendRedirect("match.jsp");
+			req.getRequestDispatcher("match.jsp").forward(req, resp);
 
 		} else if ("updatematch".equalsIgnoreCase(actionType)) {
 			try {
@@ -61,11 +65,18 @@ public class MatchServlet extends HttpServlet {
 				matchService.updateMatch(id_match, id_tournament, match_player,
 						match_opponent, match_date, match_score_1,
 						match_score_2);
-				resp.sendRedirect("match.jsp");
+				req.getRequestDispatcher("match.jsp").forward(req, resp);
 			} catch (Exception e) {
 				req.setAttribute("error", e.getMessage());
 				req.getRequestDispatcher("updatematch.jsp").forward(req, resp);
 			}
+		} else if ("searchmatch".equalsIgnoreCase(actionType)) {
+			String field = req.getParameter("field");
+			String value = req.getParameter("value");
+			List<Match> searchM = HibernateDAOChess.getInstance().getMatchDAO()
+					.searchMatch(field, value);
+			req.setAttribute("searchResults", searchM);
+			req.getRequestDispatcher("match.jsp").forward(req, resp);
 		}
 	}
 }

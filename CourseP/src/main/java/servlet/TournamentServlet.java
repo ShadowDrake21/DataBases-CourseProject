@@ -1,12 +1,15 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.HibernateDAOChess;
+import domain.Tournament;
 import service.TournamentService;
 
 public class TournamentServlet extends HttpServlet {
@@ -46,7 +49,7 @@ public class TournamentServlet extends HttpServlet {
 						tournament_country, tournament_prize,
 						tournament_matches, tournament_players,
 						tournament_current_champ);
-				resp.sendRedirect("tournament.jsp");
+				req.getRequestDispatcher("tournament.jsp").forward(req, resp);
 			} catch (Exception e) {
 				req.setAttribute("error", e.getMessage());
 				req.getRequestDispatcher("tournament.jsp").forward(req, resp);
@@ -55,7 +58,7 @@ public class TournamentServlet extends HttpServlet {
 			String tournament_id = req.getParameter("tournament_id");
 
 			tournamentService.deleteTournament(tournament_id);
-			resp.sendRedirect("tournament.jsp");
+			req.getRequestDispatcher("tournament.jsp").forward(req, resp);
 		} else if ("updatetournament".equalsIgnoreCase(actionType)) {
 			try {
 				String tournament_id = req.getParameter("tournament_id");
@@ -78,12 +81,19 @@ public class TournamentServlet extends HttpServlet {
 						tournament_end, tournament_country, tournament_prize,
 						tournament_matches, tournament_players,
 						tournament_current_champ);
-				resp.sendRedirect("tournament.jsp");
+				req.getRequestDispatcher("tournament.jsp").forward(req, resp);
 			} catch (Exception e) {
 				req.setAttribute("error", e.getMessage());
 				req.getRequestDispatcher("updatetournament.jsp").forward(req,
 						resp);
 			}
+		} else if ("searchtournament".equalsIgnoreCase(actionType)) {
+			String field = req.getParameter("field");
+			String value = req.getParameter("value");
+			List<Tournament> searchP = HibernateDAOChess.getInstance()
+					.getTournamentDAO().searchTournament(field, value);
+			req.setAttribute("searchResults", searchP);
+			req.getRequestDispatcher("tournament.jsp").forward(req, resp);
 		}
 
 	}

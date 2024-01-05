@@ -30,7 +30,7 @@
 			type="hidden" name="id_match" value="${param.id_match }" />
 		<p>
 			Match id:
-			<c:out value="${param.id_opening }" />
+			<c:out value="${param.id_match }" />
 		</p>
 		<p>
 			Tournament id: <input type="text" name="id_tournament"
