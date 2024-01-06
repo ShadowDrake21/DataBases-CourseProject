@@ -69,7 +69,7 @@ if (errorMessage == null) {
 	</header>
 	<main class="main">
 		<p style="color: red;"><%=errorMessage%></p>
-		<h1>Players</h1>
+		<h1 class="page__title">Players</h1>
 		<form method="post" action="player">
 			<select name="field">
 				<option value="id_player">Id</option>
@@ -82,7 +82,7 @@ if (errorMessage == null) {
 			<input type="submit" name="searchplayer" value="Search">
 			<c:if test="${not empty searchResults}">
 				<table style="width: 100%" border="1">
-					<tr>
+					<tr class="first-row">
 						<td>Id</td>
 						<td>Player name</td>
 						<td>Player gender</td>
@@ -157,27 +157,27 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<tr>
+					<tr class="last-row">
 						<td></td>
 						<td><input type="text" data-type="userinput"
-							name="player_name" disabled /></td>
+							name="player_name" placeholder="Name" disabled /></td>
 						<td><select name="player_gender" data-type="userinput"
 							disabled>
 								<option value="Чоловіча">Чоловіча</option>
 								<option value="Жіноча">Жіноча</option>
 						</select></td>
 						<td><input type="text" data-type="userinput"
-							name="player_birthday" disabled /></td>
+							name="player_birthday" placeholder="Birthday" disabled /></td>
 						<td><input type="text" data-type="userinput"
-							name="player_country" disabled /></td>
+							name="player_country" placeholder="Country" disabled /></td>
 						<td><input type="text" data-type="userinput"
-							name="player_nationality" disabled /></td>
+							name="player_nationality" placeholder="Nationality" disabled /></td>
 						<td><input type="text" data-type="userinput"
-							name="player_rate" disabled /></td>
+							name="player_rate" placeholder="Rate" disabled /></td>
 						<td><input type="text" data-type="userinput"
-							name="player_matches" disabled /></td>
+							name="player_matches" placeholder="Matches" disabled /></td>
 						<td><input type="text" data-type="userinput"
-							name="player_wins" disabled /></td>
+							name="player_wins" placeholder="Wins" disabled /></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -190,7 +190,7 @@ if (errorMessage == null) {
 			<c:if test="${empty searchResults}">
 				<jsp:useBean id="PlayerListBean" class="databean.PlayerListDatabean" />
 				<table style="width: 100%" border="1">
-					<tr>
+					<tr class="first-row">
 						<td>Id</td>
 						<td>Player name</td>
 						<td>Player gender</td>
@@ -265,36 +265,77 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="player_name" disabled /></td>
-						<td><select name="player_gender" data-type="userinput"
-							disabled>
-								<option value="Чоловіча">Чоловіча</option>
-								<option value="Жіноча">Жіноча</option>
-						</select></td>
-						<td><input type="text" data-type="userinput"
-							name="player_birthday" disabled /></td>
-						<td><input type="text" data-type="userinput"
-							name="player_country" disabled /></td>
-						<td><input type="text" data-type="userinput"
-							name="player_nationality" disabled /></td>
-						<td><input type="text" data-type="userinput"
-							name="player_rate" disabled /></td>
-						<td><input type="text" data-type="userinput"
-							name="player_matches" disabled /></td>
-						<td><input type="text" data-type="userinput"
-							name="player_wins" disabled /></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><input type="hidden" name="actiontype" value="addplayer" />
-							<input type="submit" name="addplayer" value="Add player"
-							data-type="userinput" disabled /></td>
-					</tr>
+					<!-- 					<tr class="last-row"> -->
+					<!-- 						<td></td> -->
+					<!-- 						<td><input type="text" data-type="userinput" -->
+					<!-- 							name="player_name"  placeholder="Name"  disabled /></td> -->
+					<!-- 						<td><select name="player_gender" data-type="userinput"  -->
+					<!-- 							disabled> -->
+					<!-- 								<option value="Чоловіча">Чоловіча</option> -->
+					<!-- 								<option value="Жіноча">Жіноча</option> -->
+					<!-- 						</select></td> -->
+					<!-- 						<td><input type="text" data-type="userinput" -->
+					<!-- 							name="player_birthday" placeholder="Birthday" disabled /></td> -->
+					<!-- 						<td><input type="text" data-type="userinput" -->
+					<!-- 							name="player_country"  placeholder="Country"  disabled /></td> -->
+					<!-- 						<td><input type="text" data-type="userinput" -->
+					<!-- 							name="player_nationality" placeholder="Nationality" disabled /></td> -->
+					<!-- 						<td><input type="text" data-type="userinput" -->
+					<!-- 							name="player_rate" placeholder="Rate" disabled /></td> -->
+					<!-- 						<td><input type="text" data-type="userinput" -->
+					<!-- 							name="player_matches" placeholder="Matches" disabled /></td> -->
+					<!-- 						<td><input type="text" data-type="userinput" -->
+					<!-- 							name="player_wins" placeholder="Wins" disabled /></td> -->
+					<!-- 						<td></td> -->
+					<!-- 						<td></td> -->
+					<!-- 						<td></td> -->
+					<!-- 						<td><input type="hidden" name="actiontype" value="addplayer" /> -->
+					<!-- 							<input type="submit" name="addplayer" value="Add player" -->
+					<!-- 							data-type="userinput" disabled /></td> -->
+					<!-- 					</tr> -->
 				</table>
 			</c:if>
+		</form>
+		<h6 class="title-add">Add player: </h6>
+		<form method="post" action="player" class="form__add">
+		
+			<table style="width: 100%" border="1">
+				<tr class="first-row">
+					<td>Player name</td>
+					<td>Player gender</td>
+					<td>Player birthday</td>
+					<td>Player country</td>
+					<td>Player nationality</td>
+					<td>Player rate</td>
+					<td>Player matches</td>
+					<td>Player wins</td>
+					<td>Action</td>
+				</tr>
+				<tr class="last-row">
+					<td><input type="text" data-type="userinput"
+						name="player_name" placeholder="Name" disabled /></td>
+					<td><select name="player_gender" data-type="userinput" class="select"
+						disabled>
+							<option value="Чоловіча">Чоловіча</option>
+							<option value="Жіноча">Жіноча</option>
+					</select></td>
+					<td><input type="text" data-type="userinput"
+						name="player_birthday" placeholder="Birthday" disabled /></td>
+					<td><input type="text" data-type="userinput"
+						name="player_country" placeholder="Country" disabled /></td>
+					<td><input type="text" data-type="userinput"
+						name="player_nationality" placeholder="Nationality" disabled /></td>
+					<td><input type="text" data-type="userinput"
+						name="player_rate" placeholder="Rate" disabled /></td>
+					<td><input type="text" data-type="userinput"
+						name="player_matches" placeholder="Matches" disabled /></td>
+					<td><input type="text" data-type="userinput"
+						name="player_wins" placeholder="Wins" disabled /></td>
+					<td><input type="hidden" name="actiontype" value="addplayer" />
+						<input type="submit" name="addplayer" value="Add player"
+						data-type="userinput" disabled /></td>
+				</tr>
+			</table>
 		</form>
 	</main>
 	<footer class="footer">

@@ -27,13 +27,12 @@ public class PlayerServlet extends HttpServlet {
 			throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String actionType = req.getParameter("actiontype");
+		System.out.println("actionType " + actionType);
 		if ("addplayer".equalsIgnoreCase(actionType)) {
 			try {
 				req.setCharacterEncoding("UTF-8");
 				String player_name = req.getParameter("player_name");
-				System.out.println("Player Gender Input: " + player_name);
 				String player_gender = req.getParameter("player_gender");
-				System.out.println("Player Gender Input: " + player_gender);
 				String player_birthday = req.getParameter("player_birthday");
 				String player_country = req.getParameter("player_country");
 				String player_nationality = req
@@ -48,6 +47,7 @@ public class PlayerServlet extends HttpServlet {
 				req.getRequestDispatcher("player.jsp").forward(req, resp);
 			} catch (Exception e) {
 				req.setAttribute("error", e.getMessage());
+
 				req.getRequestDispatcher("player.jsp").forward(req, resp);
 			}
 		} else if ("deleteplayer".equalsIgnoreCase(actionType)) {
