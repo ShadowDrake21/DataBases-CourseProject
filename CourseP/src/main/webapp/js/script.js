@@ -56,8 +56,8 @@
 
         } else {
             document.getElementById("username").innerText = "unauthorized";
-            logoutButton.style.display = 'none'; // Disable the logout button
-            loginButton.style.display = 'block';
+            if(logoutButton) {logoutButton.style.display = 'none';}// Disable the logout button
+            if(loginButton) {loginButton.style.display = 'block';}
 
             if (inputFields.lenght !== 0) {
                 // Disable input fields

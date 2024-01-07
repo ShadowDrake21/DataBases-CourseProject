@@ -57,7 +57,7 @@ public class OpeningUsageServlet extends HttpServlet {
 				req.getRequestDispatcher("openingusage.jsp").forward(req, resp);
 			} catch (Exception e) {
 				req.setAttribute("error", e.getMessage());
-				req.getRequestDispatcher("updateopeningusage.jsp").forward(req,
+				req.getRequestDispatcher("updateopenusage.jsp").forward(req,
 						resp);
 			}
 		} else if ("searchopeningusage".equalsIgnoreCase(actionType)) {

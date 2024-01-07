@@ -50,11 +50,12 @@ if (errorMessage == null) {
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
+
+				</ul>
+				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
-				</ul>
-				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item">
 						<button type="button" id="loginButton"
 							class="btn btn-primary ml-2" onclick="location.href='login.jsp'">Login</button>
@@ -71,15 +72,17 @@ if (errorMessage == null) {
 		<p style="color: red;"><%=errorMessage%></p>
 		<h1 class="page__title">Players</h1>
 		<form method="post" action="player">
-			<select name="field">
-				<option value="id_player">Id</option>
-				<option value="player_name">Player name</option>
-				<option value="player_gender">Player gender</option>
-				<option value="player_country">Player country</option>
-				<option value="player_rate">Player rate</option>
-			</select> <input type="text" name="value" placeholder="Enter search value">
-			<input type="hidden" name="actiontype" value="searchplayer">
-			<input type="submit" name="searchplayer" value="Search">
+			<div style="margin-bottom: 15px;">
+				<select name="field">
+					<option value="id_player">Id</option>
+					<option value="player_name">Player name</option>
+					<option value="player_gender">Player gender</option>
+					<option value="player_country">Player country</option>
+					<option value="player_rate">Player rate</option>
+				</select> <input type="text" name="value" placeholder="Enter search value">
+				<input type="hidden" name="actiontype" value="searchplayer">
+				<input type="submit" name="searchplayer" value="Search">
+			</div>
 			<c:if test="${not empty searchResults}">
 				<table style="width: 100%" border="1">
 					<tr class="first-row">
@@ -157,34 +160,6 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<tr class="last-row">
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="player_name" placeholder="Name" disabled /></td>
-						<td><select name="player_gender" data-type="userinput"
-							disabled>
-								<option value="Чоловіча">Чоловіча</option>
-								<option value="Жіноча">Жіноча</option>
-						</select></td>
-						<td><input type="text" data-type="userinput"
-							name="player_birthday" placeholder="Birthday" disabled /></td>
-						<td><input type="text" data-type="userinput"
-							name="player_country" placeholder="Country" disabled /></td>
-						<td><input type="text" data-type="userinput"
-							name="player_nationality" placeholder="Nationality" disabled /></td>
-						<td><input type="text" data-type="userinput"
-							name="player_rate" placeholder="Rate" disabled /></td>
-						<td><input type="text" data-type="userinput"
-							name="player_matches" placeholder="Matches" disabled /></td>
-						<td><input type="text" data-type="userinput"
-							name="player_wins" placeholder="Wins" disabled /></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><input type="hidden" name="actiontype" value="addplayer" />
-							<input type="submit" name="addplayer" value="Add player"
-							data-type="userinput" disabled /></td>
-					</tr>
 				</table>
 			</c:if>
 			<c:if test="${empty searchResults}">
@@ -265,40 +240,11 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<!-- 					<tr class="last-row"> -->
-					<!-- 						<td></td> -->
-					<!-- 						<td><input type="text" data-type="userinput" -->
-					<!-- 							name="player_name"  placeholder="Name"  disabled /></td> -->
-					<!-- 						<td><select name="player_gender" data-type="userinput"  -->
-					<!-- 							disabled> -->
-					<!-- 								<option value="Чоловіча">Чоловіча</option> -->
-					<!-- 								<option value="Жіноча">Жіноча</option> -->
-					<!-- 						</select></td> -->
-					<!-- 						<td><input type="text" data-type="userinput" -->
-					<!-- 							name="player_birthday" placeholder="Birthday" disabled /></td> -->
-					<!-- 						<td><input type="text" data-type="userinput" -->
-					<!-- 							name="player_country"  placeholder="Country"  disabled /></td> -->
-					<!-- 						<td><input type="text" data-type="userinput" -->
-					<!-- 							name="player_nationality" placeholder="Nationality" disabled /></td> -->
-					<!-- 						<td><input type="text" data-type="userinput" -->
-					<!-- 							name="player_rate" placeholder="Rate" disabled /></td> -->
-					<!-- 						<td><input type="text" data-type="userinput" -->
-					<!-- 							name="player_matches" placeholder="Matches" disabled /></td> -->
-					<!-- 						<td><input type="text" data-type="userinput" -->
-					<!-- 							name="player_wins" placeholder="Wins" disabled /></td> -->
-					<!-- 						<td></td> -->
-					<!-- 						<td></td> -->
-					<!-- 						<td></td> -->
-					<!-- 						<td><input type="hidden" name="actiontype" value="addplayer" /> -->
-					<!-- 							<input type="submit" name="addplayer" value="Add player" -->
-					<!-- 							data-type="userinput" disabled /></td> -->
-					<!-- 					</tr> -->
 				</table>
 			</c:if>
 		</form>
-		<h6 class="title-add">Add player: </h6>
+		<h6 class="title-add">Add player:</h6>
 		<form method="post" action="player" class="form__add">
-		
 			<table style="width: 100%" border="1">
 				<tr class="first-row">
 					<td>Player name</td>
@@ -314,8 +260,8 @@ if (errorMessage == null) {
 				<tr class="last-row">
 					<td><input type="text" data-type="userinput"
 						name="player_name" placeholder="Name" disabled /></td>
-					<td><select name="player_gender" data-type="userinput" class="select"
-						disabled>
+					<td><select name="player_gender" data-type="userinput"
+						class="select" disabled>
 							<option value="Чоловіча">Чоловіча</option>
 							<option value="Жіноча">Жіноча</option>
 					</select></td>

@@ -38,7 +38,19 @@ public class MatchServlet extends HttpServlet {
 				String match_date = req.getParameter("match_date");
 				String match_score_1 = req.getParameter("match_score_1");
 				String match_score_2 = req.getParameter("match_score_2");
-				System.out.println("add match");
+
+				if ((Integer.parseInt(match_score_1) != 0.5
+						&& Integer.parseInt(match_score_1) == Integer
+								.parseInt(match_score_2))
+						|| ((Integer.parseInt(match_score_1) == 0.5
+								|| Integer.parseInt(match_score_2) == 0.5)
+								&& Integer.parseInt(match_score_1) != Integer
+										.parseInt(match_score_2))) {
+					req.setAttribute("error", "Invalid points");
+					req.getRequestDispatcher("match.jsp").forward(req, resp);
+					return;
+				}
+
 				matchService.addMatch(id_tournament, match_player,
 						match_opponent, match_date, match_score_1,
 						match_score_2);

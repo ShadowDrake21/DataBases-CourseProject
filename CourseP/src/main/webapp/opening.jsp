@@ -48,11 +48,11 @@ if (errorMessage == null) {
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
+				</ul>
+				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
-				</ul>
-				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item">
 						<button type="button" id="loginButton"
 							class="btn btn-primary ml-2" onclick="location.href='login.jsp'">Login</button>
@@ -67,20 +67,22 @@ if (errorMessage == null) {
 	</header>
 	<main class="main">
 		<p style="color: red;"><%=errorMessage%></p>
-		<h1>Openings</h1>
+		<h1 class="page__title">Openings</h1>
 		<form method="post" action="opening">
-			<select name="field">
-				<option value="id_opening">Id</option>
-				<option value="opening_name">Opening name</option>
-				<option value="opening_category">Opening category</option>
-				<option value="opening_year">Opening year</option>
-				<option value="opening_famous_player">Famous player</option>
-			</select> <input type="text" name="value" placeholder="Enter search value">
-			<input type="hidden" name="actiontype" value="searchopening">
-			<input type="submit" name="searchopening" value="Search">
+			<div style="margin-bottom: 15px;">
+				<select name="field">
+					<option value="id_opening">Id</option>
+					<option value="opening_name">Opening name</option>
+					<option value="opening_category">Opening category</option>
+					<option value="opening_year">Opening year</option>
+					<option value="opening_famous_player">Famous player</option>
+				</select> <input type="text" name="value" placeholder="Enter search value">
+				<input type="hidden" name="actiontype" value="searchopening">
+				<input type="submit" name="searchopening" value="Search">
+			</div>
 			<c:if test="${not empty searchResults}">
 				<table style="width: 100%" border="1">
-					<tr>
+					<tr class="first-row">
 						<td>Id</td>
 						<td>Name</td>
 						<td>Category</td>
@@ -121,31 +123,13 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="opening_name" /></td>
-						<td><select name="opening_category" data-type="userinput">
-								<option value="Відкритий">Відкритий</option>
-								<option value="Напіввідкритий">Напіввідкритий</option>
-								<option value="Закритий">Закритий</option>
-								<option value="Фланговий">Фланговий</option>
-						</select></td>
-						<td><input type="text" data-type="userinput"
-							name="opening_year" /></td>
-						<td><input type="text" data-type="userinput"
-							name="famous_player" /></td>
-						<td><input type="hidden" name="actiontype" value="addopening" />
-							<input type="submit" data-type="userinput" name="addopening"
-							value="Add opening" /></td>
-					</tr>
 				</table>
 			</c:if>
 			<c:if test="${empty searchResults}">
 				<jsp:useBean id="OpeningListBean"
 					class="databean.OpeningListDatabean" />
 				<table style="width: 100%" border="1">
-					<tr>
+					<tr class="first-row">
 						<td>Id</td>
 						<td>Name</td>
 						<td>Category</td>
@@ -186,26 +170,38 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="opening_name" /></td>
-						<td><select name="opening_category" data-type="userinput">
-								<option value="Відкритий">Відкритий</option>
-								<option value="Напіввідкритий">Напіввідкритий</option>
-								<option value="Закритий">Закритий</option>
-								<option value="Фланговий">Фланговий</option>
-						</select></td>
-						<td><input type="text" data-type="userinput"
-							name="opening_year" /></td>
-						<td><input type="text" data-type="userinput"
-							name="famous_player" /></td>
-						<td><input type="hidden" name="actiontype" value="addopening" />
-							<input type="submit" data-type="userinput" name="addopening"
-							value="Add opening" /></td>
-					</tr>
 				</table>
 			</c:if>
+		</form>
+		<h6 class="title-add">Add opening:</h6>
+		<form method="post" action="opening" class="form__add">
+			<table style="width: 100%" border="1">
+				<tr class="first-row">
+					<td>Name</td>
+					<td>Category</td>
+					<td>Year</td>
+					<td>Famous player</td>
+					<td>Action</td>
+				</tr>
+				<tr class="last-row">
+					<td><input type="text" data-type="userinput"
+						name="opening_name" placeholder="Name" /></td>
+					<td><select name="opening_category" data-type="userinput"
+						class="select">
+							<option value="Відкритий">Відкритий</option>
+							<option value="Напіввідкритий">Напіввідкритий</option>
+							<option value="Закритий">Закритий</option>
+							<option value="Фланговий">Фланговий</option>
+					</select></td>
+					<td><input type="text" data-type="userinput"
+						name="opening_year" placeholder="Year" /></td>
+					<td><input type="text" data-type="userinput"
+						name="famous_player" placeholder="Famous player" /></td>
+					<td><input type="hidden" name="actiontype" value="addopening" />
+						<input type="submit" data-type="userinput" name="addopening"
+						value="Add opening" /></td>
+				</tr>
+			</table>
 		</form>
 	</main>
 	<footer class="footer">

@@ -24,7 +24,7 @@ if (errorMessage == null) {
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-	
+
 	<header class="header">
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<a class="navbar-brand nav__item" href="homepage.jsp">Chess2D</a>
@@ -49,12 +49,11 @@ if (errorMessage == null) {
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
+				</ul>
+				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
-				</ul>
-				<ul class="navbar-nav ml-md-auto">
-
 					<li class="nav-item">
 						<button type="button" id="loginButton"
 							class="btn btn-primary ml-2" onclick="location.href='login.jsp'">Login</button>
@@ -69,19 +68,21 @@ if (errorMessage == null) {
 	</header>
 	<main class="main">
 		<p style="color: red;"><%=errorMessage%></p>
-		<h1>Titles</h1>
+		<h1 class="page__title">Titles</h1>
 		<form method="post" action="title">
-			<select name="field">
-				<option value="id_title">Id</option>
-				<option value="title_name">Title name</option>
-				<option value="title_year">Title year</option>
-				<option value="id_player">Player id</option>
-			</select> <input type="text" name="value" placeholder="Enter search value">
-			<input type="hidden" name="actiontype" value="searchtitle"> <input
-				type="submit" name="searchtitle" value="Search">
+			<div style="margin-bottom: 15px;">
+				<select name="field">
+					<option value="id_title">Id</option>
+					<option value="title_name">Title name</option>
+					<option value="title_year">Title year</option>
+					<option value="id_player">Player id</option>
+				</select> <input type="text" name="value" placeholder="Enter search value">
+				<input type="hidden" name="actiontype" value="searchtitle">
+				<input type="submit" name="searchtitle" value="Search">
+			</div>
 			<c:if test="${not empty searchResults}">
 				<table style="width: 100%" border="1">
-					<tr>
+					<tr class="first-row">
 						<td>Id</td>
 						<td>Title name</td>
 						<td>Title year</td>
@@ -115,24 +116,12 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="title_name" /></td>
-						<td><input type="text" data-type="userinput"
-							name="title_year" /></td>
-						<td><input type="text" data-type="userinput" name="id_player" /></td>
-						<td></td>
-						<td><input type="hidden" name="actiontype" value="addtitle" />
-							<input type="submit" data-type="userinput" name="addtitle"
-							value="Add title" /></td>
-					</tr>
 				</table>
 			</c:if>
 			<c:if test="${empty searchResults}">
-			<jsp:useBean id="TitleListBean" class="databean.TitleListDatabean" />
+				<jsp:useBean id="TitleListBean" class="databean.TitleListDatabean" />
 				<table style="width: 100%" border="1">
-					<tr>
+					<tr class="first-row">
 						<td>Id</td>
 						<td>Title name</td>
 						<td>Title year</td>
@@ -166,21 +155,30 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="title_name" /></td>
-						<td><input type="text" data-type="userinput"
-							name="title_year" /></td>
-						<td><input type="text" data-type="userinput" name="id_player" /></td>
-						<td></td>
-						<td><input type="hidden" name="actiontype" value="addtitle" />
-							<input type="submit" data-type="userinput" name="addtitle"
-							value="Add title" /></td>
-					</tr>
 				</table>
 			</c:if>
-
+		</form>
+		<h6 class="title-add">Add title:</h6>
+		<form method="post" action="title" class="form__add">
+			<table style="width: 100%" border="1">
+				<tr class="first-row">
+					<td>Title name</td>
+					<td>Title year</td>
+					<td>Player id</td>
+					<td>Action</td>
+				</tr>
+				<tr class="last-row">
+					<td><input type="text" data-type="userinput" name="title_name"
+						placeholder="Name" /></td>
+					<td><input type="text" data-type="userinput" name="title_year"
+						placeholder="Year" /></td>
+					<td><input type="text" data-type="userinput" name="id_player"
+						placeholder="Player id" /></td>
+					<td><input type="hidden" name="actiontype" value="addtitle" />
+						<input type="submit" data-type="userinput" name="addtitle"
+						value="Add title" /></td>
+				</tr>
+			</table>
 		</form>
 	</main>
 	<footer class="footer">

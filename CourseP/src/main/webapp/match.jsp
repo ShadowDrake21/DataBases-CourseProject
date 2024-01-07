@@ -48,11 +48,11 @@ if (errorMessage == null) {
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
+				</ul>
+				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
-				</ul>
-				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item">
 						<button type="button" id="loginButton"
 							class="btn btn-primary ml-2" onclick="location.href='login.jsp'">Login</button>
@@ -67,19 +67,21 @@ if (errorMessage == null) {
 	</header>
 	<main class="main">
 		<p style="color: red;"><%=errorMessage%></p>
-		<h1>Matches</h1>
+		<h1 class="page__title">Matches</h1>
 		<form method="post" action="match">
-			<select name="field">
-				<option value="id_match">Match id</option>
-				<option value="id_tournament">Tournament id</option>
-				<option value="match_player">Player</option>
-				<option value="match_opponent">Opponent</option>
-			</select> <input type="text" name="value" placeholder="Enter search value">
-			<input type="hidden" name="actiontype" value="searchmatch"> <input
-				type="submit" name="searchmatch" value="Search">
+			<div style="margin-bottom: 15px;">
+				<select name="field">
+					<option value="id_match">Match id</option>
+					<option value="id_tournament">Tournament id</option>
+					<option value="match_player">Player</option>
+					<option value="match_opponent">Opponent</option>
+				</select> <input type="text" name="value" placeholder="Enter search value">
+				<input type="hidden" name="actiontype" value="searchmatch">
+				<input type="submit" name="searchmatch" value="Search">
+			</div>
 			<c:if test="${not empty searchResults}">
 				<table style="width: 100%" border="1">
-					<tr>
+					<tr class="first-row">
 						<td>Match id</td>
 						<td>Tournament id</td>
 						<td>Tournament name</td>
@@ -125,37 +127,12 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="id_tournament" /></td>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="match_player" /></td>
-						<td><input type="text" data-type="userinput"
-							name="match_opponent" /></td>
-						<td><input type="text" data-type="userinput"
-							name="match_date" /></td>
-						<td><select name="match_score_1" data-type="userinput">
-								<option value="0">0</option>
-								<option value="0.5">0.5</option>
-								<option value="1">1</option>
-						</select></td>
-						<td><select name="match_score_2" data-type="userinput">
-								<option value="0">0</option>
-								<option value="0.5">0.5</option>
-								<option value="1">1</option>
-						</select></td>
-						<td><input type="hidden" name="actiontype" value="addmatch" />
-							<input type="submit" name="addmatch" data-type="userinput"
-							value="Add match" /></td>
-					</tr>
 				</table>
 			</c:if>
 			<c:if test="${empty searchResults}">
 				<jsp:useBean id="MatchListBean" class="databean.MatchListDatabean" />
 				<table style="width: 100%" border="1">
-					<tr>
+					<tr class="first-row">
 						<td>Match id</td>
 						<td>Tournament id</td>
 						<td>Tournament name</td>
@@ -201,33 +178,47 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="id_tournament" /></td>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="match_player" /></td>
-						<td><input type="text" data-type="userinput"
-							name="match_opponent" /></td>
-						<td><input type="text" data-type="userinput"
-							name="match_date" /></td>
-						<td><select name="match_score_1" data-type="userinput">
-								<option value="0">0</option>
-								<option value="0.5">0.5</option>
-								<option value="1">1</option>
-						</select></td>
-						<td><select name="match_score_2" data-type="userinput">
-								<option value="0">0</option>
-								<option value="0.5">0.5</option>
-								<option value="1">1</option>
-						</select></td>
-						<td><input type="hidden" name="actiontype" value="addmatch" />
-							<input type="submit" name="addmatch" data-type="userinput"
-							value="Add match" /></td>
-					</tr>
 				</table>
 			</c:if>
+		</form>
+		<h6 class="title-add">Add match:</h6>
+		<form method="post" action="match" class="form__add">
+			<table style="width: 100%" border="1">
+				<tr class="first-row">
+					<td>Tournament id</td>
+					<td>Player 1</td>
+					<td>Player 2</td>
+					<td>Match date</td>
+					<td>Score player 1</td>
+					<td>Score player 2</td>
+					<td>Action</td>
+				</tr>
+				<tr class="last-row">
+					<td><input type="text" data-type="userinput"
+						name="id_tournament" placeholder="Tournament id" /></td>
+					<td><input type="text" data-type="userinput"
+						name="match_player" placeholder="Player 1" /></td>
+					<td><input type="text" data-type="userinput"
+						name="match_opponent" placeholder="Player 2" /></td>
+					<td><input type="text" data-type="userinput" name="match_date"
+						placeholder="Date" /></td>
+					<td><select name="match_score_1" data-type="userinput"
+						class="select">
+							<option value="0">0</option>
+							<option value="0.5">0.5</option>
+							<option value="1">1</option>
+					</select></td>
+					<td><select name="match_score_2" data-type="userinput"
+						class="select">
+							<option value="0">0</option>
+							<option value="0.5">0.5</option>
+							<option value="1">1</option>
+					</select></td>
+					<td><input type="hidden" name="actiontype" value="addmatch" />
+						<input type="submit" name="addmatch" data-type="userinput"
+						value="Add match" /></td>
+				</tr>
+			</table>
 		</form>
 	</main>
 	<footer class="footer">

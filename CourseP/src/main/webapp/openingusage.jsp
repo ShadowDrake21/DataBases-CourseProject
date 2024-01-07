@@ -48,11 +48,11 @@ if (errorMessage == null) {
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
+				</ul>
+				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
-				</ul>
-				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item">
 						<button type="button" id="loginButton"
 							class="btn btn-primary ml-2" onclick="location.href='login.jsp'">Login</button>
@@ -67,18 +67,20 @@ if (errorMessage == null) {
 	</header>
 	<main class="main">
 		<p style="color: red;"><%=errorMessage%></p>
-		<h1>Opening Usages</h1>
+		<h1 class="page__title">Opening Usages</h1>
 		<form method="post" action="openingusage">
-			<select name="field">
-				<option value="id_opening_usage">Opening usage id</option>
-				<option value="id_opening">Opening id</option>
-				<option value="id_player">Player id</option>
-			</select> <input type="text" name="value" placeholder="Enter search value">
-			<input type="hidden" name="actiontype" value="searchopeningusage">
-			<input type="submit" name="searchopeningusage" value="Search">
+			<div style="margin-bottom: 15px;">
+				<select name="field">
+					<option value="id_opening_usage">Opening usage id</option>
+					<option value="id_opening">Opening id</option>
+					<option value="id_player">Player id</option>
+				</select> <input type="text" name="value" placeholder="Enter search value">
+				<input type="hidden" name="actiontype" value="searchopeningusage">
+				<input type="submit" name="searchopeningusage" value="Search">
+			</div>
 			<c:if test="${not empty searchResults}">
 				<table style="width: 100%" border="1">
-					<tr>
+					<tr class="first-row">
 						<td>Opening Usage id</td>
 						<td>Opening id</td>
 						<td>Opening name</td>
@@ -116,27 +118,13 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="id_opening" /></td>
-						<td></td>
-						<td><input type="text" data-type="userinput" name="id_player" /></td>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="usage_points" /></td>
-						<td><input type="hidden" name="actiontype"
-							value="addopeningusage" /> <input type="submit"
-							data-type="userinput" name="addopeningusage"
-							value="Add Opening Usage" /></td>
-					</tr>
 				</table>
 			</c:if>
 			<c:if test="${empty searchResults}">
 				<jsp:useBean id="OpeningUsageListBean"
 					class="databean.OpeningUsageListDatabean" />
 				<table style="width: 100%" border="1">
-					<tr>
+					<tr class="first-row">
 						<td>Opening Usage id</td>
 						<td>Opening id</td>
 						<td>Opening name</td>
@@ -175,22 +163,29 @@ if (errorMessage == null) {
 								</p></td>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="id_opening" /></td>
-						<td></td>
-						<td><input type="text" data-type="userinput" name="id_player" /></td>
-						<td></td>
-						<td><input type="text" data-type="userinput"
-							name="usage_points" /></td>
-						<td><input type="hidden" name="actiontype"
-							value="addopeningusage" /> <input type="submit"
-							data-type="userinput" name="addopeningusage"
-							value="Add Opening Usage" /></td>
-					</tr>
 				</table>
 			</c:if>
+		</form>
+		<h6 class="title-add">Add opening usage:</h6>
+		<form method="post" action="openingusage" class="form__add">
+			<table style="width: 100%" border="1">
+				<tr class="first-row">
+					<td>Opening id</td>
+					<td>Player id</td>
+					<td>Points</td>
+					<td>Action</td>
+				</tr>
+				<tr class="last-row">
+					<td><input type="text" data-type="userinput" name="id_opening" /></td>
+					<td><input type="text" data-type="userinput" name="id_player" /></td>
+					<td><input type="text" data-type="userinput"
+						name="usage_points" /></td>
+					<td><input type="hidden" name="actiontype"
+						value="addopeningusage" /> <input type="submit"
+						data-type="userinput" name="addopeningusage"
+						value="Add Opening Usage" /></td>
+				</tr>
+			</table>
 		</form>
 	</main>
 	<footer class="footer">

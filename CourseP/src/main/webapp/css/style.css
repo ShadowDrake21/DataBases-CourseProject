@@ -168,11 +168,38 @@ table {
 }
 
 .form__add {
-	margin-top: 10px; display : flex;
+	margin-top: 10px;
+	display: flex;
 	justify-content: center;
 	display: flex;
 }
 
 .select {
 	text-align: center;
+}
+
+.login {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.login__title {
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.login__label {
+	display: flex;
+	gap: 15px;
+	justify-content: space-between;
+}
+
+.login__btn {
+	text-align: center;
+}
+
+.login__btn input[name="login"] {
+	padding: 5px 15px;
 }
