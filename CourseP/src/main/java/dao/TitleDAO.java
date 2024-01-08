@@ -123,4 +123,25 @@ public class TitleDAO {
 
 		return titleList;
 	}
+
+	public List<Title> searchTitle(String field, String value) {
+		String queryString = "SELECT t.*, p.player_name " + "FROM title t "
+				+ "INNER JOIN player p ON t.id_player = p.id_player "
+				+ "WHERE t." + field + " =:value " + "ORDER BY t.id_title ASC";
+
+		SQLQuery query = (SQLQuery) session.createSQLQuery(queryString)
+				.addEntity(Title.class).addScalar("player_name")
+				.setParameter("value", value);
+
+		List<Object[]> results = query.list();
+
+		List<Title> titleList = new ArrayList<>();
+		for (Object[] result : results) {
+			Title title = (Title) result[0];
+			title.setPlayerName((String) result[1]);
+			titleList.add(title);
+		}
+
+		return titleList;
+	}
 }

@@ -76,4 +76,29 @@ public class OpeningUsageDAO {
 
 		return openingUsageList;
 	}
+
+	public List<OpeningUsage> searchOpeningsUsages(String field, String value) {
+		String queryString = "SELECT os.*, op.opening_name, p.player_name "
+				+ "FROM opening_usage os "
+				+ "INNER JOIN opening op ON op.id_opening = os.id_opening "
+				+ "INNER JOIN player p ON os.id_player = p.id_player "
+				+ "WHERE os." + field + "=:value "
+				+ "ORDER BY os.id_opening_usage ASC";
+
+		SQLQuery query = (SQLQuery) session.createSQLQuery(queryString)
+				.addEntity(OpeningUsage.class).addScalar("opening_name")
+				.addScalar("player_name").setParameter("value", value);
+
+		List<Object[]> results = query.list();
+
+		List<OpeningUsage> openingUsageList = new ArrayList<>();
+		for (Object[] result : results) {
+			OpeningUsage openingUsage = (OpeningUsage) result[0];
+			openingUsage.setOpeningName((String) result[1]);
+			openingUsage.setPlayerName((String) result[2]);
+			openingUsageList.add(openingUsage);
+		}
+
+		return openingUsageList;
+	}
 }

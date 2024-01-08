@@ -98,4 +98,12 @@ public class OpeningDAO {
 
 		return openingList;
 	}
+
+	public List<Opening> searchOpenings(String field, String value) {
+		SQLQuery query = session.createSQLQuery(
+				"select * from opening where " + field + "='" + value + "'")
+				.addEntity(Opening.class);
+		List<Opening> openingList = query.list();
+		return openingList;
+	}
 }
