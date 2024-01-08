@@ -32,7 +32,7 @@ request.setAttribute("tournamentName", tournamentName);
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<header class="header">
+	<header class="header">
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<a class="navbar-brand nav__item" href="homepage.jsp">Chess2D</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -74,44 +74,44 @@ request.setAttribute("tournamentName", tournamentName);
 		</nav>
 	</header>
 	<main class="main">
-	<h1>Tournament Matches</h1>
-	<p>
-		Matches Found:
-		<c:out value="${matchList.size()}" />
-	</p>
-	<p>
-		<c:choose>
-			<c:when test="${empty matchList}">
-				<c:out value="${tournamentName}" />
-			</c:when>
+		<h1>Tournament Matches</h1>
+		<p>
+			Matches Found:
+			<c:out value="${matchList.size()}" />
+		</p>
+		<p>
+			<c:choose>
+				<c:when test="${empty matchList}">
+					<c:out value="${tournamentName}" />
+				</c:when>
 				<c:otherwise>
 					<c:out value="${matchList[0].tournamentName}" />
 				</c:otherwise>
 			</c:choose>
 
-	</p>
+		</p>
 
-	<table style="width: 100%" border="1">
-		<tr>
-			<td>Match player 1</td>
-			<td>Match player 2</td>
-			<td>Match date</td>
-			<td>Match score 1</td>
-			<td>Match score 2</td>
-		</tr>
-		<c:forEach var="match" items="${matchList}">
+		<table style="width: 100%" border="1">
 			<tr>
-				<td><c:out value="${match.player1}" /></td>
-				<td><c:out value="${match.player2}" /></td>
-				<td><c:out value="${match.date}" /></td>
-				<td><c:out value="${match.score1}" /></td>
-				<td><c:out value="${match.score2}" /></td>
+				<td>Match player 1</td>
+				<td>Match player 2</td>
+				<td>Match date</td>
+				<td>Match score 1</td>
+				<td>Match score 2</td>
 			</tr>
-		</c:forEach>
-	</table>
-	<p>
-		<a href="tournament.jsp">Back to Tournament Page</a>
-	</p>
+			<c:forEach var="match" items="${matchList}">
+				<tr>
+					<td><c:out value="${match.player1}" /></td>
+					<td><c:out value="${match.player2}" /></td>
+					<td><c:out value="${match.date}" /></td>
+					<td><c:out value="${match.score1}" /></td>
+					<td><c:out value="${match.score2}" /></td>
+				</tr>
+			</c:forEach>
+		</table>
+		<p>
+			<a href="tournament.jsp">Back to Tournament Page</a>
+		</p>
 	</main>
 	<footer class="footer">
 		<p class="footer__descr">©2023-2024 Krapyvianskyi "Drake21" Dmytro

@@ -14,7 +14,8 @@ Long openingId = Long.parseLong(openingIdParam);
 List<Player> playerList = HibernateDAOChess.getInstance().getPlayerDAO()
 		.getPlayersByOpeningId(openingId);
 
-Opening opening = HibernateDAOChess.getInstance().getOpeningDAO().getOpeningById(openingId);
+Opening opening = HibernateDAOChess.getInstance().getOpeningDAO()
+		.getOpeningById(openingId);
 String openingName = opening.getName();
 
 request.setAttribute("playerList", playerList);
@@ -31,7 +32,7 @@ request.setAttribute("openingName", openingName);
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<header class="header">
+	<header class="header">
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<a class="navbar-brand nav__item" href="homepage.jsp">Chess2D</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"

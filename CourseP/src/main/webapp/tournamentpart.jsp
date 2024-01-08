@@ -69,7 +69,7 @@ if (errorMessage == null) {
 		</nav>
 	</header>
 	<main class="main">
-		<p style="color: red;"><%=errorMessage%></p>
+		<p class="error-message"><%=errorMessage%></p>
 		<h1 class="page__title">Tournament participations</h1>
 		<form method="post" action="tournamentpart">
 			<div style="margin-bottom: 15px;">

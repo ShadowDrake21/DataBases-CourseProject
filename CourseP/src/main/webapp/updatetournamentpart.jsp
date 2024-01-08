@@ -21,7 +21,7 @@
 <title>Update tournament participation</title>
 </head>
 <body>
-<p style="color: red;"><%= errorMessage %></p>
+<p class="error-message"><%=errorMessage%></p>
 	<p>Please update tournament participation fields and press Update tournament participation button or
 		press Cancel button.</p>
 	<c:url var="tournamentpartUrl" value="/tournamentpart.jsp" />
