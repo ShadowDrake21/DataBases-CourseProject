@@ -21,6 +21,7 @@ public class HibernateDAOChess {
 	private OpeningUsageDAO openingUsageDAO;
 	private TournamentPartDAO tournamentPartDAO;
 	private TournamentLogDAO tournamentLogDAO;
+	private GlobalStatisticsDAO globalStatisticsDAO;
 
 	private Session session;
 
@@ -52,7 +53,8 @@ public class HibernateDAOChess {
 					.addAnnotatedClass(Tournament.class)
 					.addAnnotatedClass(OpeningUsage.class)
 					.addAnnotatedClass(TournamentPart.class)
-					.addAnnotatedClass(TournamentLog.class);
+					.addAnnotatedClass(TournamentLog.class)
+					.addAnnotatedClass(GlobalStatistics.class);
 			StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
 			serviceRegistryBuilder.applySettings(configuration.getProperties());
 			ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
@@ -124,6 +126,13 @@ public class HibernateDAOChess {
 			tournamentLogDAO = new TournamentLogDAO(getSession());
 		}
 		return tournamentLogDAO;
+	}
+
+	public GlobalStatisticsDAO getGlobalStatisticsDAO() {
+		if (null == globalStatisticsDAO) {
+			globalStatisticsDAO = new GlobalStatisticsDAO(getSession());
+		}
+		return globalStatisticsDAO;
 	}
 
 	public void closeSession() {
