@@ -17,57 +17,38 @@ public class GlobalStatisticsDAO {
 		this.session = session;
 	}
 
-//	public List<GlobalStatistics> getAllGlobalStatistics() {
-////		Query tableCountQuery = session.createQuery(
-////				"SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = chess");
-////		List<Object[]> tableCount = tableCountQuery.list();
-////		System.out.println("Number of tables in the database: " + tableCount);
-//
-////		// Get the total number of items in each table
-//		Query itemCountQuery = session.createQuery(
-//				"SELECT table_name, table_rows FROM information_schema.tables WHERE table_schema = chess");
-//		List<Object[]> itemsInTables = itemCountQuery.list();
-//
-//		// Display the results
-//		List<GlobalStatistics> globalStatisticsList = new ArrayList<>();
-//		System.out.println("Table Statistics:");
-//		for (Object[] row : itemsInTables) {
-//			String tableName = (String) row[0];
-//			Long rowCount = (Long) row[1];
-//			System.out.println(
-//					"Table: " + tableName + ", Number of items: " + rowCount);
-//		}
-//
-//		return globalStatisticsList;
-//	}
 	public List<GlobalStatistics> getAllGlobalStatistics() {
+		// Get the total number of tables
 		Query tableCountQuery = session.createSQLQuery(
 				"SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'chess'");
-		List<Object[]> tableCount = tableCountQuery.list();
+		Long tableCount = ((BigInteger) tableCountQuery.uniqueResult())
+				.longValue();
 		System.out.println("Number of tables in the database: " + tableCount);
-		// Get the total number of items in each table
-		// using native SQL query
-		Query itemCountQuery = session.createSQLQuery(
+
+		// Get the total number of items and columns in
+		// each table using native SQL query
+		Query tableInfoQuery = session.createSQLQuery(
 				"SELECT table_name, table_rows FROM information_schema.tables WHERE table_schema = 'chess'");
-		List<Object[]> itemsInTables = itemCountQuery.list();
+		List<Object[]> tablesInfo = tableInfoQuery.list();
 
 		// Display the results
 		List<GlobalStatistics> globalStatisticsList = new ArrayList<>();
 		System.out.println("Table Statistics:");
-		for (Object[] row : itemsInTables) {
+		for (Object[] row : tablesInfo) {
 			String tableName = (String) row[0];
-			BigInteger rowCount = (BigInteger) row[1];
+			Long rowCount = ((BigInteger) row[1] != null)
+					? ((BigInteger) row[1]).longValue()
+					: 0L;
 
-			// Check for null and handle it
-			long rowCountValue = (rowCount != null) ? rowCount.longValue() : 0;
+			// Get the count of columns for each table
+			Query columnCountQuery = session.createSQLQuery(
+					"SELECT COUNT(*) FROM information_schema.columns WHERE table_schema = 'chess' AND table_name = :tableName");
+			columnCountQuery.setParameter("tableName", tableName);
+			int columnCount = ((BigInteger) columnCountQuery.uniqueResult())
+					.intValue();
 
-			System.out.println("Table: " + tableName + ", Number of items: "
-					+ rowCountValue);
-
-			// Assuming you have a constructor in
-			// GlobalStatistics class
-			GlobalStatistics globalStatistics = new GlobalStatistics(tableName,
-					rowCountValue);
+			GlobalStatistics globalStatistics = new GlobalStatistics(tableCount,
+					tableName, rowCount, columnCount);
 			globalStatisticsList.add(globalStatistics);
 		}
 

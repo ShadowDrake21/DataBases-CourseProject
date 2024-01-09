@@ -44,7 +44,7 @@
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
-<li class="nav-item"><a class="nav-link nav__item"
+					<li class="nav-item"><a class="nav-link nav__item"
 						href="statistics.jsp">Statistics</a></li>
 
 				</ul>
@@ -65,20 +65,46 @@
 		</nav>
 	</header>
 	<main class="main">
-<jsp:useBean id="GlobalStatisticsListBean"
-					class="databean.GlobalStatisticsListDatabean" />
-				<table style="width: 100%" border="1">
-					<tr class="first-row">
-						<td>Name of table</td>
-						<td>Items</td>
+		<jsp:useBean id="GlobalStatisticsListBean"
+			class="databean.GlobalStatisticsListDatabean" />
+		<div>
+			<div>
+				<p>
+					Table Count:
+					<c:out
+						value="${GlobalStatisticsListBean.globalStatisticsList[0].tableCount}" />
+				</p>
+			</div>
+			<table style="width: 100%" border="1">
+				<tr class="first-row">
+					<td>Name of table</td>
+					<td>Items</td>
+					<td>Columns</td>
+				</tr>
+				<c:forEach var="globalStatistics"
+					items="${GlobalStatisticsListBean.globalStatisticsList}">
+					<tr>
+						<td><c:out value="${globalStatistics.tableName}" /></td>
+						<td><c:out value="${globalStatistics.itemCount}" /></td>
+						<td><c:out value="${globalStatistics.columnCount}" /></td>
 					</tr>
-					<c:forEach var="globalStatistics" items="${GlobalStatisticsListBean.globalStatisticsList}">
-						<tr>
-							<td><c:out value="${globalStatistics.tableName}" /></td>
-							<td><c:out value="${globalStatistics.itemCount}" /></td>
-						</tr>
-					</c:forEach>
-				</table>
+				</c:forEach>
+			</table>
+			<div>
+				<div>
+					<form action="GenerateReportsServlet" method="post">
+						<input type="submit" value="Generate Report 1" name="reportType" />
+						<input type="submit" value="Generate Report 2" name="reportType" />
+						<input type="submit" value="Generate Report 3" name="reportType" />
+					</form>
+
+					<!-- Display the generated report content if needed -->
+					<c:if test="${not empty reportContent}">
+						<div>${reportContent}</div>
+					</c:if>
+				</div>
+			</div>
+		</div>
 	</main>
 	<footer class="footer">
 		<p class="footer__descr">©2023-2024 Krapyvianskyi "Drake21" Dmytro
