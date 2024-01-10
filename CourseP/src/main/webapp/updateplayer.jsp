@@ -48,10 +48,11 @@ if (errorMessage == null) {
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
-					
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="statistics.jsp">Statistics</a></li>
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
-				<li class="nav-item"><span class="navbar-text nav__item">
+					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
 					<li class="nav-item">
@@ -67,63 +68,69 @@ if (errorMessage == null) {
 		</nav>
 	</header>
 	<main class="main">
-	<p class="error-message"><%=errorMessage%></p>
-	<p>Please update player fields and press Update player button or
-		press Cancel button.</p>
-	<c:url var="playerUrl" value="/player.jsp" />
-	<form method="post" action="player">
-		<input type="hidden" name="actiontype" value="updateplayer" /> <input
-			type="hidden" name="player_id" value="${param.player_id }" />
-		<p>
-			Player id:
-			<c:out value="${param.player_id }" />
-		</p>
-		<p>
-			Player name: <input type="text" name="player_name"
-				value="${param.player_name }" />
-		</p>
-		<p>
-			Player gender: <select name="player_gender">
-				<c:choose>
-					<c:when test="${param.player_gender eq 'Чоловіча'}">
-						<option value="Чоловіча" selected>Чоловіча</option>
-						<option value="Жіноча">Жіноча</option>
-					</c:when>
-					<c:otherwise>
-						<option value="Чоловіча">Чоловіча</option>
-						<option value="Жіноча" selected>Жіноча</option>
-					</c:otherwise>
-				</c:choose>
-			</select>
-		</p>
-		<p>
-			Player birthday: <input type="text" name="player_birthday"
-				value="${param.player_birthday }" />
-		</p>
-		<p>
-			Player country: <input type="text" name="player_country"
-				value="${param.player_country }" />
-		</p>
-		<p>
-			Player nationality: <input type="text" name="player_nationality"
-				value="${param.player_nationality }" />
-		</p>
-		<p>
-			Player rate: <input type="text" name="player_rate"
-				value="${param.player_rate }" />
-		</p>
-		<p>
-			Player matches: <input type="text" name="player_matches"
-				value="${param.player_matches }" />
-		</p>
-		<p>
-			Player wins: <input type="text" name="player_wins"
-				value="${param.player_wins }" />
-		</p>
-		<input type="submit" name="updateplayer" value="Update player" /> <input
-			type="button" onClick="window.location.href='${playerUrl}'"
-			value="Cancel" />
-	</form>
+		<p class="error-message"><%=errorMessage%></p>
+		<div class="login select">
+			<p>Please update player fields and press Update player button or
+				press Cancel button.</p>
+			<c:url var="playerUrl" value="/player.jsp" />
+			<form method="post" action="player"
+				style="display: flex; flex-direction: column; gap: 20px;">
+				<input type="hidden" name="actiontype" value="updateplayer" /> <input
+					type="hidden" name="player_id" value="${param.player_id }" />
+				<p>
+					Player id:
+					<c:out value="${param.player_id }" />
+				</p>
+				<p>
+					Player name: <input type="text" name="player_name"
+						value="${param.player_name }" />
+				</p>
+				<p>
+					Player gender: <select name="player_gender">
+						<c:choose>
+							<c:when test="${param.player_gender eq 'Чоловіча'}">
+								<option value="Чоловіча" selected>Чоловіча</option>
+								<option value="Жіноча">Жіноча</option>
+							</c:when>
+							<c:otherwise>
+								<option value="Чоловіча">Чоловіча</option>
+								<option value="Жіноча" selected>Жіноча</option>
+							</c:otherwise>
+						</c:choose>
+					</select>
+				</p>
+				<p>
+					Player birthday: <input type="text" name="player_birthday"
+						value="${param.player_birthday }" />
+				</p>
+				<p>
+					Player country: <input type="text" name="player_country"
+						value="${param.player_country }" />
+				</p>
+				<p>
+					Player nationality: <input type="text" name="player_nationality"
+						value="${param.player_nationality }" />
+				</p>
+				<p>
+					Player rate: <input type="text" name="player_rate"
+						value="${param.player_rate }" />
+				</p>
+				<p>
+					Player matches: <input type="text" name="player_matches"
+						value="${param.player_matches }" />
+				</p>
+				<p>
+					Player wins: <input type="text" name="player_wins"
+						value="${param.player_wins }" />
+				</p>
+				<div class="login__btn">
+					<input type="submit" name="updateplayer" value="Update player"
+						class="btn-custom" /> <input type="button"
+						onClick="window.location.href='${playerUrl}'" value="Cancel"
+						class="btn-custom" />
+				</div>
+			</form>
+		</div>
 	</main>
 	<footer class="footer">
 		<p class="footer__descr">©2023-2024 Krapyvianskyi "Drake21" Dmytro

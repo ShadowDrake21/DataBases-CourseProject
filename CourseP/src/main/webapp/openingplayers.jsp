@@ -56,11 +56,14 @@ request.setAttribute("openingName", openingName);
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="statistics.jsp">Statistics</a></li>
+
+				</ul>
+				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
-				</ul>
-				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item">
 						<button type="button" id="loginButton"
 							class="btn btn-primary ml-2" onclick="location.href='login.jsp'">Login</button>
@@ -74,7 +77,7 @@ request.setAttribute("openingName", openingName);
 		</nav>
 	</header>
 	<main class="main">
-		<h1>Opening Players</h1>
+		<h1 class="page__title" style="margin-top: 30px;">Opening Players</h1>
 		<p>
 			Players Found:
 			<c:out value="${playerList.size()}" />
@@ -84,7 +87,7 @@ request.setAttribute("openingName", openingName);
 		</p>
 
 		<table style="width: 100%" border="1">
-			<tr>
+			<tr class="first-row">
 				<td>Player name</td>
 				<td>Player birthday</td>
 				<td>Player country</td>
@@ -106,7 +109,7 @@ request.setAttribute("openingName", openingName);
 			</c:forEach>
 		</table>
 		<p>
-			<a href="opening.jsp">Back to Opening Page</a>
+			<a style="display: inline-block; margin-top: 15px;" href="opening.jsp">Back to Opening Page</a>
 		</p>
 	</main>
 	<footer class="footer">

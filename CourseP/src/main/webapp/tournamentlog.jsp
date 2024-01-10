@@ -1,32 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@ page import="java.util.List"%>
-<%@ page import="domain.Player"%>
-<%@ page import="domain.Tournament"%>
-<%@ page import="dao.HibernateDAOChess"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%@ page import="java.io.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="javax.servlet.*"%>
+<%@ page import="javax.servlet.http.*"%>
 
 <%
-String tournamentIdParam = request.getParameter("tournament_id");
-Long tournamentId = Long.parseLong(tournamentIdParam);
-
-List<Player> playerList = HibernateDAOChess.getInstance().getPlayerDAO()
-		.getPlayersByTournamentId(tournamentId);
-
-Tournament tournament = HibernateDAOChess.getInstance().getTournamentDAO()
-		.getTournamentById(tournamentId);
-String tournamentName = tournament.getName();
-
-request.setAttribute("playerList", playerList);
-request.setAttribute("tournamentName", tournamentName);
+String errorMessage = (String) request.getAttribute("error");
+if (errorMessage == null) {
+	errorMessage = "";
+}
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Tournament Players</title>
+<title>History tournament change</title>
 <link href="css/style.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -58,6 +52,7 @@ request.setAttribute("tournamentName", tournamentName);
 						href="match.jsp">Match</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="statistics.jsp">Statistics</a></li>
+
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item"><span class="navbar-text nav__item">
@@ -76,40 +71,40 @@ request.setAttribute("tournamentName", tournamentName);
 		</nav>
 	</header>
 	<main class="main">
-		<h1 class="page__title" style="margin-top: 30px;">Tournament Players</h1>
-		<p>
-			Players Found:
-			<c:out value="${playerList.size()}" />
-		</p>
-		<p>
-			<c:out value="${tournamentName}" />
-		</p>
-
-		<table style="width: 100%" border="1">
-			<tr class="first-row">
-				<td>Player name</td>
-				<td>Player birthday</td>
-				<td>Player country</td>
-				<td>Player rate</td>
-				<td>Player matches</td>
-				<td>Player wins</td>
-				<td>Tournament registration</td>
-			</tr>
-			<c:forEach var="player" items="${playerList}">
-				<tr>
-					<td><c:out value="${player.name}" /></td>
-					<td><c:out value="${player.birthday}" /></td>
-					<td><c:out value="${player.country}" /></td>
-					<td><c:out value="${player.rate}" /></td>
-					<td><c:out value="${player.matches}" /></td>
-					<td><c:out value="${player.wins}" /></td>
-					<td><c:out value="${player.registration}" /></td>
+		<p class="error-message"><%=errorMessage%></p>
+		<h1>History tournament change</h1>
+        <jsp:useBean id="TournamentLogListBean" class="databean.TournamentLogListDatabean" />
+        <a href="tournament.jsp">Back to Tournament Page<br></a><p></p>
+        <table style="width: 100%" border="1">
+				<tr class="first-row">
+				    <td>Change</td>
+					<td>Id</td>
+					<td>Type</td>
+					<td>Name</td>
+					<td>Start</td>
+					<td>End</td>
+					<td>Country</td>
+					<td>Prize</td>
+					<td>Matches</td>
+					<td>Players</td>
+					<td>Champion</td>
 				</tr>
-			</c:forEach>
-		</table>
-		<p>
-			<a style="display: inline-block; margin-top: 15px;" href="tournament.jsp">Back to Tournament Page</a>
-		</p>
+				<c:forEach var="tournamentlog" items="${TournamentLogListBean.tournamentLogList}">
+					<tr>
+					    <td><c:out value="${tournamentlog.change}" /></td>
+						<td><c:out value="${tournamentlog.id}" /></td>
+						<td><c:out value="${tournamentlog.type}" /></td>
+						<td><c:out value="${tournamentlog.name}" /></td>
+						<td><c:out value="${tournamentlog.start}" /></td>
+						<td><c:out value="${tournamentlog.end}" /></td>
+						<td><c:out value="${tournamentlog.country}" /></td>
+						<td><c:out value="${tournamentlog.prize}" /></td>
+						<td><c:out value="${tournamentlog.matches}" /></td>
+						<td><c:out value="${tournamentlog.players}" /></td>
+						<td><c:out value="${tournamentlog.champion}" /></td>						
+					</tr>
+				</c:forEach>
+			</table>
 	</main>
 	<footer class="footer">
 		<p class="footer__descr">©2023-2024 Krapyvianskyi "Drake21" Dmytro

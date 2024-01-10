@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-    
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -36,10 +36,11 @@
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
-					
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="statistics.jsp">Statistics</a></li>
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
-				<li class="nav-item"><span class="navbar-text nav__item">
+					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
 					<li class="nav-item">
@@ -55,27 +56,28 @@
 		</nav>
 	</header>
 	<main class="main">
-	<section class="delete">
-	<p style="font-weight: 700;">Below player will be deleted:</p>
-	<p>Player id: ${param.player_id}</p>
-	<p>Player name: ${param.player_name}</p>
-	<p>Player gender: ${param.player_gender}</p>
-	<p>Player birthday: ${param.player_birthday}</p>
-	<p>Player country: ${param.player_country}</p>
-	<p>Player nationality: ${param.player_nationality}</p>
-	<p>Player rate: ${param.player_rate}</p>
-	<p>Player matches: ${param.player_matches}</p>
-	<p>Player wins: ${param.player_wins}</p>
-	<p>Could you please confirm?</p>
-	<c:url var="playerUrl" value="/player.jsp" />
-	<form method="post" action="player">
-		<input type="hidden" name="actiontype" value="deleteplayer" /> <input
-			type="hidden" name="player_id" value="${param.player_id }" /> <input
-			type="submit" name="deleteplayer" value="Delete player" class="btn-custom"/> <input
-			type="button" onclick="window.location.href='${playerUrl}'"
-			value="Cancel" class="btn-custom"/>
-	</form>
-	</section>
+		<section class="delete">
+			<p style="font-weight: 700;">Below player will be deleted:</p>
+			<p>Player id: ${param.player_id}</p>
+			<p>Player name: ${param.player_name}</p>
+			<p>Player gender: ${param.player_gender}</p>
+			<p>Player birthday: ${param.player_birthday}</p>
+			<p>Player country: ${param.player_country}</p>
+			<p>Player nationality: ${param.player_nationality}</p>
+			<p>Player rate: ${param.player_rate}</p>
+			<p>Player matches: ${param.player_matches}</p>
+			<p>Player wins: ${param.player_wins}</p>
+			<p>Could you please confirm?</p>
+			<c:url var="playerUrl" value="/player.jsp" />
+			<form method="post" action="player">
+				<input type="hidden" name="actiontype" value="deleteplayer" /> <input
+					type="hidden" name="player_id" value="${param.player_id }" /> <input
+					type="submit" name="deleteplayer" value="Delete player"
+					class="btn-custom" /> <input type="button"
+					onclick="window.location.href='${playerUrl}'" value="Cancel"
+					class="btn-custom" />
+			</form>
+		</section>
 	</main>
 	<footer class="footer">
 		<p class="footer__descr">©2023-2024 Krapyvianskyi "Drake21" Dmytro
@@ -87,5 +89,6 @@
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/script.js"></script>
-</body>s
+</body>
+s
 </html>

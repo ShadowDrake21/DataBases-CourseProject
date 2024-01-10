@@ -74,7 +74,7 @@ request.setAttribute("playerName", playerName);
 		</nav>
 	</header>
 	<main class="main">
-		<h1>Player Openings</h1>
+		<h1 class="page__title" style="margin-top: 30px;">Player Openings</h1>
 		<p>
 			Openings Found:
 			<c:out value="${openingList.size()}" />
@@ -84,7 +84,7 @@ request.setAttribute("playerName", playerName);
 		</p>
 
 		<table style="width: 100%" border="1">
-			<tr>
+			<tr class="first-row">
 				<td>Opening name</td>
 				<td>Openings category</td>
 				<td>Openings year</td>
@@ -100,7 +100,7 @@ request.setAttribute("playerName", playerName);
 			</c:forEach>
 		</table>
 		<p>
-			<a href="player.jsp">Back to Player Page</a>
+			<a style="display: inline-block; margin-top: 15px;" href="player.jsp">Back to Player Page</a>
 		</p>
 	</main>
 	<footer class="footer">

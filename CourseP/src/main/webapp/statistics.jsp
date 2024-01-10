@@ -67,9 +67,10 @@
 	<main class="main">
 		<jsp:useBean id="GlobalStatisticsListBean"
 			class="databean.GlobalStatisticsListDatabean" />
-		<div>
+		<div class="login" style="width: 98%;">
+		<h1 class="page__title">Statistics</h1>
 			<div>
-				<p>
+				<p style="font-weight: 700;">
 					Table Count:
 					<c:out
 						value="${GlobalStatisticsListBean.globalStatisticsList[0].tableCount}" />
@@ -90,20 +91,6 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<div>
-				<div>
-					<form action="GenerateReportsServlet" method="post">
-						<input type="submit" value="Generate Report 1" name="reportType" />
-						<input type="submit" value="Generate Report 2" name="reportType" />
-						<input type="submit" value="Generate Report 3" name="reportType" />
-					</form>
-
-					<!-- Display the generated report content if needed -->
-					<c:if test="${not empty reportContent}">
-						<div>${reportContent}</div>
-					</c:if>
-				</div>
-			</div>
 		</div>
 	</main>
 	<footer class="footer">
