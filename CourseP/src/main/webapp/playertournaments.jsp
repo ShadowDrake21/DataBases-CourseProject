@@ -74,7 +74,7 @@ request.setAttribute("playerName", playerName);
 		</nav>
 	</header>
 	<main class="main">
-		<h1>Player Tournaments</h1>
+		<h1 class="page__title" style="margin-top: 30px;">Player Tournaments</h1>
 		<p>
 			Tournaments Found:
 			<c:out value="${tournamentList.size()}" />
@@ -84,7 +84,7 @@ request.setAttribute("playerName", playerName);
 		</p>
 
 		<table style="width: 100%" border="1">
-			<tr>
+			<tr class="first-row">
 				<td>Tournament type</td>
 				<td>Tournament name</td>
 				<td>Tournament start</td>
@@ -104,7 +104,7 @@ request.setAttribute("playerName", playerName);
 			</c:forEach>
 		</table>
 		<p>
-			<a href="player.jsp">Back to Player Page</a>
+			<a style="display: inline-block; margin-top: 15px;" href="player.jsp">Back to Player Page</a>
 		</p>
 	</main>
 	<footer class="footer">

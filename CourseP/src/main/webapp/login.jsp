@@ -36,17 +36,27 @@
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="statistics.jsp">Statistics</a></li>
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
+					<li class="nav-item">
+						<button type="button" id="loginButton"
+							class="btn btn-primary ml-2" onclick="location.href='login.jsp'">Login</button>
+					</li>
+					<li class="nav-item">
+						<button type="button" id="logoutButton"
+							class="btn btn-danger ml-2" onclick="logout()">Logout</button>
+					</li>
 				</ul>
 			</div>
 		</nav>
 	</header>
 
-	<main class="main" style="position: relative;">
+	<main class="main">
 		<div class="login">
 			<h1 class="login__title">Login page</h1>
 			<form method="post" action="login"

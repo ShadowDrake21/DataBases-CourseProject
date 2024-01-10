@@ -2,16 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@ page import="java.io.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import="javax.servlet.*" %>
-<%@ page import="javax.servlet.http.*" %>
+<%@ page import="java.io.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="javax.servlet.*"%>
+<%@ page import="javax.servlet.http.*"%>
 
 <%
-   String errorMessage = (String) request.getAttribute("error");
-   if (errorMessage == null) {
-       errorMessage = "";
-   }
+String errorMessage = (String) request.getAttribute("error");
+if (errorMessage == null) {
+	errorMessage = "";
+}
 %>
 
 <!DOCTYPE html>
@@ -48,10 +48,11 @@
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
-					
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="statistics.jsp">Statistics</a></li>
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
-				<li class="nav-item"><span class="navbar-text nav__item">
+					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
 					<li class="nav-item">
@@ -67,33 +68,39 @@
 		</nav>
 	</header>
 	<main class="main">
-<p class="error-message"><%=errorMessage%></p>
-	<p>Please update title fields and press Update title button or
-		press Cancel button.</p>
-	<c:url var="titleUrl" value="/title.jsp" />
-	<form method="post" action="title">
-		<input type="hidden" name="actiontype" value="updatetitle" /> <input
-			type="hidden" name="title_id" value="${param.title_id }" />
-		<p>
-			Title id:
-			<c:out value="${param.title_id }" />
-		</p>
-		<p>
-			Title name: <input type="text" name="title_name"
-				value="${param.title_name }" />
-		</p>
-		<p>
-			Title year: <input type="text" name="title_year"
-				value="${param.title_year }" />
-		</p>
-		<p>
-			Player id: <input type="text" name="id_player"
-				value="${param.id_player }" />
-		</p>
-		<input type="submit" name="updatetitle" value="Update title" /> <input
-			type="button" onClick="window.location.href='${titleUrl}'"
-			value="Cancel" />
-	</form>
+		<p class="error-message"><%=errorMessage%></p>
+		<div class="login select">
+			<p>Please update title fields and press Update title button or
+				press Cancel button.</p>
+			<c:url var="titleUrl" value="/title.jsp" />
+			<form method="post" action="title"
+				style="display: flex; flex-direction: column; gap: 20px;">
+				<input type="hidden" name="actiontype" value="updatetitle" /> <input
+					type="hidden" name="title_id" value="${param.title_id }" />
+				<p>
+					Title id:
+					<c:out value="${param.title_id }" />
+				</p>
+				<p>
+					Title name: <input type="text" name="title_name"
+						value="${param.title_name }" />
+				</p>
+				<p>
+					Title year: <input type="text" name="title_year"
+						value="${param.title_year }" />
+				</p>
+				<p>
+					Player id: <input type="text" name="id_player"
+						value="${param.id_player }" />
+				</p>
+				<div class="login__btn">
+					<input type="submit" name="updatetitle" value="Update title"
+						class="btn-custom" /> <input type="button"
+						onClick="window.location.href='${titleUrl}'" value="Cancel"
+						class="btn-custom" />
+				</div>
+			</form>
+		</div>
 	</main>
 	<footer class="footer">
 		<p class="footer__descr">©2023-2024 Krapyvianskyi "Drake21" Dmytro

@@ -48,10 +48,12 @@ if (errorMessage == null) {
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
-					
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="statistics.jsp">Statistics</a></li>
+
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
-				<li class="nav-item"><span class="navbar-text nav__item">
+					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
 					<li class="nav-item">
@@ -67,63 +69,70 @@ if (errorMessage == null) {
 		</nav>
 	</header>
 	<main class="main">
-	<p class="error-message"><%=errorMessage%></p>
-	<p>Please update opening fields and press Update opening button or
-		press Cancel button.</p>
-	<c:url var="openingUrl" value="/opening.jsp" />
-	<form method="post" action="opening">
-		<input type="hidden" name="actiontype" value="updateopening" /> <input
-			type="hidden" name="id_opening" value="${param.id_opening }" />
-		<p>
-			Opening id:
-			<c:out value="${param.id_opening }" />
-		</p>
-		<p>
-			Opening name: <input type="text" name="opening_name"
-				value="${param.opening_name }" />
-		</p>
-		<p>
-			Opening category: <select name="opening_category">
-				<c:choose>
-					<c:when test="${param.opening_category eq 'Відкритий'}">
-						<option value="Відкритий" selected>Відкритий</option>
-						<option value="Напіввідкритий">Напіввідкритий</option>
-						<option value="Закритий">Закритий</option>
-						<option value="Фланговий">Фланговий</option>
-					</c:when>
-					<c:when test="${param.opening_category eq 'Напіввідкритий'}">
-						<option value="Відкритий">Відкритий</option>
-						<option value="Напіввідкритий" selected>Напіввідкритий</option>
-						<option value="Закритий">Закритий</option>
-						<option value="Фланговий">Фланговий</option>
-					</c:when>
-					<c:when test="${param.opening_category eq 'Закритий'}">
-						<option value="Відкритий">Відкритий</option>
-						<option value="Напіввідкритий">Напіввідкритий</option>
-						<option value="Закритий" selected>Закритий</option>
-						<option value="Фланговий">Фланговий</option>
-					</c:when>
-					<c:otherwise>
-						<option value="Відкритий">Відкритий</option>
-						<option value="Напіввідкритий" selected>Напіввідкритий</option>
-						<option value="Закритий">Закритий</option>
-						<option value="Фланговий" selected>Фланговий</option>
-					</c:otherwise>
-				</c:choose>
-			</select>
-		</p>
-		<p>
-			Opening year: <input type="text" name="opening_year"
-				value="${param.opening_year }" />
-		</p>
-		<p>
-			Famous player: <input type="text" name="famous_player"
-				value="${param.famous_player }" />
-		</p>
-		<input type="submit" name="updateopening" value="Update opening" /> <input
-			type="button" onClick="window.location.href='${openingUrl}'"
-			value="Cancel" />
-	</form>
+		<p class="error-message"><%=errorMessage%></p>
+		<div class="login select">
+			<p>Please update opening fields and press Update opening button
+				or press Cancel button.</p>
+			<c:url var="openingUrl" value="/opening.jsp" />
+
+			<form method="post" action="opening"
+				style="display: flex; flex-direction: column; gap: 20px;">
+				<input type="hidden" name="actiontype" value="updateopening" /> <input
+					type="hidden" name="id_opening" value="${param.id_opening }" />
+				<p>
+					Opening id:
+					<c:out value="${param.id_opening }" />
+				</p>
+				<p>
+					Opening name: <input type="text" name="opening_name"
+						value="${param.opening_name }" />
+				</p>
+				<p>
+					Opening category: <select name="opening_category">
+						<c:choose>
+							<c:when test="${param.opening_category eq 'Відкритий'}">
+								<option value="Відкритий" selected>Відкритий</option>
+								<option value="Напіввідкритий">Напіввідкритий</option>
+								<option value="Закритий">Закритий</option>
+								<option value="Фланговий">Фланговий</option>
+							</c:when>
+							<c:when test="${param.opening_category eq 'Напіввідкритий'}">
+								<option value="Відкритий">Відкритий</option>
+								<option value="Напіввідкритий" selected>Напіввідкритий</option>
+								<option value="Закритий">Закритий</option>
+								<option value="Фланговий">Фланговий</option>
+							</c:when>
+							<c:when test="${param.opening_category eq 'Закритий'}">
+								<option value="Відкритий">Відкритий</option>
+								<option value="Напіввідкритий">Напіввідкритий</option>
+								<option value="Закритий" selected>Закритий</option>
+								<option value="Фланговий">Фланговий</option>
+							</c:when>
+							<c:otherwise>
+								<option value="Відкритий">Відкритий</option>
+								<option value="Напіввідкритий" selected>Напіввідкритий</option>
+								<option value="Закритий">Закритий</option>
+								<option value="Фланговий" selected>Фланговий</option>
+							</c:otherwise>
+						</c:choose>
+					</select>
+				</p>
+				<p>
+					Opening year: <input type="text" name="opening_year"
+						value="${param.opening_year }" />
+				</p>
+				<p>
+					Famous player: <input type="text" name="famous_player"
+						value="${param.famous_player }" />
+				</p>
+				<div class="login__btn">
+					<input type="submit" name="updateopening" value="Update opening"
+						class="btn-custom" /> <input type="button"
+						onClick="window.location.href='${openingUrl}'" value="Cancel"
+						class="btn-custom" />
+				</div>
+			</form>
+		</div>
 	</main>
 	<footer class="footer">
 		<p class="footer__descr">©2023-2024 Krapyvianskyi "Drake21" Dmytro

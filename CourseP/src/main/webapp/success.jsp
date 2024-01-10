@@ -86,7 +86,7 @@
 </script>
 </head>
 <body>
-<header class="header">
+	<header class="header">
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<a class="navbar-brand nav__item" href="homepage.jsp">Chess2D</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -115,8 +115,10 @@
 		</nav>
 	</header>
 	<main class="main">
-		<div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); width: 750px;">
-			<h2 style="text-align: center; margin-bottom: 25px;">Login Successful!</h2>
+		<div
+			style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); width: 750px;">
+			<h2 style="text-align: center; margin-bottom: 25px;">Login
+				Successful!</h2>
 			<div id="progress-bar-container">
 				<div id="progress-bar"></div>
 				<div id="percentage-label" style="color: black;">0%</div>

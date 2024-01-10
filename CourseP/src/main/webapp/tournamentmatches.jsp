@@ -56,11 +56,14 @@ request.setAttribute("tournamentName", tournamentName);
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="statistics.jsp">Statistics</a></li>
+
+				</ul>
+				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
-				</ul>
-				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item">
 						<button type="button" id="loginButton"
 							class="btn btn-primary ml-2" onclick="location.href='login.jsp'">Login</button>
@@ -74,7 +77,7 @@ request.setAttribute("tournamentName", tournamentName);
 		</nav>
 	</header>
 	<main class="main">
-		<h1>Tournament Matches</h1>
+		<h1 class="page__title" style="margin-top: 30px;">Tournament Matches</h1>
 		<p>
 			Matches Found:
 			<c:out value="${matchList.size()}" />
@@ -92,7 +95,7 @@ request.setAttribute("tournamentName", tournamentName);
 		</p>
 
 		<table style="width: 100%" border="1">
-			<tr>
+			<tr class="first-row">
 				<td>Match player 1</td>
 				<td>Match player 2</td>
 				<td>Match date</td>
@@ -110,7 +113,7 @@ request.setAttribute("tournamentName", tournamentName);
 			</c:forEach>
 		</table>
 		<p>
-			<a href="tournament.jsp">Back to Tournament Page</a>
+			<a style="display: inline-block; margin-top: 15px;" href="tournament.jsp">Back to Tournament Page</a>
 		</p>
 	</main>
 	<footer class="footer">

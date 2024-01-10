@@ -50,6 +50,8 @@ if (errorMessage == null) {
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="statistics.jsp">Statistics</a></li>
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item"><span class="navbar-text nav__item">
@@ -294,6 +296,7 @@ if (errorMessage == null) {
 				</tr>
 			</table>
 		</form>
+		<a style="display: inline-block; margin-top: 15px;" href="tournamentlog.jsp">View tournament log file</a>
 	</main>
 	<footer class="footer">
 		<p class="footer__descr">©2023-2024 Krapyvianskyi "Drake21" Dmytro

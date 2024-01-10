@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-    
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -36,10 +36,11 @@
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
-					
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="statistics.jsp">Statistics</a></li>
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
-				<li class="nav-item"><span class="navbar-text nav__item">
+					<li class="nav-item"><span class="navbar-text nav__item">
 							<strong>User:</strong> <span id="username"></span>
 					</span></li>
 					<li class="nav-item">
@@ -55,21 +56,23 @@
 		</nav>
 	</header>
 	<main class="main">
-	<section class="delete">
-	<p style="font-weight: 700;">Below opening usage will be deleted:</p>
-	<p>Opening Usage id: ${param.id_opening_usage}</p>
-	<p>Opening id: ${param.id_opening}</p>
-	<p>Points: ${param.usage_points}</p>
-	<p>Could you please confirm?</p>
-	<c:url var="openingusageUrl" value="/openingusage.jsp" />
-	<form method="post" action="openingusage">
-		<input type="hidden" name="actiontype" value="deleteopeningusage" /> <input
-			type="hidden" name="id_opening_usage" value="${param.id_opening_usage }" /> <input
-			type="submit" name="deleteopeningusage" value="Delete opening usage" class="btn-custom"/> <input
-			type="button" onclick="window.location.href='${openingusageUrl}'"
-			value="Cancel" class="btn-custom"/>
-	</form>
-	</section>
+		<section class="delete">
+			<p style="font-weight: 700;">Below opening usage will be deleted:</p>
+			<p>Opening Usage id: ${param.id_opening_usage}</p>
+			<p>Opening id: ${param.id_opening}</p>
+			<p>Points: ${param.usage_points}</p>
+			<p>Could you please confirm?</p>
+			<c:url var="openingusageUrl" value="/openingusage.jsp" />
+			<form method="post" action="openingusage">
+				<input type="hidden" name="actiontype" value="deleteopeningusage" />
+				<input type="hidden" name="id_opening_usage"
+					value="${param.id_opening_usage }" /> <input type="submit"
+					name="deleteopeningusage" value="Delete opening usage"
+					class="btn-custom" /> <input type="button"
+					onclick="window.location.href='${openingusageUrl}'" value="Cancel"
+					class="btn-custom" />
+			</form>
+		</section>
 	</main>
 	<footer class="footer">
 		<p class="footer__descr">©2023-2024 Krapyvianskyi "Drake21" Dmytro

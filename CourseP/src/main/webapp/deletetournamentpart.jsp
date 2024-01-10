@@ -36,7 +36,8 @@
 						href="tournament.jsp">Tournament</a></li>
 					<li class="nav-item"><a class="nav-link nav__item"
 						href="match.jsp">Match</a></li>
-
+					<li class="nav-item"><a class="nav-link nav__item"
+						href="statistics.jsp">Statistics</a></li>
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item"><span class="navbar-text nav__item">
@@ -55,23 +56,25 @@
 		</nav>
 	</header>
 	<main class="main">
-	<section class="delete">
-		<p style="font-weight: 700;">Below tournament participation will be deleted:</p>
-		<p>Tournament participation id: ${param.tournament_part_id}</p>
-		<p>Player id: ${param.id_player}</p>
-		<p>Tournament id: ${param.id_tournament}</p>
-		<p>Registration date: ${param.registration}</p>
-		<p>Place: ${param.place}</p>
-		<p>Could you please confirm?</p>
-		<c:url var="tournamentpartUrl" value="/tournamentpart.jsp" />
-		<form method="post" action="tournamentpart">
-			<input type="hidden" name="actiontype" value="deletetournamentpart" />
-			<input type="hidden" name="tournament_part_id"
-				value="${param.tournament_part_id }" /> <input type="submit"
-				name="deletetournamentpart" value="Delete tournament participation" class="btn-custom"/>
-			<input type="button"
-				onclick="window.location.href='${tournamentpartUrl}'" value="Cancel" class="btn-custom"/>
-		</form>
+		<section class="delete">
+			<p style="font-weight: 700;">Below tournament participation will
+				be deleted:</p>
+			<p>Tournament participation id: ${param.tournament_part_id}</p>
+			<p>Player id: ${param.id_player}</p>
+			<p>Tournament id: ${param.id_tournament}</p>
+			<p>Registration date: ${param.registration}</p>
+			<p>Place: ${param.place}</p>
+			<p>Could you please confirm?</p>
+			<c:url var="tournamentpartUrl" value="/tournamentpart.jsp" />
+			<form method="post" action="tournamentpart">
+				<input type="hidden" name="actiontype" value="deletetournamentpart" />
+				<input type="hidden" name="tournament_part_id"
+					value="${param.tournament_part_id }" /> <input type="submit"
+					name="deletetournamentpart" value="Delete tournament participation"
+					class="btn-custom" /> <input type="button"
+					onclick="window.location.href='${tournamentpartUrl}'"
+					value="Cancel" class="btn-custom" />
+			</form>
 		</section>
 	</main>
 	<footer class="footer">
