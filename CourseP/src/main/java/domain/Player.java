@@ -88,6 +88,12 @@ public class Player {
 	@Transient
 	private int tournamentNumber;
 
+	@Transient
+	private String registration;
+
+	@Transient
+	private int openingUsagePoints;
+
 	public Long getId() {
 		return id;
 	}
@@ -206,6 +212,22 @@ public class Player {
 
 	public void setTournamentNumber(int tournamentNumber) {
 		this.tournamentNumber = tournamentNumber;
+	}
+
+	public String getRegistration() {
+		return registration;
+	}
+
+	public void setRegistration(String registration) {
+		this.registration = registration;
+	}
+
+	public int getOpeningUsagePoints() {
+		return openingUsagePoints;
+	}
+
+	public void setOpeningUsagePoints(int openingUsagePoints) {
+		this.openingUsagePoints = openingUsagePoints;
 	}
 
 	@Override

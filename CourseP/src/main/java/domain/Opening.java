@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import domain.Enums.OpeningCategory;
 import settings.StringToOpeningCategoryConverter;
@@ -23,9 +24,7 @@ public class Opening {
 	public Opening() {
 	}
 
-	public Opening(Long id, String name, String category, short year,
-			String player) {
-		this.id = id;
+	public Opening(String name, String category, int year, String player) {
 		this.name = name;
 		this.category = OpeningCategory.getCategoryByInput(category);
 		this.year = year;
@@ -52,6 +51,9 @@ public class Opening {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "opening")
 	private List<OpeningUsage> openingUsage = new ArrayList<>();
+
+	@Transient
+	private int openingUsagePoints;
 
 	public Long getId() {
 		return id;
@@ -81,8 +83,8 @@ public class Opening {
 		return year;
 	}
 
-	public void setYear(int i) {
-		this.year = i;
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 	public String getPlayer() {
@@ -99,6 +101,14 @@ public class Opening {
 
 	public void setOpeningUsage(List<OpeningUsage> openingUsage) {
 		this.openingUsage = openingUsage;
+	}
+
+	public void setOpeningUsagePoints(int openingUsagePoints) {
+		this.openingUsagePoints = openingUsagePoints;
+	}
+
+	public int getOpeningUsagePoints() {
+		return openingUsagePoints;
 	}
 
 	@Override

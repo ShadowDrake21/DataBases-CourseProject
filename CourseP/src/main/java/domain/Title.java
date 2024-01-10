@@ -42,8 +42,8 @@ public class Title {
 	private Long idPlayer;
 
 	@Transient
-    private String playerName;
-	
+	private String playerName;
+
 	public Long getId() {
 		return id;
 	}
@@ -77,13 +77,13 @@ public class Title {
 	}
 
 	public String getPlayerName() {
-        return playerName;
-    }
+		return playerName;
+	}
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-	
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
 	@Override
 	public String toString() {
 		return "Title [player=" + player + ", id=" + id + ", name=" + name

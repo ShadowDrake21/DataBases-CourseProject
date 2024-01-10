@@ -13,6 +13,7 @@ public class HibernateDAOChess {
 	private static HibernateDAOChess instance;
 
 	private PlayerDAO playerDAO;
+	private UserDAO userDAO;
 	private TournamentDAO tournamentDAO;
 	private OpeningDAO openingDAO;
 	private TitleDAO titleDAO;
@@ -20,6 +21,7 @@ public class HibernateDAOChess {
 	private OpeningUsageDAO openingUsageDAO;
 	private TournamentPartDAO tournamentPartDAO;
 	private TournamentLogDAO tournamentLogDAO;
+	private GlobalStatisticsDAO globalStatisticsDAO;
 
 	private Session session;
 
@@ -43,14 +45,16 @@ public class HibernateDAOChess {
 					"org.hibernate.dialect.MySQL5Dialect");
 			configuration.setProperty(Environment.HBM2DDL_AUTO, "none");
 			configuration.setProperty(Environment.SHOW_SQL, "true");
-			configuration.addAnnotatedClass(Player.class)
+			configuration.addAnnotatedClass(User.class)
+					.addAnnotatedClass(Player.class)
 					.addAnnotatedClass(Title.class)
 					.addAnnotatedClass(Match.class)
 					.addAnnotatedClass(Opening.class)
 					.addAnnotatedClass(Tournament.class)
 					.addAnnotatedClass(OpeningUsage.class)
 					.addAnnotatedClass(TournamentPart.class)
-					.addAnnotatedClass(TournamentLog.class);
+					.addAnnotatedClass(TournamentLog.class)
+					.addAnnotatedClass(GlobalStatistics.class);
 			StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
 			serviceRegistryBuilder.applySettings(configuration.getProperties());
 			ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
@@ -59,6 +63,13 @@ public class HibernateDAOChess {
 			session = sessionFactory.openSession();
 		}
 		return session;
+	}
+
+	public UserDAO getUserDAO() {
+		if (null == userDAO) {
+			userDAO = new UserDAO(getSession());
+		}
+		return userDAO;
 	}
 
 	public PlayerDAO getPlayerDAO() {
@@ -116,9 +127,16 @@ public class HibernateDAOChess {
 		}
 		return tournamentLogDAO;
 	}
-	
-	  public void closeSession() {
-			getSession().close();
+
+	public GlobalStatisticsDAO getGlobalStatisticsDAO() {
+		if (null == globalStatisticsDAO) {
+			globalStatisticsDAO = new GlobalStatisticsDAO(getSession());
 		}
+		return globalStatisticsDAO;
+	}
+
+	public void closeSession() {
+		getSession().close();
+	}
 
 }

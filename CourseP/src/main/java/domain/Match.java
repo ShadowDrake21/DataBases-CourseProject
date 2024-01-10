@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -12,10 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import domain.Enums.MatchScore;
 import settings.StringToMatchScore;
-import settings.StringToTournamentConnection;
 
 @Entity
 @Table(name = "`match`")
@@ -23,9 +21,8 @@ public class Match {
 	public Match() {
 	}
 
-	public Match(Long id, Long idTournament, String player1, String player2,
-			String date, String score1, String score2) {
-		this.id = id;
+	public Match(Long idTournament, String player1, String player2, String date,
+			String score1, String score2) {
 		this.idTournament = idTournament;
 		this.player1 = player1;
 		this.player2 = player2;
@@ -62,6 +59,9 @@ public class Match {
 	@Column(name = "match_score_2", nullable = true)
 	@Convert(converter = StringToMatchScore.class)
 	private MatchScore score2;
+
+	@Transient
+	private String tournamentName;
 
 	public Long getId() {
 		return id;
@@ -117,6 +117,14 @@ public class Match {
 
 	public void setScore2(String score2) {
 		this.score2 = MatchScore.getScoreByInput(score2);
+	}
+
+	public String getTournamentName() {
+		return tournamentName;
+	}
+
+	public void setTournamentName(String tournamentName) {
+		this.tournamentName = tournamentName;
 	}
 
 	@Override

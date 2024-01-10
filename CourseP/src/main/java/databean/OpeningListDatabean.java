@@ -5,19 +5,21 @@ import dao.HibernateDAOChess;
 import domain.Opening;
 
 public class OpeningListDatabean {
-    
-    private List<Opening> openList;
-    
-    public OpeningListDatabean() {
-        openList = HibernateDAOChess.getInstance().getOpeningDAO()
-                .getAllOpenings();
-    }
-    
-    public List<Opening> getOpeningList() {
-        return openList;
-    }
-    
-    public void setOpeningList(List<Opening> openList) {
-        this.openList = openList;
-    }
+
+	private List<Opening> openingList;
+
+
+	public OpeningListDatabean() {
+		openingList = HibernateDAOChess.getInstance().getOpeningDAO().getAllOpenings();
+	}
+
+	public List<Opening> getOpeningList() {
+		return openingList;
+	}
+
+	public void setOpeningList(List<Opening> openingList) {
+		this.openingList = openingList;
+	}
+
 }
+

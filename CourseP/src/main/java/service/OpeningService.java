@@ -15,7 +15,7 @@ public class OpeningService {
 	public List<Opening> getAllOpenings() {
 		return HibernateDAOChess.getInstance().getOpeningDAO().getAllOpenings();
 	}
-
+	
 	@PUT
 	@Path("addOpening/name/{opening_name}/category/{opening_category}/year/{opening_year}/player/{famous_player}")
 	public void addOpening(@PathParam("opening_name") String opening_name,

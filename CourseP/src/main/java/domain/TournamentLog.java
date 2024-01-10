@@ -16,7 +16,7 @@ public class TournamentLog {
 	}
 
 	public TournamentLog(int id, String type, String name, Date start, Date end,
-			String connection, String coutry, String city, int prize,
+			String connection, String country, String city, int prize,
 			int matches, int players, int prizePlaces, String champion,
 			Date change) {
 		this.id = id;
@@ -25,7 +25,7 @@ public class TournamentLog {
 		this.start = start;
 		this.end = end;
 		this.connection = connection;
-		this.coutry = coutry;
+		this.country = country;
 		this.city = city;
 		this.prize = prize;
 		this.matches = matches;
@@ -56,7 +56,7 @@ public class TournamentLog {
 	private String connection;
 
 	@Column(name = "tournament_country", nullable = true)
-	private String coutry;
+	private String country;
 
 	@Column(name = "tournament_city", nullable = true)
 	private String city;
@@ -127,12 +127,12 @@ public class TournamentLog {
 		this.connection = connection;
 	}
 
-	public String getCoutry() {
-		return coutry;
+	public String getCountry() {
+		return country;
 	}
 
-	public void setCoutry(String coutry) {
-		this.coutry = coutry;
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public String getCity() {

@@ -2,76 +2,104 @@ package dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
-import domain.TournamentPart; 
 
-public class TournamentPartDAO { 
-    private Session session;
-    public TournamentPartDAO(Session session) {
-        this.session = session;
-    }
+import domain.Title;
+import domain.TournamentPart;
 
-    public TournamentPart createTournamentPart(TournamentPart tournPart) { 
-        Transaction transaction = session.beginTransaction();
-        session.saveOrUpdate(tournPart);
-        transaction.commit();
-        return tournPart;
-    }
+public class TournamentPartDAO {
+	private Session session;
 
-    public TournamentPart updateTournamentPart(TournamentPart tournPart) { 
-        Transaction transaction = session.beginTransaction();
-        session.merge(tournPart);
-        transaction.commit();
-        return tournPart;
-    }
+	public TournamentPartDAO(Session session) {
+		this.session = session;
+	}
 
-    public void deleteTournamentPart(TournamentPart tournPart) { 
-        Transaction transaction = session.beginTransaction();
-        session.delete(tournPart);
-        transaction.commit();
-    }
+	public TournamentPart createTournamentPart(TournamentPart tournamentPart) {
+		Transaction transaction = session.beginTransaction();
+		session.saveOrUpdate(tournamentPart);
+		transaction.commit();
+		return tournamentPart;
+	}
 
-    public void deleteTournamentPartById(Long tournPartId) { 
-        TournamentPart tournPart = (TournamentPart) session.get(TournamentPart.class, tournPartId);
-        deleteTournamentPart(tournPart);
-    }
+	public TournamentPart updateTournamentPart(TournamentPart tournamentPart) {
+		Transaction transaction = session.beginTransaction();
+		session.merge(tournamentPart);
+		transaction.commit();
+		return tournamentPart;
+	}
 
-    public List<TournamentPart> getAllTournamentParts() { 
-        SQLQuery query = session.createSQLQuery(
-                "select * from tournament_participation").addEntity(TournamentPart.class); 
-        List<TournamentPart> tournPartList = query.list();
-        return tournPartList;
-    }
+	public void deleteTournamentPart(TournamentPart tournamentPart) {
+		Transaction transaction = session.beginTransaction();
+		session.delete(tournamentPart);
+		transaction.commit();
+	}
 
-    public List<TournamentPart> getAllTournamentPartsWithPlayerAndTournamentName() {
-        SQLQuery query = session
-                .createSQLQuery("SELECT tp.*, p.player_name, t.tournament_name "
-                        + "FROM tournament_participation tp "
-                        + "INNER JOIN player p ON tp.id_player = p.id_player "
-                        + "INNER JOIN tournament t ON tp.id_tournament = t.id_tournament ORDER BY tp.id_tournament_participation ASC")
-                .addEntity(TournamentPart.class).addScalar("player_name")
-                .addScalar("tournament_name");
+	public void deleteTournamentPartById(Long tournamentPartId) {
+		TournamentPart tournamentPart = (TournamentPart) session
+				.get(TournamentPart.class, tournamentPartId);
+		deleteTournamentPart(tournamentPart);
+	}
 
-        List<Object[]> results = query.list();
+	public List<TournamentPart> getAllTournamentParts() {
+		SQLQuery query = session
+				.createSQLQuery("select * from tournament_participation")
+				.addEntity(TournamentPart.class);
+		List<TournamentPart> tournamentPartList = query.list();
+		return tournamentPartList;
+	}
 
-        List<TournamentPart> tournamentPartList = new ArrayList<>();
-        for (Object[] result : results) {
-            TournamentPart tournamentPart = (TournamentPart) result[0];
-            tournamentPart.setPlayerName((String) result[1]);
-            tournamentPart.setTournamentName((String) result[2]);
-            tournamentPartList.add(tournamentPart);
-        }
+	public TournamentPart getTournamentPartById(Long tournamentPartId) {
+		TournamentPart tournamentPart = (TournamentPart) session
+				.get(TournamentPart.class, tournamentPartId);
+		return tournamentPart;
+	}
 
-        return tournamentPartList;
-    }
-    
-    public TournamentPart getTournamentPartById(Long tournPartId) { 
-        TournamentPart tournPart = (TournamentPart) session.get(TournamentPart.class, tournPartId);
-        return tournPart;
-    }
+	public List<TournamentPart> getAllTournamentPartsWithPlayerAndTournamentName() {
+		SQLQuery query = session
+				.createSQLQuery("SELECT tp.*, p.player_name, t.tournament_name "
+						+ "FROM tournament_participation tp "
+						+ "INNER JOIN player p ON tp.id_player = p.id_player "
+						+ "INNER JOIN tournament t ON tp.id_tournament = t.id_tournament ORDER BY tp.id_tournament_participation ASC")
+				.addEntity(TournamentPart.class).addScalar("player_name")
+				.addScalar("tournament_name");
+
+		List<Object[]> results = query.list();
+
+		List<TournamentPart> tournamentPartList = new ArrayList<>();
+		for (Object[] result : results) {
+			TournamentPart tournamentPart = (TournamentPart) result[0];
+			tournamentPart.setPlayerName((String) result[1]);
+			tournamentPart.setTournamentName((String) result[2]);
+			tournamentPartList.add(tournamentPart);
+		}
+
+		return tournamentPartList;
+	}
+
+	public List<TournamentPart> searchTournament(String field, String value) {
+		String queryString = "SELECT tp.*, p.player_name, t.tournament_name "
+				+ "FROM tournament_participation tp "
+				+ "INNER JOIN player p ON tp.id_player = p.id_player "
+				+ "INNER JOIN tournament t ON tp.id_tournament = t.id_tournament "
+				+ "WHERE tp." + field + "= :value "
+				+ "ORDER BY tp.id_tournament_participation ASC";
+
+		SQLQuery query = (SQLQuery) session.createSQLQuery(queryString)
+				.addEntity(TournamentPart.class).addScalar("player_name")
+				.addScalar("tournament_name").setParameter("value", value);
+
+		List<Object[]> results = query.list();
+
+		List<TournamentPart> tournamentPartList = new ArrayList<>();
+		for (Object[] result : results) {
+			TournamentPart tournamentPart = (TournamentPart) result[0];
+			tournamentPart.setPlayerName((String) result[1]);
+			tournamentPart.setTournamentName((String) result[2]);
+			tournamentPartList.add(tournamentPart);
+		}
+
+		return tournamentPartList;
+	}
 }
-

@@ -57,4 +57,5 @@ public class TitleService {
 		title.setIdPlayer(Long.parseLong(id_player));
 		HibernateDAOChess.getInstance().getTitleDAO().updateTitle(title);
 	}
+
 }
