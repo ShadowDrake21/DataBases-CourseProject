@@ -23,31 +23,24 @@ public class LoginServlet extends HttpServlet {
 		System.out.println("username: " + username);
 		System.out.println("Password: " + password);
 
-		// Retrieve UserDAO from ServletContext
 		UserDAO userDAO = (UserDAO) getServletContext().getAttribute("userDAO");
 
-		// Perform user authentication
 		if (authenticateUser(userDAO, username, password)) {
-			// Redirect to a success page
 			HttpSession session = request.getSession();
 			session.setAttribute("username", username);
 			session.setAttribute("password", password);
 
 			response.sendRedirect("success.jsp");
 		} else {
-			// Redirect to a login failure page
 			response.sendRedirect("failure.jsp");
 		}
 	}
 
 	private boolean authenticateUser(UserDAO userDAO, String username,
 			String password) {
-		// Retrieve user by username
 		List<User> users = userDAO.getUsersByName(username);
 
 		System.out.println(users);
-		// Check if the user exists and if the provided
-		// password matches
 		return !users.isEmpty() && users.get(0).getPassword().equals(password);
 	}
 }

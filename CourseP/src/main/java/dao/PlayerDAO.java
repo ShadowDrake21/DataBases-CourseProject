@@ -21,9 +21,6 @@ public class PlayerDAO {
 		this.session = session;
 	}
 
-	/**
-	 * This method create new entity
-	 */
 	public Player createPlayer(Player player) {
 		Transaction transaction = session.beginTransaction();
 		session.saveOrUpdate(player);
@@ -31,9 +28,6 @@ public class PlayerDAO {
 		return player;
 	}
 
-	/**
-	 * This method update existing product
-	 */
 	public Player updatePlayer(Player player) {
 		Transaction transaction = session.beginTransaction();
 		session.merge(player);
@@ -41,26 +35,17 @@ public class PlayerDAO {
 		return player;
 	}
 
-	/**
-	 * This method delete existing product
-	 */
 	public void deletePlayer(Player player) {
 		Transaction transaction = session.beginTransaction();
 		session.delete(player);
 		transaction.commit();
 	}
 
-	/**
-	 * This method remove entity by id
-	 */
 	public void deletePlayerById(Long playerId) {
 		Player player = (Player) session.get(Player.class, playerId);
 		deletePlayer(player);
 	}
 
-	/**
-	 * This method return all entities
-	 */
 	public List<Player> getAllPlayers() {
 		SQLQuery query = session.createSQLQuery("select * from player")
 				.addEntity(Player.class);

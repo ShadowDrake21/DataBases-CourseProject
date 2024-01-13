@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.HibernateDAOChess;
 import domain.Title;
-import service.PlayerService;
 import service.TitleService;
 
 public class TitleServlet extends HttpServlet {

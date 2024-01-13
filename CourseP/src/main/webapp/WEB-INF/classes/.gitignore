@@ -1,4 +1,4 @@
-/servlet/
-/databean/
 /dao/
 /domain/
+/service/
+/servlet/

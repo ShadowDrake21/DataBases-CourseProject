@@ -19,9 +19,6 @@ public class TitleDAO {
 		this.session = session;
 	}
 
-	/**
-	 * This method create new entity
-	 */
 	public Title createTitle(Title title) {
 		Transaction transaction = session.beginTransaction();
 		session.saveOrUpdate(title);
@@ -29,9 +26,6 @@ public class TitleDAO {
 		return title;
 	}
 
-	/**
-	 * This method update existing product
-	 */
 	public Title updateTitle(Title title) {
 		Transaction transaction = session.beginTransaction();
 		session.merge(title);
@@ -39,40 +33,23 @@ public class TitleDAO {
 		return title;
 	}
 
-	/**
-	 * This method delete existing product
-	 */
 	public void deleteTitle(Title title) {
 		Transaction transaction = session.beginTransaction();
 		session.delete(title);
 		transaction.commit();
 	}
 
-	/**
-	 * This method remove entity by id
-	 */
 	public void deleteTitleById(Long titleId) {
 		Title player = (Title) session.get(Title.class, titleId);
 		deleteTitle(player);
 	}
 
-	/**
-	 * This method return all entities
-	 */
 	public List<Title> getAllTitles() {
 		SQLQuery query = session.createSQLQuery("select * from title")
 				.addEntity(Title.class);
 		List<Title> titleList = query.list();
 		return titleList;
 	}
-
-	/**
-	 * This method return all products by name This
-	 * method is specific for Product domain object
-	 * instead of other methods from this class All
-	 * other methods can be moved to generic class and
-	 * can be used for other domain objects.
-	 */
 
 	public Title getTitleById(Long idTitle) {
 		Title title = (Title) session.get(Title.class, idTitle);
