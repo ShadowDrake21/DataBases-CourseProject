@@ -4,9 +4,7 @@ public class GlobalStatistics {
 	private Long tableCount;
 	private String tableName;
 	private Long itemCount;
-	private Integer columnCount; // New field
-
-	// Constructors, getters, and setters
+	private Integer columnCount;
 
 	public GlobalStatistics() {
 	}
@@ -18,8 +16,6 @@ public class GlobalStatistics {
 		this.itemCount = itemCount;
 		this.columnCount = columnCount;
 	}
-
-	// Getters and Setters
 
 	public Long getTableCount() {
 		return tableCount;

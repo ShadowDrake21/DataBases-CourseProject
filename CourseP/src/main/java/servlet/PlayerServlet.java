@@ -27,7 +27,6 @@ public class PlayerServlet extends HttpServlet {
 			throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String actionType = req.getParameter("actiontype");
-		System.out.println("actionType " + actionType);
 		if ("addplayer".equalsIgnoreCase(actionType)) {
 			try {
 				req.setCharacterEncoding("UTF-8");
@@ -86,6 +85,5 @@ public class PlayerServlet extends HttpServlet {
 			req.setAttribute("searchResults", searchP);
 			req.getRequestDispatcher("player.jsp").forward(req, resp);
 		}
-
 	}
 }

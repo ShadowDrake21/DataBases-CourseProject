@@ -41,12 +41,6 @@ public class PlayerService {
 		player.setName(player_name);
 		player.setGender(player_gender);
 		player.setBirthday(player_birthday);
-//		try {
-//			player.setBirthday(formateInputDate(player_birthday));
-//			System.out.println("date: " + formateInputDate(player_birthday));
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
 		player.setCountry(player_country);
 		player.setNationality(player_nationality);
 		player.setRate(Integer.parseInt(player_rate));

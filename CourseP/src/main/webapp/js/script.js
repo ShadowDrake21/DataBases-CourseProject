@@ -1,9 +1,6 @@
-    // Function to handle logout and clear localStorage
     function logout() {
-        // Clear localStorage
         localStorage.clear();
 
-        // Redirect to the LogoutServlet
         window.location.href = "logout";
     }
 
@@ -20,7 +17,7 @@
             if (userData.username === "admin") {
                 document.getElementById("username").innerText = userData.username;
                 logoutButton.style.display = 'block';
-                loginButton.style.display = 'none'; // Enable the logout button
+                loginButton.style.display = 'none'; 
 
                 if (inputFields.lenght !== 0) {
                     // Enable input fields
@@ -30,7 +27,6 @@
                 }
 
                 if (linkFields.lenght !== 0) {
-                    // Enable link fields
                     linkFields.forEach(function(link) {
                         link.classList.remove('disable-links');
                     });
@@ -38,10 +34,9 @@
             } else if (userData.username === "user") {
                 document.getElementById("username").innerText = userData.username;
                 logoutButton.style.display = 'block';
-                loginButton.style.display = 'none'; // Enable the logout button
+                loginButton.style.display = 'none';
 
                 if (inputFields.lenght !== 0) {
-                    // Enable input fields
                     inputFields.forEach(function(input) {
                         input.removeAttribute('disabled');
                     });
@@ -56,17 +51,15 @@
 
         } else {
             document.getElementById("username").innerText = "unauthorized";
-            if(logoutButton) {logoutButton.style.display = 'none';}// Disable the logout button
+            if(logoutButton) {logoutButton.style.display = 'none';}
             if(loginButton) {loginButton.style.display = 'block';}
 
             if (inputFields.lenght !== 0) {
-                // Disable input fields
                 inputFields.forEach(function(input) {
                     input.setAttribute('disabled', 'disabled');
                 });
             }
             if (linkFields.lenght !== 0) {
-                // Disable input fields
                 linkFields.forEach(function(link) {
                     link.classList.add('disable-links');
                 });
@@ -75,7 +68,6 @@
         }
     }
 
-    // Call the function when the page loads
     window.onload = function() {
         populateUserData();
     };

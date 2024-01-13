@@ -9,14 +9,12 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
-/* Style for the progress bar container */
 #progress-bar-container {
 	width: 100%;
 	height: 30px;
 	position: relative;
 }
 
-/* Style for the progress bar */
 #progress-bar {
 	width: 0%;
 	height: 100%;
@@ -27,7 +25,6 @@
 	transition: width 1s linear;
 }
 
-/* Style for the percentage label */
 #percentage-label {
 	position: absolute;
 	top: 50%;
@@ -37,7 +34,6 @@
 }
 </style>
 <script>
-        // Function to store user data in Local Storage as an object
         function storeUserData() {
             var username = "<%=session.getAttribute("username")%>";
             var password = "<%=session.getAttribute("password")%>";
@@ -46,23 +42,19 @@
 			password : password
 		};
 
-		// Check if Local Storage is supported
 		if (typeof (Storage) !== "undefined") {
-			// Store user data object in Local Storage
 			localStorage.setItem("userData", JSON.stringify(userData));
 		} else {
 			alert("Sorry, your browser does not support Local Storage.");
 		}
 	}
 
-	// Function to update the progress bar and redirect to homepage after 5 seconds
 	function redirectToHomepage() {
 		var progressBar = document.getElementById("progress-bar");
 		var percentageLabel = document.getElementById("percentage-label");
 		var startTime = new Date().getTime();
-		var duration = 5000; // 5000 milliseconds = 5 seconds
+		var duration = 5000; 
 
-		// Update the progress bar and percentage label every 50 milliseconds
 		var intervalId = setInterval(function() {
 			var currentTime = new Date().getTime();
 			var elapsedTime = currentTime - startTime;
@@ -78,7 +70,6 @@
 		}, 50);
 	}
 
-	// Call the function when the page loads
 	window.onload = function() {
 		storeUserData();
 		redirectToHomepage();

@@ -18,20 +18,16 @@ public class GlobalStatisticsDAO {
 	}
 
 	public List<GlobalStatistics> getAllGlobalStatistics() {
-		// Get the total number of tables
 		Query tableCountQuery = session.createSQLQuery(
 				"SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'chess'");
 		Long tableCount = ((BigInteger) tableCountQuery.uniqueResult())
 				.longValue();
 		System.out.println("Number of tables in the database: " + tableCount);
 
-		// Get the total number of items and columns in
-		// each table using native SQL query
 		Query tableInfoQuery = session.createSQLQuery(
 				"SELECT table_name, table_rows FROM information_schema.tables WHERE table_schema = 'chess'");
 		List<Object[]> tablesInfo = tableInfoQuery.list();
 
-		// Display the results
 		List<GlobalStatistics> globalStatisticsList = new ArrayList<>();
 		System.out.println("Table Statistics:");
 		for (Object[] row : tablesInfo) {
@@ -40,7 +36,6 @@ public class GlobalStatisticsDAO {
 					? ((BigInteger) row[1]).longValue()
 					: 0L;
 
-			// Get the count of columns for each table
 			Query columnCountQuery = session.createSQLQuery(
 					"SELECT COUNT(*) FROM information_schema.columns WHERE table_schema = 'chess' AND table_name = :tableName");
 			columnCountQuery.setParameter("tableName", tableName);

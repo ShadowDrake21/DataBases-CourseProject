@@ -9,14 +9,12 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
-/* Style for the progress bar container */
 #progress-bar-container {
 	width: 100%;
 	height: 30px;
 	position: relative;
 }
 
-/* Style for the progress bar */
 #progress-bar {
 	width: 0%;
 	height: 100%;
@@ -27,7 +25,6 @@
 	transition: width 1s linear;
 }
 
-/* Style for the percentage label */
 #percentage-label {
 	position: absolute;
 	top: 50%;
@@ -37,14 +34,12 @@
 }
 </style>
 <script>
-	// Function to update the progress bar and redirect to homepage after 5 seconds
 	function redirectToLoginpage() {
 		var progressBar = document.getElementById("progress-bar");
 		var percentageLabel = document.getElementById("percentage-label");
 		var startTime = new Date().getTime();
-		var duration = 5000; // 5000 milliseconds = 5 seconds
-
-		// Update the progress bar and percentage label every 50 milliseconds
+		var duration = 5000; 
+		
 		var intervalId = setInterval(function() {
 			var currentTime = new Date().getTime();
 			var elapsedTime = currentTime - startTime;
@@ -60,7 +55,6 @@
 		}, 50);
 	}
 
-	// Call the function when the page loads
 	window.onload = function() {
 		redirectToLoginpage();
 	};

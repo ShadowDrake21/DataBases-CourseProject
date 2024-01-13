@@ -23,9 +23,6 @@ public class TournamentDAO {
 		this.session = session;
 	}
 
-	/**
-	 * This method create new entity
-	 */
 	public Tournament createTournament(Tournament tournament) {
 		Transaction transaction = session.beginTransaction();
 		session.saveOrUpdate(tournament);
@@ -33,9 +30,6 @@ public class TournamentDAO {
 		return tournament;
 	}
 
-	/**
-	 * This method update existing product
-	 */
 	public Tournament updateTournament(Tournament tournament) {
 		Transaction transaction = session.beginTransaction();
 		session.merge(tournament);
@@ -43,41 +37,24 @@ public class TournamentDAO {
 		return tournament;
 	}
 
-	/**
-	 * This method delete existing product
-	 */
 	public void deleteTournament(Tournament tournament) {
 		Transaction transaction = session.beginTransaction();
 		session.delete(tournament);
 		transaction.commit();
 	}
 
-	/**
-	 * This method remove entity by id
-	 */
 	public void deleteTournamentById(Long tournamentId) {
 		Tournament tournament = (Tournament) session.get(Tournament.class,
 				tournamentId);
 		deleteTournament(tournament);
 	}
 
-	/**
-	 * This method return all entities
-	 */
 	public List<Tournament> getAllTournaments() {
 		SQLQuery query = session.createSQLQuery("select * from tournament")
 				.addEntity(Tournament.class);
 		List<Tournament> tournamentList = query.list();
 		return tournamentList;
 	}
-
-	/**
-	 * This method return all products by name This
-	 * method is specific for Product domain object
-	 * instead of other methods from this class All
-	 * other methods can be moved to generic class and
-	 * can be used for other domain objects.
-	 */
 
 	public Tournament getTournamentById(Long idTournament) {
 		Tournament tournament = (Tournament) session.get(Tournament.class,
